@@ -156,7 +156,7 @@ class PengantarLhu extends ResourceController
                 $simpandata = [
                     'kode_pengantar' => $this->generate_kode_pengantar(),
                     'id_pelanggan' => $this->request->getVar('id_pelanggan'),
-                    'tanggal' => $this->request->getVar('tanggal'),
+                    'tanggal' => date('Y-m-d', strtotime($this->request->getVar('tanggal'))),
                     'tahun' => date('Y', strtotime($this->today))
                 ];
                 $this->model->insert($simpandata);
