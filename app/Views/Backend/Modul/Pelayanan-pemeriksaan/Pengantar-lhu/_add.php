@@ -23,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label h5">Tanggal</label>
-                        <input type="text" name="tanggal" id="tanggal" class="form-control">
+                        <input type="text" name="tanggal" id="tanggal" class="form-control" autocomplete="off">
                         <div class="invalid-feedback errorTanggal"></div>
                     </div>
                 </div>

@@ -58,10 +58,10 @@ class PengantarLhu extends ResourceController
         }
         $nextYear = date('Y', strtotime($this->today));
         if ($tahun < $nextYear) {
-            $count = $this->model->where('tahun', $tahun)->countAllResults();
-            $nomorUrut = 1;
-        }else{
             $count = $this->model->where('tahun', $nextYear)->countAllResults();
+            $nomorUrut = $count + 1;
+        }else{
+            $count = $this->model->where('tahun', $tahun)->countAllResults();
             $nomorUrut = $count + 1;
         }
         $nomorAntrian = 'PL'. sprintf('%04d', $nomorUrut).'.'.date('Y', strtotime($this->today));
