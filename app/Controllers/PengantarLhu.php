@@ -64,7 +64,7 @@ class PengantarLhu extends ResourceController
             $count = $this->model->where('tahun', $tahun)->countAllResults();
             $nomorUrut = $count + 1;
         }
-        $nomorAntrian = 'PL'. sprintf('%04d', $nomorUrut).'.'.date('Y', strtotime($this->today));
+        $nomorAntrian = 'PL'. sprintf('%04d', $nomorUrut);
         return $nomorAntrian;
     }
 
