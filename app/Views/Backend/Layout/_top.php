@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link">
     <link rel="stylesheet" href="<?= base_url('assets/css/style-preset.css'); ?>">
 
-
     <?= $this->renderSection('topAssets'); ?>
 
     <title><?= $title; ?></title>

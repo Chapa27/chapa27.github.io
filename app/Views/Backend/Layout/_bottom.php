@@ -4,6 +4,7 @@
 <script src="<?= base_url('assets/js/fonts/custom-font.js'); ?>"></script>
 <script src="<?= base_url('assets/js/pcoded.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/feather.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/fontawesome.v6.3.0.all.js'); ?>"></script>
 <script src="<?= base_url('js/jquery-3.7.1.min.js'); ?>"></script>
 
 <script>
