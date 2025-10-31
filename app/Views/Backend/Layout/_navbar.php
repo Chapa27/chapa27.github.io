@@ -11,7 +11,7 @@
                 <li class="pc-item">
                     <a href="<?= base_url('home'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-home"></i></span>
-                        <span class="pc-mtext">Home</span>
+                        <span class="pc-mtext"><i class="fa-solid fa-user"></i>Home</span>
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
