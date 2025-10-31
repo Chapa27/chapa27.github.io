@@ -5,12 +5,12 @@
                 <!-- ======= Menu collapse Icon ===== -->
                 <li class="pc-h-item pc-sidebar-collapse">
                     <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
-                        <i class="ti ti-menu-2"></i>
+                        <i class="fa-solid fa-arrow-left"></i>
                     </a>
                 </li>
                 <li class="pc-h-item pc-sidebar-popup">
                     <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
-                        <i class="ti ti-menu-2"></i>
+                        <i class="fa-solid fa-arrow-left"></i>
                     </a>
                 </li>
                 <li class="dropdown pc-h-item d-inline-flex d-md-none">
@@ -21,7 +21,7 @@
                         role="button"
                         aria-haspopup="false"
                         aria-expanded="false">
-                        <i class="ti ti-search"></i>
+                        <i class="fa-solid fa-search"></i>
                     </a>
                     <div class="dropdown-menu pc-h-dropdown drp-search">
                         <!-- Blank text -->
@@ -118,14 +118,14 @@
                         aria-haspopup="false"
                         data-bs-auto-close="outside"
                         aria-expanded="false">
-                        <img src="<?= base_url('assets/img/avatar-2.jpg'); ?>" alt="user-image" class="user-avtar">
+                        <img src="<?= base_url('img/user.jpg'); ?>" alt="user-image" class="user-avtar">
                         <span>Stebin Ben</span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
                             <div class="d-flex mb-1">
                                 <div class="flex-shrink-0">
-                                    <img src="<?= base_url('assets/img/avatar-2.jpg'); ?>" alt="user-image" class="user-avtar wid-35">
+                                    <img src="<?= base_url('img/user.jpg'); ?>" alt="user-image" class="user-avtar wid-35">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="mb-1">Stebin Ben</h6>

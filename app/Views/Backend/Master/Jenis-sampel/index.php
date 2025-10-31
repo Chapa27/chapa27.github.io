@@ -1,4 +1,4 @@
-<?= $this->extend('Layout/_main'); ?>
+<?= $this->extend('Backend/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
@@ -21,17 +21,19 @@
         <!-- [ breadcrumb ] end -->
 
         <!-- [ Main Content ] start -->
-        <div class="row">
+        <div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4><span class="pc-micon"><i class="ti ti-list"></i></span><?= $title; ?></h4>
+                    <div class="card-header p-6">
+                        <h4><span class="pc-micon"><i class="fa-solid fa-list"></i></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <?= $this->include('Componen/_btn-refresh'); ?>
+                            <button type="button" class="btn btn-dark btn-sm" id="refreshButton">
+                                <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
+                            </button>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm btn-tambah">
-                                <span class="pc-micon"><i class="ti ti-circle-plus"></i> Tambah Data
+                                <span class="pc-micon"><i class="fa-solid fa-plus"></i> Tambah Data
                             </button>
                         </div>
                     </div>
