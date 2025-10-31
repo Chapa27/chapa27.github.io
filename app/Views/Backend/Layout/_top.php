@@ -10,7 +10,7 @@
     <meta name="author" content="CodedThemes">
     <!-- [Favicon] icon -->
     <link rel="icon" href="<?= base_url('assets/images/bblkm-jakarta-png'); ?>" type="image/x-icon"> <!-- [Google Font] Family -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
+    <link rel="stylesheet" href="<?= base_url('assets/fonts/css2.css'); ?>" id="main-font-link">
     <!-- [Tabler Icons] https://tablericons.com -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/tabler-icons.min.css'); ?>">
     <!-- [Feather Icons] https://feathericons.com -->
