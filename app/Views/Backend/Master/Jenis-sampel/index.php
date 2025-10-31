@@ -26,14 +26,14 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-6">
-                        <h4><span class="pc-micon"><i class="fa-solid fa-list"></i></span> <?= $title; ?></h4>
+                        <h4 style="font-family: calibri;"><span class="pc-micon"><i class="fa-solid fa-list"></i></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-dark btn-sm" id="refreshButton">
                                 <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
                             </button>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm btn-tambah">
-                                <span class="pc-micon"><i class="fa-solid fa-plus"></i> Tambah Data
+                                <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
                             </button>
                         </div>
                     </div>
