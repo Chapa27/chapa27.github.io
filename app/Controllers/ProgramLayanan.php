@@ -9,6 +9,6 @@ class ProgramLayanan extends BaseController
 {
     public function index()
     {
-        return view('Frontend/Layout/index');
+        return view('Frontend/Layout/_home');
     }
 }

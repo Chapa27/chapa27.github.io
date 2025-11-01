@@ -8,8 +8,7 @@
     <meta name="description" content="BBLKM Jakarta Aplikasi Sistem Informasi">
     <meta name="keywords" content="BB Labkesmas Jakarta Aplikasi">
     <meta name="author" content="CodedThemes">
-    <!-- [Favicon] icon -->
-    <link rel="icon" href="<?= base_url('img/bblkm-jakarta.png'); ?>" type="image/x-icon"> <!-- [Google Font] Family -->
+    <link rel="icon" href="<?= base_url('img/bblkm-jakarta.png'); ?>" type="image/x-icon">
     <link rel="stylesheet" href="<?= base_url('assets/fonts/css2.css'); ?>" id="main-font-link">
     <!-- [Feather Icons] https://feathericons.com -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/feather.css'); ?>">

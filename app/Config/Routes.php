@@ -6,11 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('home/dashboard', 'Home::dashboard');
 $routes->get('program-layanan', 'ProgramLayanan::index');
-
-
-
 
 /** Master Data **/
 /** Jenis sampel **/
