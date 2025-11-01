@@ -52,6 +52,7 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 dataType: 'json',
+                cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
                     $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
@@ -62,32 +63,29 @@
                     $('.btn-simpan').html('Simpan');
                 },
                 success: function(response) {
-                    if (response.error) {
-
-                        if (response.error.jenis_sampel) {
-                            $('#jenis-sampel').addClass('is-invalid');
-                            $('.errorJenisSampel').html(response.error.jenis_sampel);
+                    var err = response.error
+                    if (err) {
+                        if (err.jenis_sampel) {
+                            $("#jenis-sampel").addClass('is-invalid');
+                            $('.errorJenisSampel').html(err.jenis_sampel);
                         } else {
                             $('#jenis-sampel').removeClass('is-invalid');
                             $('.errorJenisSampel').html('');
                         }
-
-                        if (response.error.pnbp) {
+                        if (err.pnbp) {
                             $('#pnbp').addClass('is-invalid');
-                            $('.errorPnbp').html(response.error.pnbp);
+                            $('.errorPnbp').html(err.pnbp);
                         } else {
                             $('#pnbp').removeClass('is-invalid');
                             $('.errorPnbp').html('');
                         }
-
-                        if (response.error.id_lab) {
+                        if (err.id_lab) {
                             $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(response.error.id_lab);
+                            $('.errorIdLab').html(err.id_lab);
                         } else {
                             $('#id-lab').removeClass('is-invalid');
                             $('.errorIdLab').html('');
                         }
-
                     } else {
                         Swal.fire({
                             title: "Berhasil",

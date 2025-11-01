@@ -28,7 +28,7 @@
                     <div class="card-header p-6">
                         <h4 style="font-family: calibri;"><span class="pc-micon"><i class="fa-solid fa-list"></i></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-dark btn-sm" id="refreshButton">
+                            <button type="button" class="btn btn-dark btn-sm" id="refBtn">
                                 <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
                             </button>
                             <!-- Button trigger modal -->
@@ -51,10 +51,10 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url(); ?>assets/js/plugins/datatables/dataTables.2.3.4.js"></script>
-<script src="<?= base_url('assets/js/plugins/datatables/dataTables.bootstrap5.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/datatables/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
+<script src="<?= base_url(); ?>assets/js/plugins/dataTables.js"></script>
+<script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
 
 <script>
     function listData() {

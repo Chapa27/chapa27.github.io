@@ -23,12 +23,19 @@
     font_change("Public-Sans");
 </script>
 
-
 <script>
     $(document).ready(function() {
-        document.getElementById('refreshButton').addEventListener('click', function() {
-            $('#refreshButton').html('<i class="fa fa-spin fa-spinner"></i>');
-            location.reload();
+        $("#refBtn").click(function() {
+            $.ajax({
+                cache: false,
+                beforeSend: function() {
+                    $('#refBtn').html('<i class="fa fa-spin fa-spinner"></i>');
+                },
+                success: function() {
+                    listData();
+                    $('#refBtn').html('<i class="fa-solid fa-refresh"></i>');
+                }
+            })
         })
     })
 </script>

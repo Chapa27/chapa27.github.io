@@ -9,10 +9,8 @@
     <meta name="keywords" content="BB Labkesmas Jakarta Aplikasi">
     <meta name="author" content="CodedThemes">
     <!-- [Favicon] icon -->
-    <link rel="icon" href="<?= base_url('assets/images/bblkm-jakarta-png'); ?>" type="image/x-icon"> <!-- [Google Font] Family -->
+    <link rel="icon" href="<?= base_url('img/bblkm-jakarta.png'); ?>" type="image/x-icon"> <!-- [Google Font] Family -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/css2.css'); ?>" id="main-font-link">
-    <!-- [Tabler Icons] https://tablericons.com -->
-    <link rel="stylesheet" href="<?= base_url('assets/fonts/tabler-icons.min.css'); ?>">
     <!-- [Feather Icons] https://feathericons.com -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/feather.css'); ?>">
     <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
