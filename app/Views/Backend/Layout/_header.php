@@ -13,20 +13,6 @@
                         <i class="fa-solid fa-arrow-left"></i>
                     </a>
                 </li>
-                <li class="dropdown pc-h-item d-inline-flex d-md-none">
-                    <a
-                        class="pc-head-link dropdown-toggle arrow-none m-0"
-                        data-bs-toggle="dropdown"
-                        href="#"
-                        role="button"
-                        aria-haspopup="false"
-                        aria-expanded="false">
-                        <i class="fa-solid fa-search"></i>
-                    </a>
-                    <div class="dropdown-menu pc-h-dropdown drp-search">
-                        <!-- Blank text -->
-                    </div>
-                </li>
                 <li class="pc-h-item d-none d-md-inline-flex">
                     <!-- Blank text -->
                 </li>

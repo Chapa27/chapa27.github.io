@@ -60,7 +60,7 @@
                 },
                 complete: function() {
                     $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('Simpan');
+                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
                     var err = response.error

@@ -6,24 +6,23 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/laboratorium/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/biaya-akomodasi/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Nama laboratorium</label>
-                        <input type="text" name="nama_lab" class="form-control" id="nama-lab">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="uraian" class="form-label h5">Uraian</label>
+                        <input type="text" name="uraian" class="form-control" id="uraian">
+                        <div class="invalid-feedback errorUraian"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="lantai" class="form-label h5">Lantai</label>
-                        <select name="lantai" class="form-select" id="lantai" aria-label="Default select example">
-                            <option value="">-- Pilih --</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                        <div class="invalid-feedback errorLantai"></div>
+                        <label for="transport" class="form-label h5">Transport</label>
+                        <input type="text" name="transport" class="form-control" id="transport">
+                        <div class="invalid-feedback errorTransport"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="uang-harian" class="form-label h5">Uang harian</label>
+                        <input type="text" name="uang_harian" class="form-control" id="uang-harian">
+                        <div class="invalid-feedback errorUangHarian"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -57,19 +56,28 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.nama_lab) {
-                            $('#nama-lab').addClass('is-invalid');
-                            $('.errorNamaLab').html(err.nama_lab);
+                        if (err.uraian) {
+                            $('#uraian').addClass('is-invalid');
+                            $('.errorUraian').html(err.uraian);
                         } else {
-                            $('#nama-lab').removeClass('is-invalid');
-                            $('.errorNamaLab').html('');
+                            $('#uraian').removeClass('is-invalid');
+                            $('.errorUraian').html('');
                         }
-                        if (err.lantai) {
-                            $('#lantai').addClass('is-invalid');
-                            $('.errorLantai').html(err.lantai);
+
+                        if (err.transport) {
+                            $('#transport').addClass('is-invalid');
+                            $('.errorTransport').html(err.transport);
                         } else {
-                            $('#lantai').removeClass('is-invalid');
-                            $('.errorLantai').html('');
+                            $('#transport').removeClass('is-invalid');
+                            $('.errorTransport').html('');
+                        }
+
+                        if (err.uang_harian) {
+                            $('#uang-harian').addClass('is-invalid');
+                            $('.errorUangHarian').html(err.uang_harian);
+                        } else {
+                            $('#uang-harian').removeClass('is-invalid');
+                            $('.errorUangHarian').html('');
                         }
                     } else {
                         Swal.fire({
