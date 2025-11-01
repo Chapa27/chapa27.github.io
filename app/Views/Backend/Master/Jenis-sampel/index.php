@@ -51,11 +51,10 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url(); ?>assets/js/plugins/dataTables.js"></script>
+<script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
-
 <script>
     function listData() {
         $.ajax({
@@ -70,6 +69,7 @@
         })
     }
 
+
     $(document).ready(function() {
         listData();
 
@@ -78,9 +78,10 @@
             $.ajax({
                 url: "<?= site_url('master-data/jenis-sampel/add-data'); ?>",
                 dataType: 'json',
+                cache: false,
                 success: function(response) {
                     $(".view-modal").html(response.data).show();
-                    $("#addData").modal('show');
+                    $("#exampleModal").modal('show');
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);

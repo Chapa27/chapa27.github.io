@@ -1,20 +1,20 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Jenis sampel</th>
-            <th>PNBP (Rp)</th>
-            <th>Lab</th>
-            <th>Status</th>
-            <th></th>
-        </tr>
+    <thead style="font-family: calibri;">
+        <?php
+        $arrth = ['No', 'Jenis sampel', 'PNBP (Rp)', 'Lab', 'Status', ''];
+        echo '<tr>';
+        foreach ($arrth as $th) :
+            echo '<th>' . $th . '</th>';
+        endforeach;
+        echo '</tr>';
+        ?>
     </thead>
-    <tbody>
+    <tbody style="font-family: arial;">
         <?php
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr>
+            <tr id="myId-<?= $row['id']; ?>">
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['jenis_sampel']; ?></td>
                 <td><?= $row['pnbp']; ?></td>
@@ -43,7 +43,7 @@
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
-                    $("#editData").modal('show');
+                    $("#exampleModal").modal('show');
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {
@@ -52,7 +52,12 @@
         })
     }
 
+
     function deleteData(id) {
+        var myElement = $('#myId-' + id);
+        if (myElement) {
+            myElement.addClass('bg bg-danger');
+        }
         Swal.fire({
             title: "Yakin untuk menghapus data ?",
             text: `ID :` + id,
@@ -61,7 +66,7 @@
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Ya, Hapus!",
-            cancelButtonText: "Tidak"
+            cancelButtonText: "Tidak",
         }).then((result) => {
             if (result.value) {
                 $.ajax({
@@ -82,7 +87,8 @@
                         alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                     }
                 })
-
+            } else {
+                myElement.removeClass('bg bg-danger');
             }
         });
     }

@@ -18,13 +18,14 @@ class JenisSampelMaster extends ResourceController
     protected $title;
     protected $model;
     protected $modelLab;
-
+    protected $validation;
 
     public function __construct()
     {
         $this->title = 'Jenis sampel';
         $this->model = new JenisSampelModel();
         $this->modelLab = new LaboratoriumModel();
+        $this->validation = \Config\Services::validation();
     }
 
     public function index()
@@ -95,7 +96,6 @@ class JenisSampelMaster extends ResourceController
     public function create()
     {
         if ($this->request->isAJAX()) {
-            $validation = \Config\Services::validation();
             $valid = $this->validate([
                 'jenis_sampel' => [
                     'label' => 'Jenis sampel',
@@ -124,9 +124,9 @@ class JenisSampelMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'jenis_sampel' => $validation->getError('jenis_sampel'),
-                        'pnbp' => $validation->getError('pnbp'),
-                        'id_lab' => $validation->getError('id_lab')
+                        'jenis_sampel' => $this->validation->getError('jenis_sampel'),
+                        'pnbp' => $this->validation->getError('pnbp'),
+                        'id_lab' => $this->validation->getError('id_lab')
                     ]
                 ];
             } else {
