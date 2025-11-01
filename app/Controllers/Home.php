@@ -15,4 +15,10 @@ class Home extends BaseController
         $data['title'] = $this->title;
         return view('Backend/Layout/_home', $data);
     }
+
+    public function dashboard(): string
+    {
+        $data['title'] = $this->title;
+        return view('Backend/Layout/_dashboard', $data);
+    }
 }

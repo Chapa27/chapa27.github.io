@@ -9,7 +9,7 @@
         <div class="navbar-content">
             <ul class="pc-navbar">
                 <li class="pc-item">
-                    <a href="<?= base_url('home'); ?>" class="pc-link">
+                    <a href="<?= base_url('home/dashboard'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-home"></i></span>
                         <span class="pc-mtext">Home</span>
                     </a>

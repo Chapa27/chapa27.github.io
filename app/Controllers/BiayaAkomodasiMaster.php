@@ -16,12 +16,14 @@ class BiayaAkomodasiMaster extends ResourceController
     protected $title;
     protected $model;
     protected $modelLab;
+    protected $validation;
 
 
     public function __construct()
     {
         $this->title = 'Biaya Akomodasi';
         $this->model = new BiayaAkomodasiModel();
+        $this->validation = \Config\Services::validation();
     }
 
     public function index()
@@ -91,7 +93,6 @@ class BiayaAkomodasiMaster extends ResourceController
     public function create()
     {
         if ($this->request->isAJAX()) {
-            $validation = \Config\Services::validation();
             $valid = $this->validate([
                 'uraian' => [
                     'label' => 'Uraian',
@@ -119,9 +120,9 @@ class BiayaAkomodasiMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'uraian' => $validation->getError('uraian'),
-                        'transport' => $validation->getError('transport'),
-                        'uang_harian' => $validation->getError('uang_harian')
+                        'uraian' => $this->validation->getError('uraian'),
+                        'transport' => $this->validation->getError('transport'),
+                        'uang_harian' => $this->validation->getError('uang_harian')
                     ]
                 ];
             } else {
@@ -175,7 +176,6 @@ class BiayaAkomodasiMaster extends ResourceController
     public function update($id = null)
     {
         if ($this->request->isAJAX()) {
-            $validation = \Config\Services::validation();
             $valid = $this->validate([
                 'uraian' => [
                     'label' => 'Uraian',
@@ -203,9 +203,9 @@ class BiayaAkomodasiMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'uraian' => $validation->getError('uraian'),
-                        'transport' => $validation->getError('transport'),
-                        'uang_harian' => $validation->getError('uang_harian')
+                        'uraian' => $this->validation->getError('uraian'),
+                        'transport' => $this->validation->getError('transport'),
+                        'uang_harian' => $this->validation->getError('uang_harian')
                     ]
                 ];
             } else {
