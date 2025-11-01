@@ -7,6 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('home/dashboard', 'Home::dashboard');
+$routes->get('program-layanan', 'ProgramLayanan::index');
+
+
 
 
 /** Master Data **/
