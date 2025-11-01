@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
+    <?= $this->renderSection('topAssets'); ?>
 
     <title>Program Layanan</title>
 </head>
@@ -22,4 +23,4 @@
     }
 </style>
 
-<body class="bg-dark">
+<body class="bg-light">

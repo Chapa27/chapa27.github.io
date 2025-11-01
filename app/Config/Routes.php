@@ -6,7 +6,18 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('program-layanan', 'ProgramLayanan::index');
+
+
+$routes->group('program-layanan', function ($routes) {
+    $routes->get('', 'ProgramLayanan::index');
+});
+
+
+$routes->group('buku-tamu', function ($routes) {
+    $routes->get('', 'BukuTamu::index');
+    $routes->get('list-data', 'BukuTamu::list');
+});
+
 
 /** Master Data **/
 /** Jenis sampel **/

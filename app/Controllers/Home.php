@@ -5,6 +5,8 @@ namespace App\Controllers;
 class Home extends BaseController
 {
 
+    protected $title;
+
     public function __construct()
     {
         $this->title = 'Home';
