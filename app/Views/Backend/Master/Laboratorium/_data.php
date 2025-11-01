@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
-        $arrth = ['No', 'Jenis sampel', 'PNBP (Rp)', 'Lab', 'Status', ''];
+        $arrth = ['No', 'Laboratorium', 'Lantai', 'status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,9 +16,8 @@
         ?>
             <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['jenis_sampel']; ?></td>
-                <td><?= $row['pnbp']; ?></td>
                 <td><?= $row['nama_lab']; ?></td>
+                <td><?= $row['lantai']; ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
@@ -38,7 +37,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/jenis-sampel/edit-data/'); ?>' + id,
+            url: '<?= site_url('master-data/laboratorium/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -71,7 +70,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/jenis-sampel/delete-data/'); ?>' + id,
+                    url: '<?= site_url('master-data/laboratorium/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
