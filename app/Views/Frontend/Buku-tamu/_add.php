@@ -6,8 +6,9 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('buku-tamu/create-data'); ?>" method="post" class="form-buku-tamu">
-                <div class="modal-body">
+            <form action="<?= base_url('buku-tamu/create-data'); ?>" class="form-buku-tamu">
+                <?= csrf_field(); ?>                
+            <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-tamu" class="form-label h6">Nama</label>
                         <input type="text" name="nama" class="form-control" id="nama-tamu">
@@ -62,6 +63,7 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 dataType: 'json',
+                cache: false,
                 beforeSend: function() {
                     $('.btn-simpan-bktamu').attr('disable', 'disabled');
                     $('.btn-simpan-bktamu').html('<i class="fa fa-spin fa-spinner"></i>');
@@ -72,7 +74,26 @@
                     $('.btn-simpan-bktamu').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
-                    var err = response.error
+                    if (response.error) {
+                       if (response.error.nama) {
+                            $('#nama-tamu').addClass('is-invalid');
+                            $('.errorNamaTamu').html(response.error.nama);
+                        } else {
+                            $('#nama-tamu').removeClass('is-invalid');
+                            $('.errorNamaTamu').html('');
+                        } 
+                    }else{
+                        
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: response.sukses,
+                            icon: "success"
+                        });
+
+                        $("#modalBukuTamu").modal('hide');
+                        listData();
+                    }
+
                     // if (err) {
                     //     if (err.id_deaerah) {
                     //         $('#id-daerah').addClass('is-invalid');
@@ -99,11 +120,6 @@
                     //     // $("#modalBukuTamu").modal('hide');
                     //     // listData();
                     // }
-                    if (response.sukses) {
-                        console.log(response.sukses);
-                    } else {
-                        console.log(response.error);
-                    }
 
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

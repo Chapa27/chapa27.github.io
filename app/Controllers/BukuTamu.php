@@ -92,61 +92,41 @@ class BukuTamu extends ResourceController
     {
         if ($this->request->isAJAX()) {
 
-            // $valid = $this->validate([
-            //     'id_deaerah' => [
-            //         'label' => 'Asal',
-            //         'rules' => 'required',
-            //         'errors' => [
-            //             'required' => '{field} tidak boleh kosong'
-            //         ]
-            //     ],
-            //     'id_keperluan' => [
-            //         'label' => 'Keperluan',
-            //         'rules' => 'required',
-            //         'errors' => [
-            //             'required' => '{field} tidak boleh kosong'
-            //         ]
-            //     ]
-            // ]);
+            $valid = $this->validate([
+                'nama' => [
+                    'label' => 'Nama',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
 
-            // if (!$valid) {
-            //     $msg = [
-            //         'error' => [
-            //             'id_daerah' => $this->validation->getError('id_daerah'),
-            //             'id_keperluan' => $this->validation->getError('id_keperluan')
-            //         ]
-            //     ];
-            // } else {
-            //     $simpandata = [
-            //         'no_urut' => 'A1',
-            //         'nama' => $this->request->getVar('nama'),
-            //         'id_daerah' => $this->request->getVar('id_daerah'),
-            //         'catatan' => $this->request->getVar('catatan'),
-            //         'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
-            //         'tgl_kunjung' => date('Y-m-d'),
-            //         'jam_masuk' => date('H:i:s'),
-            //     ];
-            //     $this->model->save($simpandata);
-            //     $msg = [
-            //         'sukses' => 'Data berhasil disimpan'
-            //     ];
-            // }
-
-            $simpandata = [
-                'no_urut' => 'A1',
-                'nama' => $this->request->getVar('nama'),
-                'id_daerah' => $this->request->getVar('id_daerah'),
-                'id_keperluan' => $this->request->getVar('id_keperluan'),
-                'catatan' => $this->request->getVar('catatan'),
-                'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
-                'tgl_kunjung' => date('Y-m-d'),
-                'jam_masuk' => date('H:i:s'),
-            ];
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama' => $this->validation->getError('nama')
+                    ]
+                ];
+            }else{
+                $simpandata = [
+                    'no_urut' => 'A1',
+                    'nama' => $this->request->getVar('nama'),
+                    'id_daerah' => $this->request->getVar('id_daerah'),
+                    'id_keperluan' => $this->request->getVar('id_keperluan'),
+                    'catatan' => $this->request->getVar('catatan'),
+                    'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
+                    'tgl_kunjung' => date('Y-m-d'),
+                    'jam_masuk' => date('H:i:s'),
+                ];
             $this->model->save($simpandata);
+
             $msg = [
                 'sukses' => 'Data berhasil disimpan'
             ];
             echo json_encode($msg);
+            }
+
         } else {
             exit('Not Process');
         }
