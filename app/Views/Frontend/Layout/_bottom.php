@@ -3,6 +3,7 @@
 <script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
 <script src="<?= base_url('js/jquery-3.7.1.min.js'); ?>"></script>
 
+
 <?= $this->renderSection('bottomAssets'); ?>
 </body>
 

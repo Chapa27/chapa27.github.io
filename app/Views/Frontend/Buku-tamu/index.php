@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="padding:4px">
                 <h5 class="card-title"><span class="fa-solid fa-book"></span> Buku tamu</h5>
                 <div class="d-flex justify-content-end align-items-center gap-1">
                     <button type="button" class="btn btn-dark btn-sm" id="refBtn">
@@ -24,7 +24,7 @@
     </div>
     <div class="col-sm-3">
         <div class="card" style="border: 3px solid white;">
-            <div class="card-body bg-success">
+            <div class="card-body bg-success" style="padding:5px">
                 <h5 class="card-title text-light"><span class="fa-solid fa-users"></span> Pengunjung Hari Ini</h5>
                 <hr style="border: 3px solid yellow;">
                 <p class="card-text">
@@ -35,7 +35,7 @@
     </div>
     <div class="col-sm-3">
         <div class="card" style="border: 3px solid white;">
-            <div class="card-body bg-danger">
+            <div class="card-body bg-danger" style="padding:5px">
                 <h5 class="card-title text-light"><span class="fa-solid fa-users"></span> Pengunjung Kemarin</h5>
                 <hr style="border: 3px solid yellow;">
                 <p class="card-text">
@@ -68,19 +68,6 @@
     }
     $(document).ready(function() {
         listData();
-
-        $("#refBtn").click(function() {
-            $.ajax({
-                cache: false,
-                beforeSend: function() {
-                    $('#refBtn').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                success: function() {
-                    listData();
-                    $('#refBtn').html('<i class="fa-solid fa-refresh"></i>');
-                }
-            })
-        })
     })
 </script>
 <?= $this->endSection(); ?>
