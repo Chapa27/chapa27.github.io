@@ -1,6 +1,6 @@
 <?= $this->include('Frontend/Layout/_top'); ?>
-<div class="containter">
-    <div class="content">
+<div class="container-fluid">
+    <div class="container">
         <div class="row mb-2">
             <div class="col-sm-12">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light text-light">
@@ -52,4 +52,6 @@
         <?= $this->renderSection('content'); ?>
     </div>
 </div>
+<?= $this->include('Frontend/Layout/_footer'); ?>
+
 <?= $this->include('Frontend/Layout/_bottom'); ?>

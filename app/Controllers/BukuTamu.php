@@ -12,6 +12,15 @@ class BukuTamu extends ResourceController
      *
      * @return ResponseInterface
      */
+    protected $title;
+    protected $validation;
+
+    public function __construct()
+    {
+        $this->title = 'Buku Tamu';
+        $this->validation = \Config\Services::validation();
+    }
+
     public function index()
     {
         return view('Frontend/Buku-tamu/index');
@@ -52,7 +61,18 @@ class BukuTamu extends ResourceController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+            ];
+            $msg = [
+                'data' => view('Frontend/Buku-tamu/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

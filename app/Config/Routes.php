@@ -16,6 +16,7 @@ $routes->group('program-layanan', function ($routes) {
 $routes->group('buku-tamu', function ($routes) {
     $routes->get('', 'BukuTamu::index');
     $routes->get('list-data', 'BukuTamu::list');
+    $routes->get('add-data', 'BukuTamu::new');
 });
 
 

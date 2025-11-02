@@ -1,4 +1,4 @@
- <table id="example" class="table table-hover table-bordered view-data">
+ <table id="tblbktamu" class="table table-hover table-bordered view-data">
      <thead style="font-family: calibri;">
          <?php
             $arrth = ['No', 'Nama', 'Asal', 'Keperluan', 'Tanggal', ''];
@@ -22,7 +22,7 @@
  </table>
  <script>
      $(document).ready(function() {
-         new DataTable('#example', {
+         new DataTable('#tblbktamu', {
              responsive: true
          });
      })
