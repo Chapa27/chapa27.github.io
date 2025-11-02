@@ -6,25 +6,39 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/laboratorium/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('buku-tamu/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Nama laboratorium</label>
-                        <input type="text" name="nama_lab" class="form-control" id="nama-lab">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="nama-tamu" class="form-label h5">Nama</label>
+                        <input type="text" name="nama" class="form-control" id="nama-tamu">
+                        <div class="invalid-feedback errorNamaTamu"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="lantai" class="form-label h5">Lantai</label>
-                        <select name="lantai" class="form-select" id="lantai" aria-label="Default select example">
+                        <label for="id-daerah" class="form-label h5">Asal</label>
+                        <select name="id_daerah" class="form-select" id="id-daerah" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                            <?php
+                            foreach ($daerah as $row) :
+                                echo "<option value=" . $row['id'] . ">" . $row['nama_daerah'] . "</option>";
+                            endforeach;
+                            ?>
                         </select>
-                        <div class="invalid-feedback errorLantai"></div>
+                        <div class="invalid-feedback errorIdDaerah"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="id-keperluan" class="form-label h5">Keperluan</label>
+                        <select name="id_keperluan" class="form-select" id="id-keperluan" aria-label="Default select example">
+                            <option value="">-- Pilih --</option>
+                            <?php
+                            foreach ($keperluan as $row) :
+                                echo "<option value=" . $row['id'] . ">" . $row['keperluan'] . "</option>";
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorKeperluan"></div>
+                    </div>
+                    <div class="mb-3 catatan"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm btn-simpan"><i class="fas fa-save"></i> Simpan</button>
@@ -37,6 +51,22 @@
 
 <script>
     $(document).ready(function() {
+        $("#id-keperluan").change(function() {
+            var id = $(this).val();
+            var kunjung = `<label for="catatan" "class="form-label h5"><b>Catatan</b></label>
+            <textarea class="form-control" id="catatan" rows="3"></textarea>
+            <div class="invalid-feedback errorCatatan"></div>`;
+            var jlhsampel = `<label for="jlh-sampel" class="form-label h5">Jumlah sampel</label>
+            <input type="text" name="jumlah_sampel" class="form-control" id="jlh-sampel">
+            <div class="invalid-feedback errorJlhSampel"></div>`;
+            if (id == 3) {
+                $(".catatan").html(kunjung);
+            } else if (id == 1) {
+                $(".catatan").html(jlhsampel);
+            } else {
+                $(".catatan").html('');
+            }
+        })
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -57,19 +87,35 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.nama_lab) {
-                            $('#nama-lab').addClass('is-invalid');
-                            $('.errorNamaLab').html(err.nama_lab);
+                        if (err.id_deaerah) {
+                            $('#id-daerah').addClass('is-invalid');
+                            $('.errorIdDaerah').html(err.id_deaerah);
                         } else {
-                            $('#nama-lab').removeClass('is-invalid');
-                            $('.errorNamaLab').html('');
+                            $('#id-daerah').removeClass('is-invalid');
+                            $('.errorIdDaerah').html('');
                         }
-                        if (err.lantai) {
-                            $('#lantai').addClass('is-invalid');
-                            $('.errorLantai').html(err.lantai);
+                        if (err.id_keperluan) {
+                            $('#id-keperluan').addClass('is-invalid');
+                            $('.errorKeperluan').html(err.id_keperluan);
                         } else {
-                            $('#lantai').removeClass('is-invalid');
-                            $('.errorLantai').html('');
+                            $('#id-keperluan').removeClass('is-invalid');
+                            $('.errorKeperluan').html('');
+                        }
+
+                        if (err.catatan) {
+                            $('#catatan').addClass('is-invalid');
+                            $('.errorCatatan').html(err.catatan);
+                        } else {
+                            $('#catatan').removeClass('is-invalid');
+                            $('.errorCatatan').html('');
+                        }
+
+                        if (err.jumlah_sampel) {
+                            $('#jlh-sampel').addClass('is-invalid');
+                            $('.errorJlhSampel').html(err.jumlah_sampel);
+                        } else {
+                            $('#jlh-sampel').removeClass('is-invalid');
+                            $('.errorJlhSampel').html('');
                         }
                     } else {
                         Swal.fire({
