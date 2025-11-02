@@ -6,21 +6,22 @@ use CodeIgniter\Model;
 
 class BukuTamuModel extends Model
 {
-    protected $table            = 'bukutamus';
+    protected $table            = 'buku_tamu';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'no_urut',
         'nama',
         'id_daerah',
         'id_keperluan',
-        'catatan',
+        // 'catatan',
         'tgl_kunjung',
         'jam_masuk',
         'jam_keluar',
-        'jumlah_sampel'
+        // 'jumlah_sampel'
     ];
 
     protected bool $allowEmptyInserts = false;

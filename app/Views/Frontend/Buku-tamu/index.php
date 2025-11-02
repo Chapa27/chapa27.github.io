@@ -14,7 +14,7 @@
                         <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
                     </button>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm btn-tambah">
+                    <button type="button" class="btn btn-primary btn-sm btn-tambah-bktamu">
                         <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
                     </button>
                 </div>
@@ -46,14 +46,14 @@
         </div>
     </div>
 </div>
-<div class="view-modal" style="display: none;"></div>
+<div class="view-modalx" style="display: none;"></div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-
+<script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
 <script>
     function listData() {
         $.ajax({
@@ -69,15 +69,16 @@
     }
 
 
-    $(".btn-tambah").click(function(e) {
+    $(".btn-tambah-bktamu").click(function(e) {
         e.preventDefault();
         $.ajax({
+            type: 'get',
             url: "<?= site_url('buku-tamu/add-data'); ?>",
             dataType: 'json',
             cache: false,
             success: function(response) {
-                $(".view-modal").html(response.data).show();
-                $("#exampleModal").modal('show');
+                $(".view-modalx").html(response.data).show();
+                $("#modalBukuTamu").modal('show');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
