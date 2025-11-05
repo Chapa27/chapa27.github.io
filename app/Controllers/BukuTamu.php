@@ -37,4 +37,41 @@ class BukuTamu extends BaseController
         }
         
     }
+
+    public function create()
+    {
+        $this->validation = \Config\Services::validation();
+
+         if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama' => [
+                    'label' => 'Nama pelanggan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama' => $this->validation->getError('nama')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'nama' => $this->request->getVar('nama')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
 }
+

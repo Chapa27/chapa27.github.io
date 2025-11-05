@@ -15,6 +15,7 @@ $routes->group('program-layanan', function ($routes) {
 $routes->group('program-layanan/', function ($routes) {
     $routes->get('buku-tamu', 'BukuTamu::index');
     $routes->get('buku-tamu/add-data', 'BukuTamu::new');
+    $routes->post('buku-tamu/create-data', 'BukuTamu::create');
 });
 
 
