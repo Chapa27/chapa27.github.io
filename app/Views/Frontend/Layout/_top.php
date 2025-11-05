@@ -10,7 +10,7 @@
     <link rel="icon" href="<?= base_url('img/bblkm-jakarta.png'); ?>" type="image/x-icon">
 
     <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome.css'); ?>">
+    <!-- <link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome.css'); ?>"> -->
     <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
     <?= $this->renderSection('topAssets'); ?>
 

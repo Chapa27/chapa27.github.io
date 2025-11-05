@@ -8,7 +8,7 @@ use App\Models\KeperluanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
-class BukuTamu extends ResourceController
+class BukuTamu extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -119,6 +119,7 @@ class BukuTamu extends ResourceController
                     'tgl_kunjung' => date('Y-m-d'),
                     'jam_masuk' => date('H:i:s'),
                 ];
+                
             $this->model->save($simpandata);
 
             $msg = [

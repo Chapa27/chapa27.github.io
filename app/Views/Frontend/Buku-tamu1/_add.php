@@ -1,12 +1,12 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalBukuTamu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('program-layanan/create-buku-tamu'); ?>" class="form-data">
+            <form action="<?= base_url('program-layanan/buku-tamu/create-data'); ?>" class="form-buku-tamu">
                 <?= csrf_field(); ?>                
             <div class="modal-body">
                     <div class="mb-3">
@@ -49,7 +49,7 @@
                     <div class="mb-3"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-simpan"><i class="fas fa-save"></i> Simpan</button>
+                    <button type="submit" class="btn btn-primary btn-sm btn-simpan-bktamu"><i class="fas fa-save"></i> Simpan</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
                 </div>
             </form>
@@ -60,7 +60,7 @@
 <script>
     $(document).ready(function(e) {
 
-        $(".form-data").submit(function(e) {
+        $(".form-buku-tamu").submit(function(e) {
             e.preventDefault();
             $.ajax({
                 type: "post",
@@ -69,13 +69,13 @@
                 dataType: 'JSON',
                 cache: false,
                 beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-simpan-bktamu').attr('disable', 'disabled');
+                    $('.btn-simpan-bktamu').html('<i class="fa fa-spin fa-spinner"></i>');
                     $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                    $('.btn-simpan-bktamu').removeAttr('disable');
+                    $('.btn-simpan-bktamu').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
                     if (response.error) {

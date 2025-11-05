@@ -18,7 +18,7 @@
                                     <a class="nav-link text-light active" aria-current="page" href="<?= base_url('program-layanan'); ?>"><span class="fa-solid fa-home"></span> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light active" aria-current="page" href="<?= base_url('buku-tamu'); ?>"><span class="fa-solid fa-book"></span> Buku tamu</a>
+                                    <a class="nav-link text-light active" aria-current="page" href="<?= base_url('program-layanan/buku-tamu'); ?>"><span class="fa-solid fa-book"></span> Buku tamu</a>
                                 </li>
                             </ul>
                         </div>

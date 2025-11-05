@@ -2,7 +2,6 @@
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
-
 <?= $this->section('content'); ?>
 <div class="row">
     <div class="col-sm-6">
@@ -14,12 +13,33 @@
                         <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
                     </button>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm btn-tambah-bktamu">
+                    <button type="button" class="btn btn-primary btn-sm btn-tambah">
                         <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
                     </button>
                 </div>
                 <hr style="border: 3px solid green;">
-                <div class="view-content"></div>
+                 <table id="example" class="table table-hover table-bordered view-data">
+                    <thead style="font-family: calibri;">
+                        <?php
+                            $arrth = ['No', 'Nama', 'Asal', 'Keperluan', 'Tanggal', ''];
+                            echo '<tr>';
+                            foreach ($arrth as $th) :
+                                echo '<th>' . $th . '</th>';
+                            endforeach;
+                            echo '</tr>';
+                            ?>
+                    </thead>
+                    <tbody style="font-family: arial;">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -46,52 +66,35 @@
         </div>
     </div>
 </div>
-<div class="view-modalx" style="display: none;"></div>
+<div class="view-modal" style="display: none;"></div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
 
 <script>
-    function listData() {
-        $.ajax({
-            url: "<?= site_url('buku-tamu/list-data'); ?>",
-            dataType: 'json',
-            success: function(response) {
-                $(".view-content").html(response.data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        });
-    }
-
-
-    $(".btn-tambah-bktamu").click(function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'get',
-            url: "<?= site_url('buku-tamu/add-data'); ?>",
-            dataType: 'json',
-            cache: false,
-            success: function(response) {
-                $(".view-modalx").html(response.data).show();
-                $("#modalBukuTamu").modal('show');
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-            }
-        })
-    });
-
     $(document).ready(function() {
-        listData();
-        new DataTable('#tblbktamu', {
+        new DataTable('#example', {
             responsive: true
         });
+
+        $(".btn-tambah").click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "<?= site_url('program-layanan/tambah-buku-tamu'); ?>",
+                dataType: 'json',
+                cache: false,
+                success: function(response) {
+                    $(".view-modal").html(response.data).show();
+                    $("#modalBukuTamu").modal('show');
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                }
+            })
+        })
     });
 </script>
-<?= $this->endSection(); ?>
+<?= $this->endSection();?>
