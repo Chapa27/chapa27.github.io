@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
+   <div class="col-sm-3">
         <div class="card" style="border: 3px solid white;">
             <div class="card-body bg-success" style="padding:5px">
                 <h5 class="card-title text-light text-center"><span class="fa-solid fa-users"></span> Pengunjung Hari Ini</h5>

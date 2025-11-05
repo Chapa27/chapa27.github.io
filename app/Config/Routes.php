@@ -10,19 +10,12 @@ $routes->get('/', 'Home::index');
 
 $routes->group('program-layanan', function ($routes) {
     $routes->get('', 'ProgramLayanan::index');
-    $routes->get('buku-tamu', 'ProgramLayanan::buku_tamu');
-    $routes->get('tambah-buku-tamu', 'ProgramLayanan::new_buku_tamu');
-    $routes->post('create-buku-tamu', 'ProgramLayanan::create_buku_tamu');
 });
 
-$routes->group('buku-tamu', function ($routes) {
-    $routes->get('', 'BukuTamu::index');
-    $routes->get('list-data', 'BukuTamu::list');
-    $routes->get('add-data', 'BukuTamu::new');
-    $routes->post('create-data', 'BukuTamu::create');
+$routes->group('program-layanan/', function ($routes) {
+    $routes->get('buku-tamu', 'BukuTamu::index');
+    $routes->get('buku-tamu/add-data', 'BukuTamu::new');
 });
-
-$routes->post('program-layanan/buku-tamu/create-data', 'BukuTamu::create');
 
 
 
