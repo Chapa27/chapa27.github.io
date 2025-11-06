@@ -126,7 +126,7 @@
                         });
 
                         $("#exampleModal").modal('hide');
-                        listData();
+                        window.location.href = '';
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

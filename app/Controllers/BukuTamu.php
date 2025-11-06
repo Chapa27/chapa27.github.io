@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BukuTamu as ModelsBukuTamu;
+use App\Models\BukuTamuModel;
 use App\Models\DaerahModel;
 use App\Models\KeperluanModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -14,6 +16,7 @@ class BukuTamu extends BaseController
     protected $masterDaerah;
     protected $masterKeperluan;
     protected $validation;
+    protected $countUserNow;
 
     public function __construct()
     {
@@ -21,13 +24,25 @@ class BukuTamu extends BaseController
         // $this->model = new BukuTamu();
         $this->masterDaerah = new DaerahModel();
         $this->masterKeperluan = new KeperluanModel();
-
+       
     }
 
     public function index()
     {
+
+        $today = date('Y-m-d');
+               $this->model = new BukuTamuModel();
+
+
+        $countUserNow = $this->model->where('tanggal', $today)->countAllResults();
+        $kemarin = $this->model->where('tanggal')->orderBy('tanggal', 'DESC')->get()->getFirstRow();
+        var_dump($kemarin);
+        die;
+
          $data = [
-            'title' => $this->title
+            'title' => $this->title,
+            'pelanggan_hari_ini' => $countUserNow,
+            'pelanggan_kemarin' => $get
         ];
         return view('Frontend/Buku-tamu/index', $data);
 
@@ -50,6 +65,23 @@ class BukuTamu extends BaseController
             exit('Not Process');
         }
         
+    }
+
+    function generate_nomor_antrian() {
+        $today = date('Y-m-d');
+        $this->model = new BukuTamuModel();
+
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $this->model
+                      ->where('tanggal', $today)
+                      ->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = 'A' . sprintf('%03d', $nomorUrut);
+        return $nomorAntrian;
     }
 
     public function create()
@@ -88,9 +120,11 @@ class BukuTamu extends BaseController
                     ],
                  'no_telepon' => [
                     'label' => 'Keperluan',
-                    'rules' => 'required',
+                    'rules' => 'required|numeric',
                     'errors' => [
-                        'required' => '{field} tidak boleh kosong'
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} harus angka',
+
                     ]
                 ]
             ]);
@@ -107,6 +141,8 @@ class BukuTamu extends BaseController
                 ];
             } else {
                 $simpandata = [
+                    'no_urut' => $this->generate_nomor_antrian(),
+                    'tanggal' => date('Y-m-d'),
                     'nama' => $this->request->getVar('nama'),
                     'pengirim' => $this->request->getVar('pengirim'),
                     'id_daerah' => $this->request->getVar('id_daerah'),

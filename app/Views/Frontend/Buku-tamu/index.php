@@ -24,7 +24,7 @@
                 <h5 class="card-title text-light text-center"><span class="fa-solid fa-users"></span> Pengunjung Hari Ini</h5>
                 <hr style="border: 3px solid yellow;">
                 <p class="card-text">
-                <h2 class="text-light text-center">20 Orang</h2>
+                <h2 class="text-light text-center"><?= $pelanggan_hari_ini;?> Orang</h2>
                 </p>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <h5 class="card-title text-light text-center"><span class="fa-solid fa-users"></span> Pengunjung Kemarin</h5>
                 <hr style="border: 3px solid yellow;">
                 <p class="card-text">
-                <h2 class="text-light text-center">10 Orang</h2>
+                <h2 class="text-light text-center"><?= $pelanggan_kemarin;?> Orang</h2>
                 </p>
             </div>
         </div>

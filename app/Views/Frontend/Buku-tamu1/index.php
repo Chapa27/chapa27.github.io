@@ -29,7 +29,7 @@
                 <h5 class="card-title text-light text-center"><span class="fa-solid fa-users"></span> Pengunjung Hari Ini</h5>
                 <hr style="border: 3px solid yellow;">
                 <p class="card-text">
-                <h2 class="text-light text-center">20 Orang</h2>
+                <h2 class="text-light text-center"><?= $pengunjung_hari_ini;?> Orang</h2>
                 </p>
             </div>
         </div>

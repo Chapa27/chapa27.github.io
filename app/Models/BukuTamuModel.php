@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class BukuTamu extends Model
+class BukuTamuModel extends Model
 {
     protected $table            = 'buku_tamu';
     protected $primaryKey       = 'id';
@@ -12,7 +12,15 @@ class BukuTamu extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'no_urut',
+        'tanggal',
+        'nama',
+        'pengirim',
+        'id_daerah',
+        'id_keperluan',
+        'no_telepon'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
