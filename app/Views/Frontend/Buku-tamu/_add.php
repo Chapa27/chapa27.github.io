@@ -9,10 +9,48 @@
             <form action="<?= base_url('program-layanan/buku-tamu/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                     <div class="mb-3">
+                    <div class="mb-3">
                         <label for="nama-tamu" class="form-label h6">Nama</label>
                         <input type="text" name="nama" class="form-control" id="nama-tamu">
                         <div class="invalid-feedback errorNamaTamu"></div>
+                    </div>
+                     <div class="mb-3">
+                        <label for="nama-pengirim" class="form-label h6">Pengirim</label>
+                        <input type="text" name="pengirim" class="form-control" id="nama-pengirim">
+                        <div class="invalid-feedback errorNamaPengirim"></div>
+                    </div>
+                   <div class="mb-3">
+                     <label for="nama-daerah" class="form-label h6">Asal</label>
+                        <select name="id_daerah" class="form-select" id="nama-daerah" aria-label="Default select example">
+                            <option value="">-- Pilih --</option>
+                            <?php
+                            foreach ($masterDaerah as $row) :
+                                ?>
+                                <option value="<?= $row['id'];?>"><?= $row['nama_daerah'];?></option>
+                                <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorIdDaerah"></div>
+                   </div>
+                   <div class="mb-3">
+                     <label for="id-keperluan" class="form-label h6">Keperluan</label>
+                        <select name="id_keperluan" class="form-select" id="id-keperluan" aria-label="Default select example">
+                            <option value="">-- Pilih --</option>
+                            <?php
+                            foreach ($masterKeperluan as $row) :
+                                ?>
+                                <option value="<?= $row['id'];?>"><?= $row['keperluan'];?></option>
+                                <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorIdKeperluan"></div>
+                   </div>
+                   <div class="mb-3">
+                        <label for="no-telp" class="form-label h6">No.Telp</label>
+                        <input type="text" name="no_telepon" class="form-control" id="no-telp">
+                        <div class="invalid-feedback errorNoTelp"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -51,6 +89,35 @@
                             $('#nama-tamu').removeClass('is-invalid');
                             $('.errorNamaTamu').html('');
                         }
+                        if (err.pengirim) {
+                            $('#nama-pengirim').addClass('is-invalid');
+                            $('.errorNamaPengirim').html(err.pengirim);
+                        } else {
+                            $('#nama-pengirim').removeClass('is-invalid');
+                            $('.errorNamaPengirim').html('');
+                        }
+                        if (err.id_daerah) {
+                            $('#nama-daerah').addClass('is-invalid');
+                            $('.errorIdDaerah').html(err.id_daerah);
+                        } else {
+                            $('#nama-daerah').removeClass('is-invalid');
+                            $('.errorIdDaerah').html('');
+                        }
+                        if (err.id_keperluan) {
+                            $('#id-keperluan').addClass('is-invalid');
+                            $('.errorIdKeperluan').html(err.id_keperluan);
+                        } else {
+                            $('#id-keperluan').removeClass('is-invalid');
+                            $('.errorIdKeperluan').html('');
+                        }
+                        if (err.no_telepon) {
+                            $('#no-telp').addClass('is-invalid');
+                            $('.errorNoTelp').html(err.no_telepon);
+                        } else {
+                            $('#no-telp').removeClass('is-invalid');
+                            $('.errorNoTelp').html('');
+                        }
+                        
                     } else {
                         Swal.fire({
                             title: "Berhasil",

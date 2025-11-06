@@ -12,13 +12,11 @@ $routes->group('program-layanan', function ($routes) {
     $routes->get('', 'ProgramLayanan::index');
 });
 
-$routes->group('program-layanan/', function ($routes) {
-    $routes->get('buku-tamu', 'BukuTamu::index');
-    $routes->get('buku-tamu/add-data', 'BukuTamu::new');
-    $routes->post('buku-tamu/create-data', 'BukuTamu::create');
+$routes->group('program-layanan/buku-tamu', function ($routes) {
+    $routes->get('', 'BukuTamu::index');
+    $routes->get('add-data', 'BukuTamu::new');
+    $routes->post('create-data', 'BukuTamu::create');
 });
-
-
 
 /** Master Data **/
 /** Jenis sampel **/
