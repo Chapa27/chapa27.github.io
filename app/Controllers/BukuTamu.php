@@ -8,6 +8,7 @@ use App\Models\BukuTamuModel;
 use App\Models\DaerahModel;
 use App\Models\KeperluanModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use SebastianBergmann\Diff\Diff;
 
 class BukuTamu extends BaseController
 {
@@ -31,18 +32,17 @@ class BukuTamu extends BaseController
     {
 
         $today = date('Y-m-d');
-               $this->model = new BukuTamuModel();
-
+        $this->model = new BukuTamuModel();
 
         $countUserNow = $this->model->where('tanggal', $today)->countAllResults();
-        $kemarin = $this->model->where('tanggal')->orderBy('tanggal', 'DESC')->get()->getFirstRow();
-        var_dump($kemarin);
-        die;
-
+        $items = $this->model->orderBy('id', 'DESC')->get()->getRow();
+        $tglAkhir = date('Y-m-d', strtotime('-1 day', strtotime($items->tanggal)));
+        $countUserYesterday = $this->model->where('tanggal', $tglAkhir)->countAllResults();
+        
          $data = [
             'title' => $this->title,
             'pelanggan_hari_ini' => $countUserNow,
-            'pelanggan_kemarin' => $get
+            'pelanggan_kemarin' => $countUserYesterday
         ];
         return view('Frontend/Buku-tamu/index', $data);
 
@@ -80,7 +80,7 @@ class BukuTamu extends BaseController
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-        $nomorAntrian = 'A' . sprintf('%03d', $nomorUrut);
+        $nomorAntrian = 'A' . sprintf('%02d', $nomorUrut);
         return $nomorAntrian;
     }
 

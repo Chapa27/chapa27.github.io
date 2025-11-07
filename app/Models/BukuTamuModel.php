@@ -51,4 +51,16 @@ class BukuTamuModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function get_data()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('buku_tamu');
+        $builder->select('penawaran.id, penawaran.no_kode, penawaran.no_surat, penawaran.id_permintaan,
+        penawaran.tgl_surat, penawaran.proses, permintaan.noreg, permintaan.konsumen, permintaan.alamat, permintaan.proses');
+        $builder->join("permintaan", "penawaran.id_permintaan = permintaan.id");
+        $builder->where('penawaran.proses', 3);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
 }
