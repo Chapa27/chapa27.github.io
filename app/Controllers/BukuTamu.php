@@ -84,6 +84,22 @@ class BukuTamu extends BaseController
         return $nomorAntrian;
     }
 
+    public function list(){
+        $this->model = new BukuTamuModel();
+         if ($this->request->isAJAX()) {
+            $data = [
+                'items' => $this->model->findAll()
+            ];
+            $msg = [
+                'data' => view('Frontend/Buku-tamu/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     public function create()
     {
         $validation = \Config\Services::validation();
