@@ -8,6 +8,7 @@ use App\Models\BukuTamuModel;
 use App\Models\DaerahModel;
 use App\Models\KeperluanModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\I18n\Time;
 use SebastianBergmann\Diff\Diff;
 
 class BukuTamu extends BaseController
@@ -18,34 +19,41 @@ class BukuTamu extends BaseController
     protected $masterKeperluan;
     protected $validation;
     protected $countUserNow;
+    protected $time;
+    protected $today;
 
     public function __construct()
     {
         $this->title = 'Buku Tamu';
-        // $this->model = new BukuTamu();
+        $this->time = Time::now('Asia/Jakarta'); 
         $this->masterDaerah = new DaerahModel();
         $this->masterKeperluan = new KeperluanModel();
-       
+        $this->today = $this->time->toDateTimeString();
     }
 
     public function index()
     {
 
-        $today = date('Y-m-d');
         $this->model = new BukuTamuModel();
 
-        $countUserNow = $this->model->where('tanggal', $today)->countAllResults();
+        $countUserNow = $this->model->where('tanggal', date('Y-m-d', strtotime($this->today)))->countAllResults();     
         $dataAkhir = $this->model->orderBy('id', 'DESC')->get()->getRow();
         $tglAkhir = date('Y-m-d', strtotime('-1 day', strtotime($dataAkhir->tanggal)));
         $countUserYesterday = $this->model->where('tanggal', $tglAkhir)->countAllResults();
-        $antrianTerakhir = $dataAkhir->no_urut;
 
+        if (date('Y-m-d', strtotime($this->today)) == $dataAkhir->tanggal) {
+            $antrianTerakhir = $dataAkhir->no_urut;
+        }else{
+            $antrianTerakhir = '-';
+        }
+     
         $data = [
             'title' => $this->title,
             'pelanggan_hari_ini' => $countUserNow,
             'pelanggan_kemarin' => $countUserYesterday,
             'antrian_terakhir' => $antrianTerakhir
         ];
+        
         return view('Frontend/Buku-tamu/index', $data);
 
     }
@@ -70,7 +78,7 @@ class BukuTamu extends BaseController
     }
 
     function generate_nomor_antrian() {
-        $today = date('Y-m-d');
+        $today = date('Y-m-d', strtotime($this->time));
         $this->model = new BukuTamuModel();
 
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
@@ -87,10 +95,12 @@ class BukuTamu extends BaseController
     }
 
     public function list(){
-        $this->model = new BukuTamuModel();
+      
          if ($this->request->isAJAX()) {
+             $this->model = new BukuTamuModel();
+             $today = date('Y-m-d', strtotime($this->today));
             $data = [
-                'items' => $this->model->get_data()
+                'items' => $this->model->get_data($today)
             ];
             $msg = [
                 'data' => view('Frontend/Buku-tamu/_data', $data)
@@ -160,11 +170,11 @@ class BukuTamu extends BaseController
             } else {
                 $simpandata = [
                     'no_urut' => $this->generate_nomor_antrian(),
-                    'tanggal' => date('Y-m-d'),
+                    'tanggal' => date('Y-m-d', strtotime($this->today)),
                     'nama' => $this->request->getVar('nama'),
                     'pengirim' => $this->request->getVar('pengirim'),
                     'id_daerah' => $this->request->getVar('id_daerah'),
-                    'jam_masuk' => date('H:i:s'),
+                    'jam_masuk' => date('H:i:s', strtotime($this->today)),
                     'id_keperluan' => $this->request->getVar('id_keperluan'),
                     'no_telepon' => $this->request->getVar('no_telepon')
                 ];

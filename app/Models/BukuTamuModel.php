@@ -19,6 +19,7 @@ class BukuTamuModel extends Model
         'pengirim',
         'id_daerah',
         'id_keperluan',
+        'jam_masuk',
         'no_telepon'
     ];
 
@@ -52,10 +53,9 @@ class BukuTamuModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function get_data()
+    public function get_data($today)
     {
         $db = \Config\Database::connect();
-        $today = date('Y-m-d');
         $builder = $db->table('buku_tamu');
         $builder->select('buku_tamu.no_urut, buku_tamu.nama, master_daerah.nama_daerah, buku_tamu.jam_masuk, master_keperluan.keperluan');
         $builder->join("master_daerah", "master_daerah.id = buku_tamu.id_daerah");
