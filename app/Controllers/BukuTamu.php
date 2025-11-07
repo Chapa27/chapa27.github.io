@@ -38,10 +38,10 @@ class BukuTamu extends BaseController
 
         $countUserNow = $this->model->where('tanggal', date('Y-m-d', strtotime($this->today)))->countAllResults();     
         $dataAkhir = $this->model->orderBy('id', 'DESC')->get()->getRow();
-        $tglAkhir = date('Y-m-d', strtotime('-1 day', strtotime($dataAkhir->tanggal)));
+        $tglAkhir = date('Y-m-d', strtotime('-1 day', strtotime(@$dataAkhir->tanggal)));
         $countUserYesterday = $this->model->where('tanggal', $tglAkhir)->countAllResults();
 
-        if (date('Y-m-d', strtotime($this->today)) == $dataAkhir->tanggal) {
+        if (date('Y-m-d', strtotime($this->today)) == @$dataAkhir->tanggal) {
             $antrianTerakhir = $dataAkhir->no_urut;
         }else{
             $antrianTerakhir = '-';
@@ -53,7 +53,7 @@ class BukuTamu extends BaseController
             'pelanggan_kemarin' => $countUserYesterday,
             'antrian_terakhir' => $antrianTerakhir
         ];
-        
+
         return view('Frontend/Buku-tamu/index', $data);
 
     }
@@ -147,7 +147,7 @@ class BukuTamu extends BaseController
                     ]
                     ],
                  'no_telepon' => [
-                    'label' => 'Keperluan',
+                    'label' => 'No.Telepon/Hp',
                     'rules' => 'required|numeric',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',

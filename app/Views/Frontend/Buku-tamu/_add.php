@@ -11,12 +11,12 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-tamu" class="form-label h6">Nama</label>
-                        <input type="text" name="nama" class="form-control" id="nama-tamu">
+                        <input type="text" name="nama" class="form-control" id="nama-tamu" autocomplete="off" placeholder="Isi nama ...">
                         <div class="invalid-feedback errorNamaTamu"></div>
                     </div>
                      <div class="mb-3">
                         <label for="nama-pengirim" class="form-label h6">Pengirim</label>
-                        <input type="text" name="pengirim" class="form-control" id="nama-pengirim">
+                        <input type="text" name="pengirim" class="form-control" id="nama-pengirim" placeholder="Isi pengirim ...">
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>
                    <div class="mb-3">
@@ -48,8 +48,8 @@
                         <div class="invalid-feedback errorIdKeperluan"></div>
                    </div>
                    <div class="mb-3">
-                        <label for="no-telp" class="form-label h6">No.Telp</label>
-                        <input type="text" name="no_telepon" class="form-control" id="no-telp">
+                        <label for="no-telp" class="form-label h6">No.Telp/Hp</label>
+                        <input type="text" name="no_telepon" class="form-control" id="no-telp" autocomplete="off" placeholder="Isi nomor telepon/hp ...">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
                 </div>
@@ -124,9 +124,12 @@
                             text: response.sukses,
                             icon: "success"
                         });
-
+                        
+                        setTimeout(() => {
                         $("#exampleModal").modal('hide');
-                        window.location.href = '';
+                            window.location.href = '';
+                        }, 1000);
+
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

@@ -47,12 +47,13 @@
                 </div>
             </div>
              <div class="col-sm-12 mt-2">
-                <div class="card" style="border: 1px solid white;">
-                    <div class="card-body bg-primary" style="padding:5px">
-                        <h6 class="card-title text-light text-center"><span class="fa-solid fa-user"></span> Antrian terakhir</h6>
-                        <hr style="border: 3px solid yellow;">
+                <div class="card border-primary mb-3">
+                    <div class="card-header">                        
+                        <h6 class="card-title text-center"><span class="fa-solid fa-user"></span> Antrian terakhir</h6>
+                    </div>
+                    <div class="card-body text-primary">
                         <p class="card-text">
-                            <h2 class="text-light text-center"><?= $antrian_terakhir;?></h2>
+                            <h1 class="text-center" style="font-family: monospace;"><?= $antrian_terakhir;?></h1>
                         </p>
                     </div>
                 </div>
@@ -105,12 +106,12 @@
                 beforeSend: function() {
                     $('#refBtn').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
-                success: function() {
+                success: function(response) {
                     $('#refBtn').html('<i class="fa-solid fa-refresh"></i>');
-                    $('.view-data').html(response.data);
+                    $('.view-data').load();
                 }
             })
-        })
+    })
 
      $(document).ready(function() {
         listData();
