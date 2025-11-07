@@ -22,25 +22,40 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
-        <div class="card" style="border: 3px solid white;">
-            <div class="card-body bg-success" style="padding:5px">
-                <h6 class="card-title text-light text-center"><span class="fa-solid fa-users"></span> Pengunjung Hari Ini</h6>
-                <hr style="border: 3px solid yellow;">
-                <p class="card-text">
-                <h2 class="text-light text-center"><?= $pelanggan_hari_ini;?> Orang</h2>
-                </p>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card" style="border: 1px solid white;">
+                    <div class="card-body bg-success" style="padding:5px">
+                        <h6 class="card-title text-light text-center"><span class="fa-solid fa-users"></span> Pengunjung Hari Ini</h6>
+                        <hr style="border: 3px solid yellow;">
+                        <p class="card-text">
+                        <h2 class="text-light text-center"><?= $pelanggan_hari_ini;?> Orang</h2>
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card" style="border: 3px solid white;">
-            <div class="card-body bg-danger" style="padding:5px">
-                <h6 class="card-title text-light text-center"><span class="fa-solid fa-users"></span> Pengunjung Kemarin</h6>
-                <hr style="border: 3px solid yellow;">
-                <p class="card-text">
-                    <h2 class="text-light text-center"><?= $pelanggan_kemarin;?> Orang</h2>
-                </p>
+            <div class="col-sm-6">
+                <div class="card" style="border: 1px solid white;">
+                    <div class="card-body bg-danger" style="padding:5px">
+                        <h6 class="card-title text-light text-center"><span class="fa-solid fa-users"></span> Pengunjung Kemarin</h6>
+                        <hr style="border: 3px solid yellow;">
+                        <p class="card-text">
+                            <h2 class="text-light text-center"><?= $pelanggan_kemarin;?> Orang</h2>
+                        </p>
+                    </div>
+                </div>
+            </div>
+             <div class="col-sm-12 mt-2">
+                <div class="card" style="border: 1px solid white;">
+                    <div class="card-body bg-primary" style="padding:5px">
+                        <h6 class="card-title text-light text-center"><span class="fa-solid fa-user"></span> Antrian terakhir</h6>
+                        <hr style="border: 3px solid yellow;">
+                        <p class="card-text">
+                            <h2 class="text-light text-center"><?= $antrian_terakhir;?></h2>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

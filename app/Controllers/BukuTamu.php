@@ -35,14 +35,16 @@ class BukuTamu extends BaseController
         $this->model = new BukuTamuModel();
 
         $countUserNow = $this->model->where('tanggal', $today)->countAllResults();
-        $items = $this->model->orderBy('id', 'DESC')->get()->getRow();
-        $tglAkhir = date('Y-m-d', strtotime('-1 day', strtotime($items->tanggal)));
+        $dataAkhir = $this->model->orderBy('id', 'DESC')->get()->getRow();
+        $tglAkhir = date('Y-m-d', strtotime('-1 day', strtotime($dataAkhir->tanggal)));
         $countUserYesterday = $this->model->where('tanggal', $tglAkhir)->countAllResults();
-        
-         $data = [
+        $antrianTerakhir = $dataAkhir->no_urut;
+
+        $data = [
             'title' => $this->title,
             'pelanggan_hari_ini' => $countUserNow,
-            'pelanggan_kemarin' => $countUserYesterday
+            'pelanggan_kemarin' => $countUserYesterday,
+            'antrian_terakhir' => $antrianTerakhir
         ];
         return view('Frontend/Buku-tamu/index', $data);
 
@@ -88,7 +90,7 @@ class BukuTamu extends BaseController
         $this->model = new BukuTamuModel();
          if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->findAll()
+                'items' => $this->model->get_data()
             ];
             $msg = [
                 'data' => view('Frontend/Buku-tamu/_data', $data)
@@ -162,6 +164,7 @@ class BukuTamu extends BaseController
                     'nama' => $this->request->getVar('nama'),
                     'pengirim' => $this->request->getVar('pengirim'),
                     'id_daerah' => $this->request->getVar('id_daerah'),
+                    'jam_masuk' => date('H:i:s'),
                     'id_keperluan' => $this->request->getVar('id_keperluan'),
                     'no_telepon' => $this->request->getVar('no_telepon')
                 ];

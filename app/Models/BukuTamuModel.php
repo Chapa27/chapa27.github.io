@@ -55,12 +55,14 @@ class BukuTamuModel extends Model
     public function get_data()
     {
         $db = \Config\Database::connect();
+        $today = date('Y-m-d');
         $builder = $db->table('buku_tamu');
-        $builder->select('penawaran.id, penawaran.no_kode, penawaran.no_surat, penawaran.id_permintaan,
-        penawaran.tgl_surat, penawaran.proses, permintaan.noreg, permintaan.konsumen, permintaan.alamat, permintaan.proses');
-        $builder->join("permintaan", "penawaran.id_permintaan = permintaan.id");
-        $builder->where('penawaran.proses', 3);
+        $builder->select('buku_tamu.no_urut, buku_tamu.nama, master_daerah.nama_daerah, buku_tamu.jam_masuk, master_keperluan.keperluan');
+        $builder->join("master_daerah", "master_daerah.id = buku_tamu.id_daerah");
+        $builder->join("master_keperluan", "master_keperluan.id = buku_tamu.id_keperluan");
+        $builder->where('tanggal', $today);
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
 }
