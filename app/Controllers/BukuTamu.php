@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\BukuTamuModel;
 use App\Models\DaerahModel;
 use App\Models\KeperluanModel;
+use App\Models\MapBukuTamuModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 
@@ -19,6 +20,7 @@ class BukuTamu extends BaseController
     protected $countUserNow;
     protected $time;
     protected $today;
+    protected $modelMapData;
 
     public function __construct()
     {
@@ -166,6 +168,8 @@ class BukuTamu extends BaseController
                     ]
                 ];
             } else {
+                $db = \Config\Database::connect();
+                $db->transStart();
                 $simpandata = [
                     'no_antrian' => $this->generate_nomor_antrian(),
                     'tanggal' => date('Y-m-d', strtotime($this->today)),
@@ -176,7 +180,19 @@ class BukuTamu extends BaseController
                     'id_keperluan' => $this->request->getVar('id_keperluan'),
                     'no_telepon' => $this->request->getVar('no_telepon')
                 ];
+               
                 $this->model->save($simpandata);
+
+                
+                $mapdata = [
+                    'id_buku_tamu' => $this->model->getInsertID(),
+                    'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
+                    'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
+                ];
+                $this->modelMapData = new MapBukuTamuModel();
+                $this->modelMapData->save($mapdata);
+                $db->transComplete();
+                
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];

@@ -52,6 +52,16 @@
                         <input type="text" name="no_telepon" class="form-control" id="no-telp" autocomplete="off" placeholder="Isi nomor telepon/hp ...">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="jumlah-sampel" class="form-label h6">Jumlah sampel</label>
+                        <input type="text" name="jumlah_sampel" class="form-control" id="jumlah-sampel" placeholder="Isi jumlah sampel ...">
+                        <div class="invalid-feedback errorJumlahSampel"></div>
+                    </div>
+                     <div class="mb-3">
+                        <label for="jumlah-sampel" class="form-label h6">Jumlah coolbox</label>
+                        <input type="text" name="jumlah_coolbox" class="form-control" id="jumlah-sampel" placeholder="Isi jumlah sampel ...">
+                        <div class="invalid-feedback errorJumlahSampel"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm btn-simpan"><i class="fas fa-save"></i> Simpan</button>
