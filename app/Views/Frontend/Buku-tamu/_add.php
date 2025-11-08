@@ -142,7 +142,9 @@
     $('#id-keperluan').change(function (e) {
        e.preventDefault();
         var idKeperluan = $(this).val();
-        var jenisPenyakit = `<div class="mb-3">
+        var spinner =  $('.view-keperluan').html('<i class="fa fa-spin fa-spinner"></i>');
+        if (idKeperluan == 1) {
+             var jenisPenyakit = `<div class="mb-3">
                         <label for="jumlah-coolbox" class="form-label h6">Jumlah coolbox</label>
                         <input type="text" name="jumpal_coolbox" class="form-control" id="jumlah-coolbox" autocomplete="off" placeholder="Isi nama ...">
                         <div class="invalid-feedback errorJumlahCoolbox"></div>
@@ -163,12 +165,14 @@
         </tr>
     </tbody>
     </table></div>`;
-        if (idKeperluan == 1) {
              $.ajax({
                 type: 'get',
                 url: '<?= site_url('program-layanan/buku-tamu/cari-jenis-penyakit'); ?>',
                 dataType: 'json',
                 cache: false,
+                beforeSend: function () {
+                    spinner
+                },
                 success: function(response) {
                      $(".view-keperluan").html(jenisPenyakit);
                      $(".addField").click(function (e) {
@@ -195,8 +199,18 @@
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                 }
             })
-        }else if(idKeperluan == 2) {
-
+        }else if(idKeperluan == 2 || idKeperluan == 3) {
+            var catatan = `<div class="mb-3">
+                        <label for="catatan" class="form-label h6">Catatan</label>
+                        <textarea name="catatan" class="form-control" id="catatan" placeholder="Isi catatan ..."></textarea>
+                        <div class="invalid-feedback errorNamaTamu"></div>
+                    </div>`;
+            spinner
+            setTimeout(() => {
+                $(".view-keperluan").html(catatan);
+            }, 1000);
+        }else{
+            exit('not process');
         }
        
     })
