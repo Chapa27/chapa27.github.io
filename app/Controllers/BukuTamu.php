@@ -7,6 +7,7 @@ use App\Models\BukuTamuModel;
 use App\Models\DaerahModel;
 use App\Models\KeperluanModel;
 use App\Models\MapBukuTamuModel;
+use App\Models\PenyakitMaster;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 
@@ -245,6 +246,24 @@ class BukuTamu extends BaseController
            
         } else {
             exit('Not Process');
+        }
+    }
+
+    public function cari_jenis_penyakit()
+    {
+        if ($this->request->isAJAX()) {
+
+            $modelPenyakitMaster = new PenyakitMaster();
+            $data = [
+                'items' => $modelPenyakitMaster->findAll()
+            ];
+            $msg = [
+                'data' => view('Frontend/Buku-tamu/_master_penyakit', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('No Process');
         }
     }
 

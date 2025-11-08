@@ -52,16 +52,7 @@
                         <input type="text" name="no_telepon" class="form-control" id="no-telp" autocomplete="off" placeholder="Isi nomor telepon/hp ...">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
-                    <div class="mb-3">
-                        <label for="jumlah-sampel" class="form-label h6">Jumlah sampel</label>
-                        <input type="text" name="jumlah_sampel" class="form-control" id="jumlah-sampel" placeholder="Isi jumlah sampel ...">
-                        <div class="invalid-feedback errorJumlahSampel"></div>
-                    </div>
-                     <div class="mb-3">
-                        <label for="jumlah-sampel" class="form-label h6">Jumlah coolbox</label>
-                        <input type="text" name="jumlah_coolbox" class="form-control" id="jumlah-sampel" placeholder="Isi jumlah sampel ...">
-                        <div class="invalid-feedback errorJumlahSampel"></div>
-                    </div>
+                    <div class="view-keperluan okes"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm btn-simpan"><i class="fas fa-save"></i> Simpan</button>
@@ -73,8 +64,8 @@
 </div>
 <script>
     $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
+        e.preventDefault();
+        $.ajax({
                 type: "post",
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
@@ -145,6 +136,71 @@
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                 }
-            })
         })
+    })
+
+    $('#id-keperluan').change(function (e) {
+       e.preventDefault();
+        var idKeperluan = $(this).val();
+        var jenisPenyakit = `<div class="mb-3">
+                        <label for="jumlah-coolbox" class="form-label h6">Jumlah coolbox</label>
+                        <input type="text" name="jumpal_coolbox" class="form-control" id="jumlah-coolbox" autocomplete="off" placeholder="Isi nama ...">
+                        <div class="invalid-feedback errorJumlahCoolbox"></div>
+                    </div><div class="mb-3">
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Jumlah sampel</th>
+            <th>Jenis sampel</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="dynamicFields">
+        <tr>
+            <td><input type="text" name="jumlah_sampel" class="form-control" id="jumlah-sampel" placeholder="Isi jumlah sampel ..."></td>
+            <td class="data-jenis-sampel"></td>
+            <td><button type="button" class="btn btn-primary addField">+</button></td>
+        </tr>
+    </tbody>
+    </table></div>`;
+        if (idKeperluan == 1) {
+             $.ajax({
+                type: 'get',
+                url: '<?= site_url('program-layanan/buku-tamu/cari-jenis-penyakit'); ?>',
+                dataType: 'json',
+                cache: false,
+                success: function(response) {
+                     $(".view-keperluan").html(jenisPenyakit);
+                     $(".addField").click(function (e) {
+                        e.preventDefault();
+                        const dynamicFields = $("#dynamicFields")
+                        var dataJenisPenyakit = $(".data-jenis-sampel")
+                        var content = `<tr>
+                            <td><input type="text" name="jumlah_sampel" class="form-control" id="jumlah-sampel" placeholder="Isi jumlah sampel ..."></td>
+                            <td class="data-jenis-sampel"></td>
+                            <td><button type="button" class="btn btn-danger removeField">-</button></td>
+                        </tr>`;
+                        dynamicFields.append(content);
+                        $(".data-jenis-sampel").html(response.data);
+                          $(".removeField").click(function () {
+                       $(this).parent().parent().remove();
+                     })
+
+                     })
+
+                     $(".data-jenis-sampel").html(response.data);
+
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
+        }else if(idKeperluan == 2) {
+
+        }
+       
+    })
+
+   
+ 
 </script>
