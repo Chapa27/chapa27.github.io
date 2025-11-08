@@ -13,7 +13,7 @@ class BukuTamuModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'no_urut',
+        'no_antrian',
         'tanggal',
         'nama',
         'pengirim',
@@ -58,7 +58,7 @@ class BukuTamuModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('buku_tamu');
-        $builder->select('buku_tamu.id, buku_tamu.no_urut, buku_tamu.nama, master_daerah.nama_daerah, 
+        $builder->select('buku_tamu.id, buku_tamu.no_antrian, buku_tamu.nama, master_daerah.nama_daerah, 
         buku_tamu.jam_masuk, buku_tamu.jam_keluar, master_keperluan.keperluan');
         $builder->join("master_daerah", "master_daerah.id = buku_tamu.id_daerah");
         $builder->join("master_keperluan", "master_keperluan.id = buku_tamu.id_keperluan");

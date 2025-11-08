@@ -15,7 +15,7 @@
                             <label for="nama-tamu" class="form-label h3">No. antrian</label>
                         </div>
                         <div class="col-md-1 h3">:</div>
-                        <div class="col-md-5 h3"><?= $items['no_urut'];?></div>
+                        <div class="col-md-5 h3"><?= $items['no_antrian'];?></div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -40,7 +40,7 @@ class BukuTamu extends BaseController
         $countUserYesterday = $this->model->where('tanggal', $tglAkhir)->countAllResults();
 
         if (date('Y-m-d', strtotime($this->today)) == @$dataAkhir->tanggal) {
-            $antrianTerakhir = $dataAkhir->no_urut;
+            $antrianTerakhir = $dataAkhir->no_antrian;
         }else{
             $antrianTerakhir = '-';
         }
@@ -167,7 +167,7 @@ class BukuTamu extends BaseController
                 ];
             } else {
                 $simpandata = [
-                    'no_urut' => $this->generate_nomor_antrian(),
+                    'no_antrian' => $this->generate_nomor_antrian(),
                     'tanggal' => date('Y-m-d', strtotime($this->today)),
                     'nama' => $this->request->getVar('nama'),
                     'pengirim' => $this->request->getVar('pengirim'),

@@ -12,7 +12,7 @@
      <tbody style="font-family: arial; font-size:13px;">
          <?php $no = 1; foreach ($items as $row) :?>
             <tr id="myId-<?= $row['id']; ?>">
-             <td class="text-center"><label class="card-title h4 fw-bold"><?= $row['no_urut'];?></label></td>
+             <td class="text-center"><label class="card-title h4 fw-bold"><?= $row['no_antrian'];?></label></td>
              <td><?= $row['nama'];?></td>
              <td><?= $row['nama_daerah'];?></td>
              <td><?= $row['keperluan'];?></td>

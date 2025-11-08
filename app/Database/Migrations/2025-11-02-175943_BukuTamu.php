@@ -15,7 +15,7 @@ class BukuTamu extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'no_urut' => [
+            'no_antrian' => [
                 'type'       => 'CHAR',
                 'constraint' => '4',
             ],
