@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class BukuTamuRev extends Migration
+class MapBukuTamu extends Migration
 {
     public function up()
     {
@@ -15,36 +15,17 @@ class BukuTamuRev extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'no_antrian' => [
-                'type'       => 'CHAR',
-                'constraint' => '5',
+            'id_buku_tamu' => [
+                'type'           => 'INT'
             ],
-            'tanggal' => [
-                'type'       => 'DATE'
-            ],
-            'nama' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
-            ],
-            'pengirim' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
-            ],
-            'id_daerah' => [
+            'jumlah_sampel' => [
                 'type'       => 'INT'
             ],
-            'id_keperluan' => [
+            'jumlah_coolbox' => [
                 'type'       => 'INT'
             ],
-            'jam_masuk' => [
-                'type'       => 'TIME'
-            ],
-            'jam_keluar' => [
-                'type'       => 'TIME'
-            ],
-            'no_telepon' => [
-                'type'       => 'CHAR',
-                'constraint' => '25'
+            'id_penyakit' => [
+                'type'       => 'INT'
             ],
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',
@@ -58,11 +39,11 @@ class BukuTamuRev extends Migration
             ],
         ]);
         $this->forge->addKey('id', true); // Add primary key
-        $this->forge->createTable('buku_tamu'); // Create the 'users' table
+        $this->forge->createTable('map_buku_tamu'); // Create the 'users' table
     }
 
     public function down()
     {
-         $this->forge->dropTable('buku_tamu');
+        $this->forge->dropTable('map_buku_tamu'); // Create the 'users' table
     }
 }
