@@ -1,7 +1,7 @@
  <table id="example" class="table table-hover table-bordered view-data">
      <thead style="font-family: calibri;">
          <?php
-            $arrth = ['No.urut', 'Nama', 'Asal', 'Keperluan', 'Jam masuk', 'Jam keluar'];
+            $arrth = ['No.antrian', 'Nama', 'Asal', 'Keperluan', 'Jam masuk', 'Jam keluar'];
             echo '<tr>';
             foreach ($arrth as $th) :
                 echo '<th>' . $th . '</th>';
@@ -11,23 +11,26 @@
      </thead>
      <tbody style="font-family: arial; font-size:13px;">
          <?php $no = 1; foreach ($items as $row) :?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?> onclick="pilih(<?= $row['id'];?>)">
-             <td class="text-center"><span class="badge bg-success"><?= $row['no_urut'];?></span></td>
+            <tr id="myId-<?= $row['id']; ?>">
+             <td class="text-center"><label class="card-title h4 fw-bold"><?= $row['no_urut'];?></label></td>
              <td><?= $row['nama'];?></td>
              <td><?= $row['nama_daerah'];?></td>
              <td><?= $row['keperluan'];?></td>
              <td><?= $row['jam_masuk'];?></td>
-             <td><?= $row['jam_keluar'];?></td>
-
+             <td class="text-center"><?= $row['jam_keluar'] == null ? '<button class="btn btn-secondary btn-sm" onclick="pilih('.$row['id'].');"><span class="fas fa-clock"></span></button>' : $row['jam_keluar'];?></td>
          </tr>
         <?php endforeach;?>
      </tbody>
  </table>
 <script>
-    function pilih(id) {
+    function pilihx(id) {
         var myElement = $('#myId-' + id);
+        if (myElement) {
+            myElement.addClass('bg bg-warning');
+        }
          $.ajax({
-                url: "<?= site_url('program-layanan/buku-tamu/add-data'); ?>",
+                type: 'get',
+                url: '<?= site_url('program-layanan/buku-tamu/jam-keluar/'); ?>' + id,
                 dataType: 'json',
                 cache: false,
                 success: function(response) {
@@ -39,6 +42,24 @@
                 }
         })
     }
+
+    function pilih(id) {
+         $.ajax({
+            type: 'get',
+            url: '<?= site_url('program-layanan/buku-tamu/jam-keluar/'); ?>' + id,
+            dataType: 'json',
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
      $(document).ready(function() {
          new DataTable('#example', {
             responsive: true

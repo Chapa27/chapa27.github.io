@@ -3,13 +3,11 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\BukuTamu as ModelsBukuTamu;
 use App\Models\BukuTamuModel;
 use App\Models\DaerahModel;
 use App\Models\KeperluanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
-use SebastianBergmann\Diff\Diff;
 
 class BukuTamu extends BaseController
 {
@@ -188,5 +186,51 @@ class BukuTamu extends BaseController
             exit('Not Process');
         }
     }
+
+    public function set_jam_keluar($id)
+    {
+            $this->model = new BukuTamuModel();
+
+         if ($this->request->isAJAX()) {
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Jam keluar'
+            ];
+            $msg = [
+                'sukses' => view('Frontend/Buku-tamu/_jam_keluar', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }    
+    }
+
+    public function update_jam_keluar()
+    {
+        if ($this->request->isAJAX()) {
+            $this->model = new BukuTamuModel();
+            $id = $this->request->getVar('id');
+            $check = $this->model->find($id);
+            if ($check) {
+                $msg = [
+                    'sukses' => 'Jam keluar berhasil disimpan'
+                ];
+                $simpandata = [
+                    'id' => $id,
+                    'jam_keluar' => date('H:i:s', strtotime($this->today))
+                ];
+                $this->model->save($simpandata);
+            }else{
+                $msg = [
+                    'error' => 'Jam keluar gagal disimpan'
+                ];
+            }
+            echo json_encode($msg);
+           
+        } else {
+            exit('Not Process');
+        }
+    }
+
 }
 

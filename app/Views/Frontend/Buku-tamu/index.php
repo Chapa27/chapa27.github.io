@@ -48,10 +48,9 @@
             </div>
              <div class="col-sm-12 mt-2">
                 <div class="card border-primary mb-3">
-                    <div class="card-header">                        
-                        <h6 class="card-title text-center"><span class="fa-solid fa-user"></span> Antrian terakhir</h6>
-                    </div>
                     <div class="card-body text-primary">
+                        <h6 class="card-title text-center"><span class="fa-solid fa-user"></span> No. antrian terakhir</h6>
+                        <hr style="border: 3px solid black;">
                         <p class="card-text">
                             <h1 class="text-center" style="font-family: monospace;"><?= $antrian_terakhir;?></h1>
                         </p>

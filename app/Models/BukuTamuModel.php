@@ -20,6 +20,7 @@ class BukuTamuModel extends Model
         'id_daerah',
         'id_keperluan',
         'jam_masuk',
+        'jam_keluar',
         'no_telepon'
     ];
 
