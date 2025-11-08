@@ -17,32 +17,12 @@
              <td><?= $row['nama_daerah'];?></td>
              <td><?= $row['keperluan'];?></td>
              <td><?= $row['jam_masuk'];?></td>
-             <td class="text-center"><?= $row['jam_keluar'] == null ? '<button class="btn btn-secondary btn-sm" onclick="pilih('.$row['id'].');"><span class="fas fa-clock"></span></button>' : $row['jam_keluar'];?></td>
+             <td class="text-center"><?= $row['jam_keluar'] == null ? '<button class="btn btn-primary btn-sm" onclick="pilih('.$row['id'].');"><span class="fas fa-clock"></span></button>' : $row['jam_keluar'];?></td>
          </tr>
         <?php endforeach;?>
      </tbody>
  </table>
 <script>
-    function pilihx(id) {
-        var myElement = $('#myId-' + id);
-        if (myElement) {
-            myElement.addClass('bg bg-warning');
-        }
-         $.ajax({
-                type: 'get',
-                url: '<?= site_url('program-layanan/buku-tamu/jam-keluar/'); ?>' + id,
-                dataType: 'json',
-                cache: false,
-                success: function(response) {
-                    $(".view-modal").html(response.data).show();
-                    $("#exampleModal").modal('show');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                }
-        })
-    }
-
     function pilih(id) {
          $.ajax({
             type: 'get',
