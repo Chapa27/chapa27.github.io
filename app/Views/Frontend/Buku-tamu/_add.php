@@ -52,6 +52,11 @@
                         <input type="text" name="no_telepon" class="form-control" id="no-telp" autocomplete="off" placeholder="Isi nomor telepon/hp ...">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
+                    <div class="mb-3 catatan">
+                        <label for="jumlah-coolbox" class="form-label h6">Jumlah coolbox</label>
+                        <input type="number" name="jumlah_coolbox" class="form-control" id="jumlah-coolbox" min="0" value="0">
+                        <div class="invalid-feedback errorJumlahCoolbox"></div>
+                    </div>
                     <div class="mb-3">
                         <div class="view-keperluan"></div>
                     </div>
@@ -67,6 +72,7 @@
 <script>
 
    $(document).ready(function (e) {
+    document.getElementsByClassName("catatan").style.visibility = "hidden";
      $('#id-perlu').change(function (e) {
        e.preventDefault();
         var idKeperluan = $(this).val();
