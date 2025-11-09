@@ -21,7 +21,9 @@ class BukuTamuModel extends Model
         'id_keperluan',
         'jam_masuk',
         'jam_keluar',
-        'no_telepon'
+        'no_telepon',
+        'catatan',
+        'id_penyakit'
     ];
 
     protected bool $allowEmptyInserts = false;

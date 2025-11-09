@@ -155,7 +155,14 @@ class BukuTamu extends BaseController
                         'numeric' => '{field} harus angka',
 
                     ]
-                ]
+                ],
+                'catatan' => [
+                    'label' => 'Catatan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
             ]);
 
             if (!$valid) {
@@ -166,6 +173,7 @@ class BukuTamu extends BaseController
                         'id_daerah' => $validation->getError('id_daerah'),
                         'id_keperluan' => $validation->getError('id_keperluan'),
                         'no_telepon' => $validation->getError('no_telepon'),
+                        'catatan' => $validation->getError('catatan')
                     ]
                 ];
             } else {
@@ -179,24 +187,34 @@ class BukuTamu extends BaseController
                     'id_daerah' => $this->request->getVar('id_daerah'),
                     'jam_masuk' => date('H:i:s', strtotime($this->today)),
                     'id_keperluan' => $this->request->getVar('id_keperluan'),
-                    'no_telepon' => $this->request->getVar('no_telepon')
+                    'no_telepon' => $this->request->getVar('no_telepon'),
+                    'catatan' => $this->request->getVar('catatan'),
+                    'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
                 ];
                
                 $this->model->save($simpandata);
 
-                
-                $mapdata = [
-                    'id_buku_tamu' => $this->model->getInsertID(),
-                    'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
-                    'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
-                ];
-                $this->modelMapData = new MapBukuTamuModel();
-                $this->modelMapData->save($mapdata);
-                $db->transComplete();
+                $selectIdPenyakit = $this->request->getVar('id_penyakit');
+               
+                $jlhSampel = $this->request->getVar('jumlah_sampel');
+
+                    $mapdata = [
+                        'id_buku_tamu' => $this->model->getInsertID(),
+                        'jumlah_sampel' => $jlhSampel,
+                        'id_penyakit' => $selectIdPenyakit
+                    ];
+                    $this->modelMapData = new MapBukuTamuModel();
+                    $this->modelMapData->save($mapdata);
+                // for ($i = 0; $i < count($selectIdPenyakit); $i++) {
+                //     $index = $selectIdPenyakit[$i];
+                    
+                // }
                 
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];
+                $db->transComplete();
+
             }
             echo json_encode($msg);
         } else {
