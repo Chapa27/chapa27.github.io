@@ -23,7 +23,8 @@ class BukuTamuModel extends Model
         'jam_keluar',
         'no_telepon',
         'catatan',
-        'id_penyakit'
+        'id_penyakit',
+        'jumlah_coolbox'
     ];
 
     protected bool $allowEmptyInserts = false;

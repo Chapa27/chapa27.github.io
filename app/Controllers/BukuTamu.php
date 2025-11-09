@@ -117,7 +117,7 @@ class BukuTamu extends BaseController
     {
         $validation = \Config\Services::validation();
 
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $valid = $this->validate([
                 'nama' => [
                     'label' => 'Nama pelanggan',
@@ -146,15 +146,6 @@ class BukuTamu extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
-                    ],
-                 'no_telepon' => [
-                    'label' => 'No.Telepon/Hp',
-                    'rules' => 'required|numeric',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong',
-                        'numeric' => '{field} harus angka',
-
-                    ]
                 ],
                 'catatan' => [
                     'label' => 'Catatan',
@@ -163,6 +154,14 @@ class BukuTamu extends BaseController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
+                    'no_telepon' => [
+                    'label' => 'No.Telp',
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} hanya angka'
+                    ]
+                ]
             ]);
 
             if (!$valid) {
@@ -173,12 +172,15 @@ class BukuTamu extends BaseController
                         'id_daerah' => $validation->getError('id_daerah'),
                         'id_keperluan' => $validation->getError('id_keperluan'),
                         'no_telepon' => $validation->getError('no_telepon'),
-                        'catatan' => $validation->getError('catatan')
+                        'catatan' => $validation->getError('catatan'),
+                        'jumlah_coolbox' => $validation->getError('jumlah_coolbox')
                     ]
                 ];
             } else {
                 $db = \Config\Database::connect();
+
                 $db->transStart();
+
                 $simpandata = [
                     'no_antrian' => $this->generate_nomor_antrian(),
                     'tanggal' => date('Y-m-d', strtotime($this->today)),
@@ -193,28 +195,24 @@ class BukuTamu extends BaseController
                 ];
                
                 $this->model->save($simpandata);
-
-                $selectIdPenyakit = $this->request->getVar('id_penyakit');
-               
+                $idPenyakit = $this->request->getVar('id_penyakit');
                 $jlhSampel = $this->request->getVar('jumlah_sampel');
-
-                    $mapdata = [
-                        'id_buku_tamu' => $this->model->getInsertID(),
-                        'jumlah_sampel' => $jlhSampel,
-                        'id_penyakit' => $selectIdPenyakit
-                    ];
-                    $this->modelMapData = new MapBukuTamuModel();
-                    $this->modelMapData->save($mapdata);
-                // for ($i = 0; $i < count($selectIdPenyakit); $i++) {
-                //     $index = $selectIdPenyakit[$i];
-                    
+                // for ($i=0; $i < count($idPenyakit); $i++) { 
+                //     $index = $idPenyakit[$i];
+                //     $jlhSampel = $this->request->getVar('jumlah_sampel');
                 // }
-                
+                 $mapdata = [
+                     'id_buku_tamu' => $this->model->getInsertID(),
+                     'jumlah_sampel' => $jlhSampel,
+                     'id_penyakit' => $idPenyakit    
+                    ];
+                $this->modelMapData = new MapBukuTamuModel();
+                $this->modelMapData->save($mapdata);
+                $db->transComplete();
+
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];
-                $db->transComplete();
-
             }
             echo json_encode($msg);
         } else {
@@ -276,7 +274,7 @@ class BukuTamu extends BaseController
                 'items' => $modelPenyakitMaster->findAll()
             ];
             $msg = [
-                'data' => view('Frontend/Buku-tamu/_master_penyakit', $data)
+                'data' => view('Frontend/Buku-tamu/_jenis_penyakit', $data)
             ];
 
             echo json_encode($msg);

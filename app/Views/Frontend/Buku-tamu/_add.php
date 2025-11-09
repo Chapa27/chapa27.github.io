@@ -34,8 +34,8 @@
                         <div class="invalid-feedback errorIdDaerah"></div>
                    </div>
                    <div class="mb-3">
-                     <label for="id-perlu" class="form-label h6">Keperluan</label>
-                        <select name="id_keperluan" class="form-select" id="id-perlu" aria-label="Default select example">
+                     <label for="id-keperluan" class="form-label h6">Keperluan</label>
+                        <select name="id_keperluan" class="form-select" id="id-keperluan" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterKeperluan as $row) :
@@ -52,14 +52,8 @@
                         <input type="text" name="no_telepon" class="form-control" id="no-telp" autocomplete="off" placeholder="Isi nomor telepon/hp ...">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
-                    <div class="mb-3 catatan">
-                        <label for="jumlah-coolbox" class="form-label h6">Jumlah coolbox</label>
-                        <input type="number" name="jumlah_coolbox" class="form-control" id="jumlah-coolbox" min="0" value="0">
-                        <div class="invalid-feedback errorJumlahCoolbox"></div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="view-keperluan"></div>
-                    </div>
+                    <div class="view-jlh-coolbox"></div>
+                    <div class="view-keperluan"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm btn-simpan"><i class="fas fa-save"></i> Simpan</button>
@@ -71,44 +65,12 @@
 </div>
 <script>
 
-   $(document).ready(function (e) {
-    document.getElementsByClassName("catatan").style.visibility = "hidden";
-     $('#id-perlu').change(function (e) {
-       e.preventDefault();
-        var idKeperluan = $(this).val();
-        var spinner =  $('.view-keperluan').html('<i class="fa fa-spin fa-spinner"></i>');
-        if (idKeperluan == 1) {
-             $.ajax({
-                type: 'get',
-                url: '<?= site_url('program-layanan/buku-tamu/cari-jenis-penyakit'); ?>',
-                dataType: 'json',
-                cache: false,
-                success: function(response) {
-                    $(".view-keperluan").html(response.data);
+$(document).ready(function (e) {
+    
 
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        }else if(idKeperluan == 2 || idKeperluan == 3) {
-            var catatan = `<div class="mb-3">
-                        <label for="catatan" class="form-label h6">Catatan</label>
-                        <textarea name="catatan" class="form-control" id="catatan" placeholder="Isi catatan ..."></textarea>
-                        <div class="invalid-feedback errorCatatan"></div>
-                    </div>`;
-            spinner
-            setTimeout(() => {
-                $(".view-keperluan").html(catatan);
-            }, 1000);
-        }else{
-            exit('not process');
-        }
-       
-    })
-
-     $(".form-data").submit(function(e) {
+    $(".form-data").submit(function(e) {
         e.preventDefault();
+
         $.ajax({
                 type: "post",
                 url: $(this).attr('action'),
@@ -149,10 +111,10 @@
                             $('.errorIdDaerah').html('');
                         }
                         if (err.id_keperluan) {
-                            $('#id-perlu').addClass('is-invalid');
+                            $('#id-keperluan').addClass('is-invalid');
                             $('.errorIdKeperluan').html(err.id_keperluan);
                         } else {
-                            $('#id-perlu').removeClass('is-invalid');
+                            $('#id-keperluan').removeClass('is-invalid');
                             $('.errorIdKeperluan').html('');
                         }
                         if (err.no_telepon) {
@@ -195,7 +157,38 @@
                 }
         })
     })
-   })
+   
+    $('#id-keperluan').change(function (e) {
+        e.preventDefault();
+        if ($(this).val() == 1) {
+
+            $.ajax({
+                type: 'get',
+                url: '<?= site_url('program-layanan/buku-tamu/cari-jenis-penyakit'); ?>',
+                dataType: 'json',
+                success: function(response) {
+                    var data = response.data;
+                    if (data) {
+                        $('.view-keperluan').html(data);
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
+        }else if ($(this).val() == 2 || $(this).val() == 3) {
+            var catatan = `<div class="mb-3">
+                        <label for="catatan" class="form-label h6">Catatan</label>
+                        <textarea name="catatan" class="form-control" id="catatan"></textarea>
+                        <div class="invalid-feedback errorCatatan"></div>
+                    </div>`;
+            $('.view-keperluan').html(catatan);
+        }else{
+            exit();
+        }
+    })
+
+})
    
  
 </script>
