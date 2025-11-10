@@ -65,97 +65,6 @@
 <script>
 
 $(document).ready(function (e) {
-    
-
-    $(".form-data1").submit(function(e) {
-        e.preventDefault();
-
-        $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
-                        if (err.nama) {
-                            $('#nama-tamu').addClass('is-invalid');
-                            $('.errorNamaTamu').html(err.nama);
-                        } else {
-                            $('#nama-tamu').removeClass('is-invalid');
-                            $('.errorNamaTamu').html('');
-                        }
-                        if (err.pengirim) {
-                            $('#nama-pengirim').addClass('is-invalid');
-                            $('.errorNamaPengirim').html(err.pengirim);
-                        } else {
-                            $('#nama-pengirim').removeClass('is-invalid');
-                            $('.errorNamaPengirim').html('');
-                        }
-                        if (err.id_daerah) {
-                            $('#nama-daerah').addClass('is-invalid');
-                            $('.errorIdDaerah').html(err.id_daerah);
-                        } else {
-                            $('#nama-daerah').removeClass('is-invalid');
-                            $('.errorIdDaerah').html('');
-                        }
-                        if (err.id_keperluan) {
-                            $('#id-keperluan').addClass('is-invalid');
-                            $('.errorIdKeperluan').html(err.id_keperluan);
-                        } else {
-                            $('#id-keperluan').removeClass('is-invalid');
-                            $('.errorIdKeperluan').html('');
-                        }
-                        if (err.no_telepon) {
-                            $('#no-telp').addClass('is-invalid');
-                            $('.errorNoTelp').html(err.no_telepon);
-                        } else {
-                            $('#no-telp').removeClass('is-invalid');
-                            $('.errorNoTelp').html('');
-                        }
-                        if (err.catatan) {
-                            $('#catatan').addClass('is-invalid');
-                            $('.errorCatatan').html(err.catatan);
-                        } else {
-                            $('#catatan').removeClass('is-invalid');
-                            $('.errorCatatan').html('');
-                        }
-                        if (err.id_keperluan) {
-                            $('#id-keperluan').addClass('is-invalid');
-                            $('.errorIdKeperluan').html(err.id_keperluan);
-                        } else {
-                            $('#id-keperluan').removeClass('is-invalid');
-                            $('.errorIdKeperluan').html('');
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
-                        
-                        setTimeout(() => {
-                        $("#exampleModal").modal('hide');
-                            window.location.href = '';
-                        }, 1000);
-
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-        })
-    })
 
     $(".form-data").submit(function(e) {
         e.preventDefault();
@@ -176,21 +85,36 @@ $(document).ready(function (e) {
                     $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
-                    var err = response.error
-                     Swal.fire({
+                    var err = response.error;
+                    if (err) {
+                        if (err.nama) {
+                            $('#nama-tamu').addClass('is-invalid');
+                            $('.errorNamaTamu').html(err.nama);
+                        } else {
+                            $('#nama-tamu').removeClass('is-invalid');
+                            $('.errorNamaTamu').html('');
+                        }
+                    }else{
+                        Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success"
                         });
+                         setTimeout(() => {
+                            $("#exampleModal").modal('hide');
+                                window.location.reload();
+                            }, 1000);
+                        }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                 }
-        })
+        });
     })
    
     $('#id-keperluan').change(function (e) {
         e.preventDefault();
+
         if ($(this).val() == 1) {
             $.ajax({
                 type: 'get',
@@ -209,12 +133,22 @@ $(document).ready(function (e) {
                 }
             })
         }else if ($(this).val() == 2 || $(this).val() == 3) {
-            var catatan = `<div class="mb-3">
-                        <label for="catatan" class="form-label h6">Catatan</label>
-                        <textarea name="catatan" class="form-control" id="catatan"></textarea>
-                        <div class="invalid-feedback errorCatatan"></div>
-                    </div>`;
-            $('.view-keperluan').html(catatan);
+            $.ajax({
+                type: 'get',
+                url: '<?= site_url('program-layanan/buku-tamu/catatan'); ?>',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function() {
+                    $('.view-keperluan').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                },
+                success: function(response) {
+                    $('.view-keperluan').html(response.data);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
         }else{
             exit();
         }

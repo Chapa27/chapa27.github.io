@@ -20,6 +20,7 @@ $routes->group('program-layanan/buku-tamu', function ($routes) {
     $routes->get('jam-keluar/(:num)', 'BukuTamu::set_jam_keluar/$1');
     $routes->post('update-jam-keluar', 'BukuTamu::update_jam_keluar');
     $routes->get('cari-sampel', 'BukuTamu::cari_sampel');
+    $routes->get('catatan', 'BukuTamu::cari_catatan');
 });
 
 /** Master Data **/

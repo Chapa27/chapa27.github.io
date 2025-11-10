@@ -23,6 +23,7 @@ class BukuTamu extends BaseController
     protected $time;
     protected $today;
 
+
     public function __construct()
     {
         $this->title = 'Buku Tamu';
@@ -31,6 +32,8 @@ class BukuTamu extends BaseController
         $this->model = new BukuTamuModel();
         $this->time = Time::now('Asia/Jakarta'); 
         $this->today = $this->time->toDateTimeString();
+        $this->validation = \Config\Services::validation();
+
     }
 
     public function index()
@@ -39,8 +42,15 @@ class BukuTamu extends BaseController
         $countUserNow = $this->model->where('tanggal', date('Y-m-d', strtotime($this->today)))->countAllResults();     
         $dataAkhir = $this->model->orderBy('id', 'DESC')->get()->getRow();
         $tglAkhir = date('Y-m-d', strtotime('-1 day', strtotime(@$dataAkhir->tanggal)));
+        if ($countUserNow == 0) {
+            $setCountDay = '0 day';
+        }else{
+            $setCountDay = '-1 day';
+        }
+        $tglAkhir = date('Y-m-d', strtotime($setCountDay, strtotime(@$dataAkhir->tanggal)));
+       
         $countUserYesterday = $this->model->where('tanggal', $tglAkhir)->countAllResults();
-
+        
         if (date('Y-m-d', strtotime($this->today)) == @$dataAkhir->tanggal) {
             $antrianTerakhir = $dataAkhir->no_antrian;
         }else{
@@ -114,12 +124,29 @@ class BukuTamu extends BaseController
 
     public function create()
     {
-        $validation = \Config\Services::validation();
-
         if ($this->request->isAJAX()) {
+            
             $db = \Config\Database::connect();
 
-            $db->transStart();
+            $valid = $this->validate([
+                'nama' => [
+                    'label' => 'Nama',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama' => $this->validation->getError('nama'),
+                    ]
+                ];
+                echo json_encode($msg);
+            } else {
+                $db->transStart();
                 $this->model = new BukuTamuModel();
                 $this->modelMapData = new MapBukuTamuModel();
                 $simpandata = [
@@ -131,13 +158,15 @@ class BukuTamu extends BaseController
                     'jam_masuk' => date('H:i:s', strtotime($this->today)),
                     'id_keperluan' => $this->request->getVar('id_keperluan'),
                     'no_telepon' => $this->request->getVar('no_telepon'),
-                    'catatan' => @$this->request->getVar('catatan'),
-                    'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
+                    'catatan' => $this->request->getVar('catatan'),
+                    'jumlah_coolbox' => 0
                 ];
                 $this->model->save($simpandata);
-                
+
                 $jlhSampel = $this->request->getVar('jumlah_sampel');
-                for ($i=0; $i < count($jlhSampel); $i++) { 
+                $countJlhSampel = count($jlhSampel ?? []);
+
+                for ($i=0; $i < $countJlhSampel; $i++) { 
                     $idPenyakit = $this->request->getVar('id_penyakit');
                     $idbukutamu = $this->model->getInsertID();
                     
@@ -154,6 +183,7 @@ class BukuTamu extends BaseController
                     'sukses' => 'Terimakasih atas kunjungannya, data disimpan'
                 ];
                 echo json_encode($msg);
+            }
         }
     }
 
@@ -167,6 +197,24 @@ class BukuTamu extends BaseController
 
             $msg = [
                 'data' => view('Frontend/Buku-tamu/_cari_sampel', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('No Process');
+        }
+    }
+
+     public function cari_catatan()
+    {
+        if ($this->request->isAJAX()) {
+
+            $modelPenyakitMaster = new PenyakitMaster();
+
+            $data['items'] = $modelPenyakitMaster->findAll();
+
+            $msg = [
+                'data' => view('Frontend/Buku-tamu/_cari_catatan', $data)
             ];
 
             echo json_encode($msg);
