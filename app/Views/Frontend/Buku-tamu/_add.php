@@ -52,7 +52,6 @@
                         <input type="text" name="no_telepon" class="form-control" id="no-telp" autocomplete="off" placeholder="Isi nomor telepon/hp ...">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
-                    <div class="view-jlh-coolbox"></div>
                     <div class="view-keperluan"></div>
                 </div>
                 <div class="modal-footer">
@@ -68,7 +67,7 @@
 $(document).ready(function (e) {
     
 
-    $(".form-data").submit(function(e) {
+    $(".form-data1").submit(function(e) {
         e.preventDefault();
 
         $.ajax({
@@ -157,20 +156,54 @@ $(document).ready(function (e) {
                 }
         })
     })
+
+    $(".form-data").submit(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+                type: "post",
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: 'json',
+                cache: false,
+                beforeSend: function() {
+                    $('.btn-simpan').attr('disable', 'disabled');
+                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                },
+                complete: function() {
+                    $('.btn-simpan').removeAttr('disable');
+                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                },
+                success: function(response) {
+                    var err = response.error
+                     Swal.fire({
+                            title: "Berhasil",
+                            text: response.sukses,
+                            icon: "success"
+                        });
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+        })
+    })
    
     $('#id-keperluan').change(function (e) {
         e.preventDefault();
         if ($(this).val() == 1) {
-
             $.ajax({
                 type: 'get',
                 url: '<?= site_url('program-layanan/buku-tamu/cari-jenis-penyakit'); ?>',
                 dataType: 'json',
+                cache: false,
                 success: function(response) {
-                    var data = response.data;
-                    if (data) {
-                        $('.view-keperluan').html(data);
-                    }
+                    // var data = response.data;
+                    // if (data) {
+                    //     $('.view-keperluan').html(data);
+                    // }
+                    // console.log(response);
+                    $('.view-keperluan').html(response.data);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);

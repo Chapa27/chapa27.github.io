@@ -113,7 +113,7 @@ class BukuTamu extends BaseController
         }
     }
 
-    public function create()
+    public function create1()
     {
         $validation = \Config\Services::validation();
 
@@ -178,10 +178,9 @@ class BukuTamu extends BaseController
                 ];
             } else {
                 $db = \Config\Database::connect();
-
-                $db->transStart();
-
-                $simpandata = [
+                $idKeperluan = $this->request->getVar('id_keperluan');
+                if ($idKeperluan != 1) {
+                   $simpandata = [
                     'no_antrian' => $this->generate_nomor_antrian(),
                     'tanggal' => date('Y-m-d', strtotime($this->today)),
                     'nama' => $this->request->getVar('nama'),
@@ -191,27 +190,37 @@ class BukuTamu extends BaseController
                     'id_keperluan' => $this->request->getVar('id_keperluan'),
                     'no_telepon' => $this->request->getVar('no_telepon'),
                     'catatan' => $this->request->getVar('catatan'),
-                    'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
-                ];
-               
-                $this->model->save($simpandata);
-                $idPenyakit = $this->request->getVar('id_penyakit');
-                $jlhSampel = $this->request->getVar('jumlah_sampel');
-                // for ($i=0; $i < count($idPenyakit); $i++) { 
-                //     $index = $idPenyakit[$i];
-                //     $jlhSampel = $this->request->getVar('jumlah_sampel');
-                // }
-                 $mapdata = [
-                     'id_buku_tamu' => $this->model->getInsertID(),
-                     'jumlah_sampel' => $jlhSampel,
-                     'id_penyakit' => $idPenyakit    
                     ];
-                $this->modelMapData = new MapBukuTamuModel();
-                $this->modelMapData->save($mapdata);
-                $db->transComplete();
+                    $this->model->save($simpandata);
+                }else{
+                   $db->transStart();
+                     $simpandata = [
+                    'no_antrian' => $this->generate_nomor_antrian(),
+                    'tanggal' => date('Y-m-d', strtotime($this->today)),
+                    'nama' => $this->request->getVar('nama'),
+                    'pengirim' => $this->request->getVar('pengirim'),
+                    'id_daerah' => $this->request->getVar('id_daerah'),
+                    'jam_masuk' => date('H:i:s', strtotime($this->today)),
+                    'id_keperluan' => $this->request->getVar('id_keperluan'),
+                    'no_telepon' => $this->request->getVar('no_telepon'),
+                    'catatan' => $this->request->getVar('catatan'),
+                    'jumlah_coolbox' => $validation->getError('jumlah_coolbox')
+                    ];
+                    $this->model->save($simpandata);
+                    $idPenyakit = $this->request->getVar('id_penyakit');
+                    $jlhSampel = $this->request->getVar('jumlah_sampel');
+                    $mapdata = [
+                        'id_buku_tamu' => $this->model->getInsertID(),
+                        'jumlah_sampel' => $jlhSampel,
+                        'id_penyakit' => $idPenyakit    
+                        ];
+                    $this->modelMapData = new MapBukuTamuModel();
+                    $this->modelMapData->save($mapdata);
+                    $db->transComplete();                  
+                }
 
                 $msg = [
-                    'sukses' => 'Data berhasil disimpan'
+                    'sukses' => 'Terimakasih atas kunjungannya, data disimpan'
                 ];
             }
             echo json_encode($msg);
@@ -265,14 +274,38 @@ class BukuTamu extends BaseController
         }
     }
 
+    public function cari_jenis_penyakit1()
+    {
+        if ($this->request->isAJAX()) {
+
+            $modelPenyakitMaster = new PenyakitMaster();
+            $content = '<h1>Response</h1';
+            $data = [
+                'items' => $modelPenyakitMaster->findAll()
+            ];
+            $msg = [
+                'data' => view('Frontend/Buku-tamu/_jenis_penyakit', $data)
+            ];
+            $r['items'] = $modelPenyakitMaster->findAll();
+            $msg = [
+                'data' => view('Frontend/Buku-tamu/_jenis_penyakit', $r)
+            ];
+
+            // echo json_encode($msg);
+        } else {
+            exit('No Process');
+        }
+    }
+
     public function cari_jenis_penyakit()
     {
         if ($this->request->isAJAX()) {
 
             $modelPenyakitMaster = new PenyakitMaster();
-            $data = [
-                'items' => $modelPenyakitMaster->findAll()
-            ];
+            $items = $modelPenyakitMaster->findAll();
+           
+            $data['items'] = $modelPenyakitMaster->findAll();
+
             $msg = [
                 'data' => view('Frontend/Buku-tamu/_jenis_penyakit', $data)
             ];
@@ -280,6 +313,47 @@ class BukuTamu extends BaseController
             echo json_encode($msg);
         } else {
             exit('No Process');
+        }
+    }
+
+     public function create()
+    {
+        $validation = \Config\Services::validation();
+
+        if ($this->request->isAJAX()) {
+                $db = \Config\Database::connect();
+
+            $db->transStart();
+                $this->model = new BukuTamuModel();
+                $this->modelMapData = new MapBukuTamuModel();
+                $simpandata = [
+                    'no_antrian' => $this->generate_nomor_antrian(),
+                    'tanggal' => date('Y-m-d', strtotime($this->today)),
+                    'nama' => $this->request->getVar('nama'),
+                    'pengirim' => $this->request->getVar('pengirim'),
+                    'id_daerah' => $this->request->getVar('id_daerah'),
+                    'jam_masuk' => date('H:i:s', strtotime($this->today)),
+                    'id_keperluan' => $this->request->getVar('id_keperluan'),
+                    'no_telepon' => $this->request->getVar('no_telepon'),
+                    'catatan' => @$this->request->getVar('catatan'),
+                    'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
+                ];
+                $this->model->save($simpandata);
+                $idPenyakit = $this->request->getVar('id_penyakit');
+                $jlhSampel = $this->request->getVar('jumlah_sampel');
+                    
+                $mapdata = [
+                        'id_buku_tamu' => $this->model->getInsertID(),
+                        'jumlah_sampel' => $jlhSampel,
+                        'id_penyakit' => $idPenyakit    
+                ];
+                $this->modelMapData->save($mapdata);
+                $db->transComplete(); 
+                    
+                $msg = [
+                    'sukses' => 'Terimakasih atas kunjungannya, data disimpan'
+                ];
+                echo json_encode($msg);
         }
     }
 
