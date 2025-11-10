@@ -194,15 +194,14 @@ $(document).ready(function (e) {
         if ($(this).val() == 1) {
             $.ajax({
                 type: 'get',
-                url: '<?= site_url('program-layanan/buku-tamu/cari-jenis-penyakit'); ?>',
+                url: '<?= site_url('program-layanan/buku-tamu/cari-sampel'); ?>',
                 dataType: 'json',
                 cache: false,
+                beforeSend: function() {
+                    $('.view-keperluan').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                },
                 success: function(response) {
-                    // var data = response.data;
-                    // if (data) {
-                    //     $('.view-keperluan').html(data);
-                    // }
-                    // console.log(response);
                     $('.view-keperluan').html(response.data);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

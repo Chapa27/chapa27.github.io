@@ -135,17 +135,21 @@ class BukuTamu extends BaseController
                     'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
                 ];
                 $this->model->save($simpandata);
-                $idPenyakit = $this->request->getVar('id_penyakit');
+                
                 $jlhSampel = $this->request->getVar('jumlah_sampel');
+                for ($i=0; $i < count($jlhSampel); $i++) { 
+                    $idPenyakit = $this->request->getVar('id_penyakit');
+                    $idbukutamu = $this->model->getInsertID();
                     
-                $mapdata = [
-                        'id_buku_tamu' => $this->model->getInsertID(),
-                        'jumlah_sampel' => $jlhSampel,
-                        'id_penyakit' => $idPenyakit    
-                ];
-                $this->modelMapData->save($mapdata);
+                    $mapdata = [
+                            'id_buku_tamu' => $idbukutamu,
+                            'jumlah_sampel' => $jlhSampel[$i],
+                            'id_penyakit' => $idPenyakit[$i]    
+                    ];
+                $db->table('map_buku_tamu')->insertBatch($mapdata);
+                }
+                
                 $db->transComplete(); 
-                    
                 $msg = [
                     'sukses' => 'Terimakasih atas kunjungannya, data disimpan'
                 ];
@@ -153,17 +157,16 @@ class BukuTamu extends BaseController
         }
     }
 
-     public function cari_jenis_penyakit()
+    public function cari_sampel()
     {
         if ($this->request->isAJAX()) {
 
             $modelPenyakitMaster = new PenyakitMaster();
-            $items = $modelPenyakitMaster->findAll();
-           
+
             $data['items'] = $modelPenyakitMaster->findAll();
 
             $msg = [
-                'data' => view('Frontend/Buku-tamu/_jenis_penyakit', $data)
+                'data' => view('Frontend/Buku-tamu/_cari_sampel', $data)
             ];
 
             echo json_encode($msg);
