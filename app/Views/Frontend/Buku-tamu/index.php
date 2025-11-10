@@ -98,18 +98,8 @@
         })
     });
 
-     $("#refBtn").click(function(e) {
-        e.preventDefault();
-            $.ajax({
-                cache: false,
-                beforeSend: function() {
-                    $('#refBtn').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                success: function(response) {
-                    $('#refBtn').html('<i class="fa-solid fa-refresh"></i>');
-                    $('.view-data').load();
-                }
-            })
+    $("#refBtn").click(function(e) {
+        window.location.reload();
     })
 
      $(document).ready(function() {

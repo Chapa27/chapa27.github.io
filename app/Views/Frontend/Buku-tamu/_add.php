@@ -31,7 +31,7 @@
                             endforeach;
                             ?>
                         </select>
-                        <div class="invalid-feedback errorIdDaerah"></div>
+                        <div class="invalid-feedback errorNamaDaerah"></div>
                    </div>
                    <div class="mb-3">
                      <label for="id-keperluan" class="form-label h6">Keperluan</label>
@@ -45,7 +45,7 @@
                             endforeach;
                             ?>
                         </select>
-                        <div class="invalid-feedback errorIdKeperluan"></div>
+                        <div class="invalid-feedback errorKeperluan"></div>
                    </div>
                    <div class="mb-3">
                         <label for="no-telp" class="form-label h6">No.Telp/Hp</label>
@@ -94,13 +94,41 @@ $(document).ready(function (e) {
                             $('#nama-tamu').removeClass('is-invalid');
                             $('.errorNamaTamu').html('');
                         }
+                        if (err.id_daerah) {
+                            $('#nama-daerah').addClass('is-invalid');
+                            $('.errorNamaDaerah').html(err.id_daerah);
+                        } else {
+                            $('#nama-daerah').removeClass('is-invalid');
+                            $('.errorNamaDaerah').html('');
+                        }
+                        if (err.no_telepon) {
+                            $('#no-telp').addClass('is-invalid');
+                            $('.errorNoTelp').html(err.no_telepon);
+                        } else {
+                            $('#no-telp').removeClass('is-invalid');
+                            $('.errorNoTelp').html('');
+                        }
+                        if (err.id_keperluan) {
+                            $('#id-keperluan').addClass('is-invalid');
+                            $('.errorKeperluan').html(err.id_keperluan);
+                        } else {
+                            $('#id-keperluan').removeClass('is-invalid');
+                            $('.errorKeperluan').html('');
+                        }
+                        if (err.catatan) {
+                            $('#catatan').addClass('is-invalid');
+                            $('.errorCatatan').html(err.catatan);
+                        } else {
+                            $('#catatan').removeClass('is-invalid');
+                            $('.errorCatatan').html('');
+                        }
                     }else{
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success"
                         });
-                         setTimeout(() => {
+                        setTimeout(() => {
                             $("#exampleModal").modal('hide');
                                 window.location.reload();
                             }, 1000);
@@ -123,7 +151,6 @@ $(document).ready(function (e) {
                 cache: false,
                 beforeSend: function() {
                     $('.view-keperluan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 success: function(response) {
                     $('.view-keperluan').html(response.data);
@@ -140,7 +167,6 @@ $(document).ready(function (e) {
                 cache: false,
                 beforeSend: function() {
                     $('.view-keperluan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 success: function(response) {
                     $('.view-keperluan').html(response.data);

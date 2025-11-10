@@ -135,13 +135,47 @@ class BukuTamu extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                    'id_daerah' => [
+                    'label' => 'Nama daerah',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                    'no_telepon' => [
+                    'label' => 'No.Telp/Hp',
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} harus angka'
+                    ]
+                ],
+                    'id_keperluan' => [
+                    'label' => 'Keperluan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                    'catatan' => [
+                    'label' => 'Catatan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
+
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
                         'nama' => $this->validation->getError('nama'),
+                        'id_daerah' => $this->validation->getError('id_daerah'),
+                        'no_telepon' => $this->validation->getError('no_telepon'),
+                        'id_keperluan' => $this->validation->getError('id_keperluan'),
+                        'catatan' => $this->validation->getError('catatan'),
                     ]
                 ];
                 echo json_encode($msg);
