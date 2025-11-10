@@ -11,11 +11,18 @@
                 <input type="hidden" name="id" value="<?= $items['id'];?>">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            <label for="nama-tamu" class="form-label h3">No. antrian</label>
+                        <div class="col-md-4">
+                            <label for="nama-tamu" class="form-label h4">No. antrian</label>
                         </div>
-                        <div class="col-md-1 h3">:</div>
-                        <div class="col-md-5 h3"><?= $items['no_antrian'];?></div>
+                        <div class="col-md-1 h4">:</div>
+                        <div class="col-md-7 h4"><?= $items['no_antrian'];?></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="nama-tamu" class="form-label h4">Asal</label>
+                        </div>
+                        <div class="col-md-1 h4">:</div>
+                        <div class="col-md-7 h4"><?= $daerah;?></div>
                     </div>
                 </div>
                 <div class="modal-footer">

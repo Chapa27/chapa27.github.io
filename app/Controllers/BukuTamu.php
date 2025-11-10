@@ -225,12 +225,15 @@ class BukuTamu extends BaseController
 
     public function set_jam_keluar($id)
     {
-            $this->model = new BukuTamuModel();
-
+        
          if ($this->request->isAJAX()) {
+            $result = $this->model->find($id);
+        $cari_daerah = $this->masterDaerah->find($result['id_daerah']);
+        $nama_daerah = $cari_daerah['nama_daerah'];
             $data = [
-                'items' => $this->model->find($id),
-                'title' => 'Jam keluar'
+                'title' => 'Jam keluar',
+                'items' => $result,
+                'daerah' => $nama_daerah
             ];
             $msg = [
                 'sukses' => view('Frontend/Buku-tamu/_jam_keluar', $data)
