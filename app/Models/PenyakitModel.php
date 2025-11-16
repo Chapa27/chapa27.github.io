@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MapBukuTamuModel extends Model
+class PenyakitModel extends Model
 {
-    protected $table            = 'mapp_buku_tamu';
+    protected $table            = 'master_penyakit';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_buku_tamu', 'jumlah_sampel', 'id_penyakit'];
+    protected $allowedFields    = [];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

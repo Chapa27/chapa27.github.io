@@ -56,7 +56,7 @@ class BukuTamuModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function get_data($today)
+     public function get_data($today)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('buku_tamu');
@@ -68,5 +68,4 @@ class BukuTamuModel extends Model
         $query = $builder->get()->getResultArray();
         return $query;
     }
-
 }

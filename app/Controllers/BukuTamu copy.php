@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\BukuTamuModel;
 use App\Models\InstansiModel;
 use App\Models\KeperluanModel;
+use App\Models\MapBukuTamuModel;
 use App\Models\PenyakitMaster;
 use CodeIgniter\I18n\Time;
 
@@ -15,12 +16,11 @@ class BukuTamu extends BaseController
     protected $model;
     protected $masterInstansi;
     protected $masterKeperluan;
-    protected $masterPenyakit;
+    protected $modelMapData;
     protected $validation;
     protected $countUserNow;
     protected $time;
     protected $today;
-    protected $db;
 
 
     public function __construct()
@@ -28,12 +28,11 @@ class BukuTamu extends BaseController
         $this->title = 'Buku Tamu';
         $this->masterInstansi = new InstansiModel();
         $this->masterKeperluan = new KeperluanModel();
-        $this->masterPenyakit = new PenyakitMaster();
         $this->model = new BukuTamuModel();
         $this->time = Time::now('Asia/Jakarta'); 
         $this->today = $this->time->toDateTimeString();
         $this->validation = \Config\Services::validation();
-        $this->db = \Config\Database::connect();
+
     }
 
     public function index()
@@ -89,6 +88,7 @@ class BukuTamu extends BaseController
     public function generate_nomor_antrian() 
     {
         $today = date('Y-m-d', strtotime($this->time));
+        $this->model = new BukuTamuModel();
 
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
         $count = $this->model->where('tanggal', $today)->countAllResults();
@@ -106,6 +106,7 @@ class BukuTamu extends BaseController
     {  
          if ($this->request->isAJAX()) {
             
+            $this->model = new BukuTamuModel();
             $today = date('Y-m-d', strtotime($this->today));
             $data = [
                 'items' => $this->model->get_data($today)
@@ -124,19 +125,63 @@ class BukuTamu extends BaseController
     {
         if ($this->request->isAJAX()) {
             
-                $idKeperluan = $this->request->getVar('id_keperluan');
-                $this->db->transStart();
+            $db = \Config\Database::connect();
 
-                if ($idKeperluan != 1) {
-                    $catatan = [
-                        'catatan' => $this->request->getVar('catatan')
-                    ];
-                    $jlhCoolbox = 0;
-                }else{
-                    $catatan = null;
-                    $jlhCoolbox = $this->request->getVar('jumlah_coolbox');
-                }
+            $valid = $this->validate([
+                'nama' => [
+                    'label' => 'Nama',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                    'id_instansi' => [
+                    'label' => 'Nama daerah',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                    'no_telepon' => [
+                    'label' => 'No.Telp/Hp',
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} harus angka'
+                    ]
+                ],
+                    'id_keperluan' => [
+                    'label' => 'Keperluan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                    'catatan' => [
+                    'label' => 'Catatan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
 
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama' => $this->validation->getError('nama'),
+                        'id_instansi' => $this->validation->getError('id_instansi'),
+                        'no_telepon' => $this->validation->getError('no_telepon'),
+                        'id_keperluan' => $this->validation->getError('id_keperluan'),
+                        'catatan' => $this->validation->getError('catatan'),
+                    ]
+                ];
+                echo json_encode($msg);
+            } else {
+                $db->transStart();
+                $this->model = new BukuTamuModel();
+                $this->modelMapData = new MapBukuTamuModel();
                 $simpandata = [
                     'no_antrian' => $this->generate_nomor_antrian(),
                     'tanggal' => date('Y-m-d', strtotime($this->today)),
@@ -146,33 +191,32 @@ class BukuTamu extends BaseController
                     'jam_masuk' => date('H:i:s', strtotime($this->today)),
                     'id_keperluan' => $this->request->getVar('id_keperluan'),
                     'no_telepon' => $this->request->getVar('no_telepon'),
-                    'jumlah_coolbox' => $jlhCoolbox
+                    'catatan' => $this->request->getVar('catatan'),
+                    'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
                 ];
-
-                $this->model->save($simpandata, $catatan);
+                $this->model->save($simpandata);
 
                 $jlhSampel = $this->request->getVar('jumlah_sampel');
-                $countJlhSampel = count($jlhSampel ?? []);
+                $countJlhSampel = count($jlhSampel);
 
                 for ($i=0; $i < $countJlhSampel; $i++) { 
                     $idPenyakit = $this->request->getVar('id_penyakit');
                     $idbukutamu = $this->model->getInsertID();
                     
                     $mapdata = [
-                        'id_buku_tamu' => $idbukutamu,
-                        'jumlah_sampel' => $jlhSampel[$i],
-                        'id_penyakit' => $idPenyakit[$i]    
+                            'id_buku_tamu' => $idbukutamu,
+                            'jumlah_sampel' => $jlhSampel[$i],
+                            'id_penyakit' => $idPenyakit[$i]    
                     ];
-
-                  $this->db->table('mapp_buku_tamu')->insertBatch($mapdata);
+                    $db->table('mapp_buku_tamu')->insertBatch($mapdata);
                 }
-               
-                $this->db->transComplete(); 
+                
+                $db->transComplete(); 
                 $msg = [
                     'sukses' => 'Terimakasih atas kunjungannya, data disimpan'
                 ];
                 echo json_encode($msg);
-                
+            }
         }
     }
 
@@ -180,7 +224,9 @@ class BukuTamu extends BaseController
     {
         if ($this->request->isAJAX()) {
 
-            $data['items'] = $this->masterPenyakit->findAll();
+            $modelPenyakitMaster = new PenyakitMaster();
+
+            $data['items'] = $modelPenyakitMaster->findAll();
 
             $msg = [
                 'data' => view('Frontend/Buku-tamu/_cari_sampel', $data)

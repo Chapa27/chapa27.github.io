@@ -85,16 +85,54 @@ $(document).ready(function (e) {
                     $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
-                     Swal.fire({
+                    var err = response.error;
+                    if (err) {
+                        if (err.nama) {
+                            $('#nama-tamu').addClass('is-invalid');
+                            $('.errorNamaTamu').html(err.nama);
+                        } else {
+                            $('#nama-tamu').removeClass('is-invalid');
+                            $('.errorNamaTamu').html('');
+                        }
+                        if (err.id_instansi) {
+                            $('#nama-daerah').addClass('is-invalid');
+                            $('.errorNamaDaerah').html(err.id_instansi);
+                        } else {
+                            $('#nama-daerah').removeClass('is-invalid');
+                            $('.errorNamaDaerah').html('');
+                        }
+                        if (err.no_telepon) {
+                            $('#no-telp').addClass('is-invalid');
+                            $('.errorNoTelp').html(err.no_telepon);
+                        } else {
+                            $('#no-telp').removeClass('is-invalid');
+                            $('.errorNoTelp').html('');
+                        }
+                        if (err.id_keperluan) {
+                            $('#id-keperluan').addClass('is-invalid');
+                            $('.errorKeperluan').html(err.id_keperluan);
+                        } else {
+                            $('#id-keperluan').removeClass('is-invalid');
+                            $('.errorKeperluan').html('');
+                        }
+                        if (err.catatan) {
+                            $('#catatan').addClass('is-invalid');
+                            $('.errorCatatan').html(err.catatan);
+                        } else {
+                            $('#catatan').removeClass('is-invalid');
+                            $('.errorCatatan').html('');
+                        }
+                    }else{
+                        Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success"
                         });
-                        // setTimeout(() => {
-                        //     $("#exampleModal").modal('hide');
-                        //         window.location.reload();
-                        //     }, 1000);
-                
+                        setTimeout(() => {
+                            $("#exampleModal").modal('hide');
+                                window.location.reload();
+                            }, 1000);
+                        }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
@@ -115,7 +153,6 @@ $(document).ready(function (e) {
                     $('.view-keperluan').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 success: function(response) {
-                    console.log(response);
                     $('.view-keperluan').html(response.data);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
