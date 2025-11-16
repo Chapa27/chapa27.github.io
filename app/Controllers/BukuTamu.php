@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 use App\Models\BukuTamuModel;
 use App\Models\InstansiModel;
 use App\Models\KeperluanModel;
-use App\Models\PenyakitMaster;
 use App\Models\PenyakitModel;
 use CodeIgniter\I18n\Time;
 
@@ -85,6 +84,23 @@ class BukuTamu extends BaseController
             exit('Not Process');
         }
         
+    }
+
+    public function show($id)
+    {
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Detail',
+                'items' => $this->model->get_data_by_id($id),
+                'sampel' => $this->model->get_data_by_sampel($id)
+            ];
+            $msg = [
+                'sukses' => view('Frontend/Buku-tamu/_show', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }       
     }
 
     public function generate_nomor_antrian() 

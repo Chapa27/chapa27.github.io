@@ -56,7 +56,7 @@ class BukuTamuModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-     public function get_data($today)
+    public function get_data($today)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('buku_tamu');
@@ -65,6 +65,31 @@ class BukuTamuModel extends Model
         $builder->join("master_instansi", "master_instansi.id = buku_tamu.id_instansi");
         $builder->join("master_keperluan", "master_keperluan.id = buku_tamu.id_keperluan");
         $builder->where('tanggal', $today);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
+    public function get_data_by_id($id)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('buku_tamu');
+        $builder->select('buku_tamu.id, buku_tamu.tanggal, buku_tamu.no_antrian, buku_tamu.nama, buku_tamu.id_keperluan, master_instansi.nama_instansi, 
+        buku_tamu.jam_masuk, buku_tamu.jam_keluar, master_keperluan.keperluan');
+        $builder->join("master_instansi", "master_instansi.id = buku_tamu.id_instansi");
+        $builder->join("master_keperluan", "master_keperluan.id = buku_tamu.id_keperluan");
+        $builder->where('buku_tamu.id', $id);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
+    public function get_data_by_sampel($id)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('mapp_buku_tamu');
+        $builder->select('jumlah_sampel, penyakit');
+        $builder->join("master_penyakit", "master_penyakit.id = mapp_buku_tamu.id_penyakit");
+        $builder->join("buku_tamu", "buku_tamu.id = mapp_buku_tamu.id_buku_tamu");
+        $builder->where('buku_tamu.id', $id);
         $query = $builder->get()->getResultArray();
         return $query;
     }

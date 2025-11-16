@@ -17,6 +17,7 @@ $routes->group('program-layanan/buku-tamu', function ($routes) {
     $routes->get('add-data', 'BukuTamu::new');
     $routes->post('create-data', 'BukuTamu::create');
     $routes->get('list-data', 'BukuTamu::list');
+    $routes->get('detail-data/(:num)', 'BukuTamu::show/$1');
     $routes->get('jam-keluar/(:num)', 'BukuTamu::set_jam_keluar/$1');
     $routes->post('update-jam-keluar', 'BukuTamu::update_jam_keluar');
     $routes->get('cari-sampel', 'BukuTamu::cari_sampel');

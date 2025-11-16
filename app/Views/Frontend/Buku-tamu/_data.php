@@ -19,7 +19,10 @@
              <td><?= $row['nama_instansi'];?></td>
              <td><?= $row['keperluan'];?></td>
              <td><?= $row['jam_masuk'];?></td>
-             <td class="text-center"><?= $row['jam_keluar'] == null ? '<button class="btn btn-primary btn-sm" onclick="pilih('.$row['id'].');"><span class="fas fa-clock"></span></button>' : $row['jam_keluar'];?></td>
+             <td class="text-center">
+                <?= $row['jam_keluar'] == null ? '<button class="btn btn-primary btn-sm" onclick="pilih('.$row['id'].');"><span class="fas fa-clock"></span></button>' : $row['jam_keluar'];?>
+                <button class="btn btn-warning btn-sm text-light mt-2" onclick="detail(<?= $row['id'] ?>)"><span class="fas fa-eye"></span></button>
+            </td>
          </tr>
         <?php endforeach;?>
      </tbody>
@@ -29,6 +32,23 @@
          $.ajax({
             type: 'get',
             url: '<?= site_url('program-layanan/buku-tamu/jam-keluar/'); ?>' + id,
+            dataType: 'json',
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+    function detail(id) {
+         $.ajax({
+            type: 'get',
+            url: '<?= site_url('program-layanan/buku-tamu/detail-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
