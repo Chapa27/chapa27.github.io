@@ -58,7 +58,13 @@
                         <span class="pc-mtext">Biaya Akomodasi</span>
                     </a>
                 </li>
-                 <li class="pc-item">
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-mtext">Instansi</span>
+                    </a>
+                </li>
+                <li class="pc-item">
                     <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
                         <span class="pc-mtext">Instansi</span>

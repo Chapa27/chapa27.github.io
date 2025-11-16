@@ -25,7 +25,7 @@
     </div>
 </div>
 <table id="example" class="table table-hover table-bordered bg-white">
-     <thead style="font-family: calibri;">
+     <thead style="font-family: calibri; size: 11px;">
         <tr>
             <th rowspan="2">No.</th>
             <th rowspan="2">No.antrian</th>
@@ -34,13 +34,17 @@
             <th rowspan="2">Instansi</th>
             <th rowspan="2">Keperluan</th>
             <th colspan="2" class="text-center">Jam</th>
+            <th colspan="2" class="text-center">Jumlah</th>
+            <th rowspan="2">Jenis sampel</th>
         </tr>
         <tr>
-             <th>Masuk</th>
+            <th>Masuk</th>
             <th>Keluar</th>
+            <th>Coolbox</th>
+            <th>Sampel</th>
         </tr>
      </thead>
-     <tbody style="font-family: arial; font-size:13px;">
+     <tbody style="font-family: arial; font-size:11px;">
          <?php $no = 1; foreach ($items as $row) :?>
             <tr>
              <td class="text-center"><?=  $no++; ?></td>
@@ -49,8 +53,11 @@
              <td><?= $row['nama'];?></td>
              <td><?= $row['nama_instansi'];?></td>
              <td><?= $row['keperluan'];?></td>
-             <td><?= $row['jam_masuk'];?></td>
-             <td><?= $row['jam_keluar'];?></td>
+             <td class="text-center"><?= $row['jam_masuk'];?></td>
+             <td class="text-center"><?= $row['jam_keluar'];?></td>
+             <td class="text-center"><?= $row['jumlah_coolbox'];?></td>
+             <td class="text-center"><?= $row['jumlah_sampel'];?></td>
+             <td><?= $row['penyakit'];?></td>
          </tr>
         <?php endforeach;?>
      </tbody>
