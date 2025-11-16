@@ -16,11 +16,13 @@ class InstansiMaster extends ResourceController
 
     protected $title;
     protected $model;
+    protected $validation;
 
     public function __construct()
     {
         $this->title = 'Instansi';
         $this->model = new InstansiModel();
+        $this->validation = \Config\Services::validation();
     }
 
     public function index()
@@ -67,7 +69,18 @@ class InstansiMaster extends ResourceController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title
+            ];
+            $msg = [
+                'data' => view('Backend/Master/Instansi/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -77,7 +90,45 @@ class InstansiMaster extends ResourceController
      */
     public function create()
     {
-        //
+         if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama_instansi' => [
+                    'label' => 'Instansi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'wilayah' => [
+                    'label' => 'Wilayah',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_instansi' => $this->validation->getError('nama_instansi'),
+                        'wilayah' => $this->validation->getError('wilayah'),
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'nama_instansi' => $this->request->getVar('nama_instansi'),
+                    'wilayah' => $this->request->getVar('wilayah')
+                ];
+                $this->model->insert($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -89,7 +140,19 @@ class InstansiMaster extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id),
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Instansi/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -101,7 +164,45 @@ class InstansiMaster extends ResourceController
      */
     public function update($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama_instansi' => [
+                    'label' => 'Instansi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'wilayah' => [
+                    'label' => 'Wilayah',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_instansi' => $this->validation->getError('nama_instansi'),
+                        'wilayah' => $this->validation->getError('wilayah')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'nama_instansi' => $this->request->getVar('nama_instansi'),
+                    'wilayah' => $this->request->getVar('wilayah')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
