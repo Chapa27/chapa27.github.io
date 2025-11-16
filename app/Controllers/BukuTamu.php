@@ -72,7 +72,7 @@ class BukuTamu extends BaseController
 
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterDaerah' => $this->masterDaerah->findAll(),
+                'masterDaerah' => $this->masterInstansi->findAll(),
                 'masterKeperluan' => $this->masterKeperluan->findAll()
             ];
             $msg = [
@@ -135,7 +135,7 @@ class BukuTamu extends BaseController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                    'id_daerah' => [
+                    'id_instansi' => [
                     'label' => 'Nama daerah',
                     'rules' => 'required',
                     'errors' => [
@@ -171,7 +171,7 @@ class BukuTamu extends BaseController
                 $msg = [
                     'error' => [
                         'nama' => $this->validation->getError('nama'),
-                        'id_daerah' => $this->validation->getError('id_daerah'),
+                        'id_instansi' => $this->validation->getError('id_instansi'),
                         'no_telepon' => $this->validation->getError('no_telepon'),
                         'id_keperluan' => $this->validation->getError('id_keperluan'),
                         'catatan' => $this->validation->getError('catatan'),
@@ -187,12 +187,12 @@ class BukuTamu extends BaseController
                     'tanggal' => date('Y-m-d', strtotime($this->today)),
                     'nama' => $this->request->getVar('nama'),
                     'pengirim' => $this->request->getVar('pengirim'),
-                    'id_daerah' => $this->request->getVar('id_daerah'),
+                    'id_instansi' => $this->request->getVar('id_instansi'),
                     'jam_masuk' => date('H:i:s', strtotime($this->today)),
                     'id_keperluan' => $this->request->getVar('id_keperluan'),
                     'no_telepon' => $this->request->getVar('no_telepon'),
                     'catatan' => $this->request->getVar('catatan'),
-                    'jumlah_coolbox' => 0
+                    'jumlah_coolbox' => $this->request->getVar('jumlah_coolbox')
                 ];
                 $this->model->save($simpandata);
 
@@ -208,7 +208,7 @@ class BukuTamu extends BaseController
                             'jumlah_sampel' => $jlhSampel[$i],
                             'id_penyakit' => $idPenyakit[$i]    
                     ];
-                $db->table('map_buku_tamu')->insertBatch($mapdata);
+                    $db->table('mapp_buku_tamu')->insertBatch($mapdata);
                 }
                 
                 $db->transComplete(); 

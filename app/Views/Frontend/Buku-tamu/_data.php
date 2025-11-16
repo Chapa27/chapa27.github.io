@@ -1,7 +1,7 @@
  <table id="example" class="table table-hover table-bordered view-data">
      <thead style="font-family: calibri;">
          <?php
-            $arrth = ['No.antrian', 'Nama', 'Asal', 'Keperluan', 'Jam masuk', 'Jam keluar'];
+            $arrth = ['No.antrian', 'Nama', 'Instansi', 'Keperluan', 'Jam masuk', 'Jam keluar'];
             echo '<tr>';
             foreach ($arrth as $th) :
                 echo '<th>' . $th . '</th>';
@@ -16,7 +16,7 @@
                 <label class="card-title h5 fw-bold" style="font-family: monospace;"><?= $row['no_antrian'];?></label>
              </td>
              <td><?= $row['nama'];?></td>
-             <td><?= $row['nama_daerah'];?></td>
+             <td><?= $row['nama_instansi'];?></td>
              <td><?= $row['keperluan'];?></td>
              <td><?= $row['jam_masuk'];?></td>
              <td class="text-center"><?= $row['jam_keluar'] == null ? '<button class="btn btn-primary btn-sm" onclick="pilih('.$row['id'].');"><span class="fas fa-clock"></span></button>' : $row['jam_keluar'];?></td>

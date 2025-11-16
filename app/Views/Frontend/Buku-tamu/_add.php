@@ -21,12 +21,12 @@
                     </div>
                    <div class="mb-3">
                      <label for="nama-daerah" class="form-label h6">Asal</label>
-                        <select name="id_daerah" class="form-select" id="nama-daerah" aria-label="Default select example">
+                        <select name="id_instansi" class="form-select" id="nama-daerah" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterDaerah as $row) :
                                 ?>
-                                <option value="<?= $row['id'];?>"><?= $row['nama_daerah'];?></option>
+                                <option value="<?= $row['id'];?>"><?= $row['nama_instansi'];?></option>
                                 <?php
                             endforeach;
                             ?>
@@ -94,9 +94,9 @@ $(document).ready(function (e) {
                             $('#nama-tamu').removeClass('is-invalid');
                             $('.errorNamaTamu').html('');
                         }
-                        if (err.id_daerah) {
+                        if (err.id_instansi) {
                             $('#nama-daerah').addClass('is-invalid');
-                            $('.errorNamaDaerah').html(err.id_daerah);
+                            $('.errorNamaDaerah').html(err.id_instansi);
                         } else {
                             $('#nama-daerah').removeClass('is-invalid');
                             $('.errorNamaDaerah').html('');

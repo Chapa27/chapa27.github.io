@@ -17,13 +17,12 @@ class BukuTamuModel extends Model
         'tanggal',
         'nama',
         'pengirim',
-        'id_daerah',
+        'id_instansi',
         'id_keperluan',
         'jam_masuk',
         'jam_keluar',
         'no_telepon',
         'catatan',
-        'id_penyakit',
         'jumlah_coolbox'
     ];
 
@@ -61,9 +60,9 @@ class BukuTamuModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('buku_tamu');
-        $builder->select('buku_tamu.id, buku_tamu.no_antrian, buku_tamu.nama, master_daerah.nama_daerah, 
+        $builder->select('buku_tamu.id, buku_tamu.no_antrian, buku_tamu.nama, master_instansi.nama_instansi, 
         buku_tamu.jam_masuk, buku_tamu.jam_keluar, master_keperluan.keperluan');
-        $builder->join("master_daerah", "master_daerah.id = buku_tamu.id_daerah");
+        $builder->join("master_instansi", "master_instansi.id = buku_tamu.id_instansi");
         $builder->join("master_keperluan", "master_keperluan.id = buku_tamu.id_keperluan");
         $builder->where('tanggal', $today);
         $query = $builder->get()->getResultArray();

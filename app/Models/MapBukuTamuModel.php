@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class MapBukuTamuModel extends Model
 {
-    protected $table            = 'map_buku_tamu';
+    protected $table            = 'mapp_buku_tamu';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_buku_tamu', 'jumlah_sampel', 'jumlah_coolbox', 'id_penyakit'];
+    protected $allowedFields    = ['id_buku_tamu', 'jumlah_sampel', 'id_penyakit'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
