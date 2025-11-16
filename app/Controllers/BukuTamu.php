@@ -7,6 +7,7 @@ use App\Models\BukuTamuModel;
 use App\Models\InstansiModel;
 use App\Models\KeperluanModel;
 use App\Models\PenyakitMaster;
+use App\Models\PenyakitModel;
 use CodeIgniter\I18n\Time;
 
 class BukuTamu extends BaseController
@@ -28,7 +29,7 @@ class BukuTamu extends BaseController
         $this->title = 'Buku Tamu';
         $this->masterInstansi = new InstansiModel();
         $this->masterKeperluan = new KeperluanModel();
-        $this->masterPenyakit = new PenyakitMaster();
+        $this->masterPenyakit = new PenyakitModel();
         $this->model = new BukuTamuModel();
         $this->time = Time::now('Asia/Jakarta'); 
         $this->today = $this->time->toDateTimeString();
@@ -124,6 +125,48 @@ class BukuTamu extends BaseController
     {
         if ($this->request->isAJAX()) {
             
+            $valid = $this->validate([
+                'nama' => [
+                    'label' => 'Nama',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'pengirim' => [
+                    'label' => 'Pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'id_instansi' => [
+                'label' => 'Asal instansi',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'id_keperluan' => [
+                'label' => 'Keperluan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama' => $this->validation->getError('nama'),
+                        'pengirim' => $this->validation->getError('pengirim'),
+                        'id_instansi' => $this->validation->getError('id_instansi'),
+                        'id_keperluan' => $this->validation->getError('id_keperluan'),
+                    ]
+                ];
+            } else {
+
                 $idKeperluan = $this->request->getVar('id_keperluan');
                 $this->db->transStart();
 
@@ -171,8 +214,8 @@ class BukuTamu extends BaseController
                 $msg = [
                     'sukses' => 'Terimakasih atas kunjungannya, data disimpan'
                 ];
-                echo json_encode($msg);
-                
+            }
+            echo json_encode($msg);
         }
     }
 
@@ -196,12 +239,8 @@ class BukuTamu extends BaseController
     {
         if ($this->request->isAJAX()) {
 
-            $modelPenyakitMaster = new PenyakitMaster();
-
-            $data['items'] = $modelPenyakitMaster->findAll();
-
             $msg = [
-                'data' => view('Frontend/Buku-tamu/_cari_catatan', $data)
+                'data' => view('Frontend/Buku-tamu/_cari_catatan')
             ];
 
             echo json_encode($msg);
@@ -215,8 +254,8 @@ class BukuTamu extends BaseController
         
          if ($this->request->isAJAX()) {
             $result = $this->model->find($id);
-        $cari_daerah = $this->masterDaerah->find($result['id_daerah']);
-        $nama_daerah = $cari_daerah['nama_daerah'];
+            $cari_daerah = $this->masterInstansi->find($result['id_instansi']);
+            $nama_daerah = $cari_daerah['nama_instansi'];
             $data = [
                 'title' => 'Jam keluar',
                 'items' => $result,

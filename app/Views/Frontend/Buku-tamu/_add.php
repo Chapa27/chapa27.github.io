@@ -20,8 +20,8 @@
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>
                    <div class="mb-3">
-                     <label for="nama-daerah" class="form-label h6">Asal</label>
-                        <select name="id_instansi" class="form-select" id="nama-daerah" aria-label="Default select example">
+                     <label for="asal-instansi" class="form-label h6">Asal</label>
+                        <select name="id_instansi" class="form-select" id="asal-instansi" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterDaerah as $row) :
@@ -31,11 +31,11 @@
                             endforeach;
                             ?>
                         </select>
-                        <div class="invalid-feedback errorNamaDaerah"></div>
+                        <div class="invalid-feedback errorAsalInstansi"></div>
                    </div>
                    <div class="mb-3">
-                     <label for="id-keperluan" class="form-label h6">Keperluan</label>
-                        <select name="id_keperluan" class="form-select" id="id-keperluan" aria-label="Default select example">
+                     <label for="keperluan" class="form-label h6">Keperluan</label>
+                        <select name="id_keperluan" class="form-select" id="keperluan" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterKeperluan as $row) :
@@ -85,16 +85,47 @@ $(document).ready(function (e) {
                     $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
-                     Swal.fire({
+                    var err = response.error;
+                    if (err) {
+                        if (err.nama) {
+                            $('#nama-tamu').addClass('is-invalid');
+                            $('.errorNamaTamu').html(err.nama);
+                        } else {
+                            $('#nama-tamu').removeClass('is-invalid');
+                            $('.errorNamaTamu').html('');
+                        }
+                        if (err.pengirim) {
+                            $('#nama-pengirim').addClass('is-invalid');
+                            $('.errorNamaPengirim').html(err.pengirim);
+                        } else {
+                            $('#nama-pengirim').removeClass('is-invalid');
+                            $('.errorNamaPengirim').html('');
+                        }
+                        if (err.id_instansi) {
+                            $('#asal-instansi').addClass('is-invalid');
+                            $('.errorAsalInstansi').html(err.id_instansi);
+                        } else {
+                            $('#asal-instansi').removeClass('is-invalid');
+                            $('.errorAsalInstansi').html('');
+                        }
+                        if (err.id_keperluan) {
+                            $('#keperluan').addClass('is-invalid');
+                            $('.errorKeperluan').html(err.id_keperluan);
+                        } else {
+                            $('#keperluan').removeClass('is-invalid');
+                            $('.errorKeperluan').html('');
+                        }
+                    }else{
+                        Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success"
                         });
-                        // setTimeout(() => {
-                        //     $("#exampleModal").modal('hide');
-                        //         window.location.reload();
-                        //     }, 1000);
-                
+                        setTimeout(() => {
+                        $("#exampleModal").modal('hide');
+                            window.location.reload();
+                        }, 1000);
+                    }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
