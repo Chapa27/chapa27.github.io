@@ -153,6 +153,21 @@ class BukuTamu extends BaseController
                 'errors' => [
                     'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'no_telepon' => [
+                'label' => 'Nomor telepon',
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => '{field} tidak boleh kosong',
+                    'numeric' => '{field} harus angka'
+                    ]
+                ],
+                'catatan' => [
+                'label' => 'Catatan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -163,6 +178,8 @@ class BukuTamu extends BaseController
                         'pengirim' => $this->validation->getError('pengirim'),
                         'id_instansi' => $this->validation->getError('id_instansi'),
                         'id_keperluan' => $this->validation->getError('id_keperluan'),
+                        'no_telepon' => $this->validation->getError('no_telepon'),
+                        'catatan' => $this->validation->getError('catatan'),
                     ]
                 ];
             } else {

@@ -34,8 +34,8 @@
                         <div class="invalid-feedback errorAsalInstansi"></div>
                    </div>
                    <div class="mb-3">
-                     <label for="keperluan" class="form-label h6">Keperluan</label>
-                        <select name="id_keperluan" class="form-select" id="keperluan" aria-label="Default select example">
+                     <label for="id-keperluan" class="form-label h6">Keperluan</label>
+                        <select name="id_keperluan" class="form-select" id="id-keperluan" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterKeperluan as $row) :
@@ -109,11 +109,25 @@ $(document).ready(function (e) {
                             $('.errorAsalInstansi').html('');
                         }
                         if (err.id_keperluan) {
-                            $('#keperluan').addClass('is-invalid');
+                            $('#id-keperluan').addClass('is-invalid');
                             $('.errorKeperluan').html(err.id_keperluan);
                         } else {
-                            $('#keperluan').removeClass('is-invalid');
+                            $('#id-keperluan').removeClass('is-invalid');
                             $('.errorKeperluan').html('');
+                        }
+                        if (err.no_telepon) {
+                            $('#no-telp').addClass('is-invalid');
+                            $('.errorNoTelp').html(err.no_telepon);
+                        } else {
+                            $('#no-telp').removeClass('is-invalid');
+                            $('.errorNoTelp').html('');
+                        }
+                        if (err.catatan) {
+                            $('#catatan').addClass('is-invalid');
+                            $('.errorCatatan').html(err.catatan);
+                        } else {
+                            $('#catatan').removeClass('is-invalid');
+                            $('.errorCatatan').html('');
                         }
                     }else{
                         Swal.fire({
