@@ -65,9 +65,9 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/penyakit'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                        <span class="pc-mtext">Instansi</span>
+                        <span class="pc-mtext">Penyakit</span>
                     </a>
                 </li>
             </ul>
