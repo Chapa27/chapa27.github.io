@@ -4,18 +4,17 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BukuTamuModel;
-use App\Models\DaerahModel;
+use App\Models\InstansiModel;
 use App\Models\KeperluanModel;
 use App\Models\MapBukuTamuModel;
 use App\Models\PenyakitMaster;
-use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 
 class BukuTamu extends BaseController
 {
     protected $title;
     protected $model;
-    protected $masterDaerah;
+    protected $masterInstansi;
     protected $masterKeperluan;
     protected $modelMapData;
     protected $validation;
@@ -27,7 +26,7 @@ class BukuTamu extends BaseController
     public function __construct()
     {
         $this->title = 'Buku Tamu';
-        $this->masterDaerah = new DaerahModel();
+        $this->masterInstansi = new InstansiModel();
         $this->masterKeperluan = new KeperluanModel();
         $this->model = new BukuTamuModel();
         $this->time = Time::now('Asia/Jakarta'); 

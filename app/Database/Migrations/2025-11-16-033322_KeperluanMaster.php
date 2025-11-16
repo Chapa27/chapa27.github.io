@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class InstansiMaster extends Migration
+class KeperluanMaster extends Migration
 {
     public function up()
     {
@@ -15,11 +15,7 @@ class InstansiMaster extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nama_instansi' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
-            ],
-            'wilayah' => [
+            'keperluan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
@@ -39,11 +35,11 @@ class InstansiMaster extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('master_instansi');
+        $this->forge->createTable('master_keperluan');
     }
 
     public function down()
     {
-        $this->forge->dropTable('master_instansi');
+        $this->forge->dropTable('master_keperluan');
     }
 }
