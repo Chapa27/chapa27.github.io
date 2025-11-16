@@ -35,7 +35,6 @@ $routes->group('master-data/jenis-sampel', function ($routes) {
     $routes->delete('delete-data/(:num)', 'JenisSampelMaster::delete/$1');
 });
 
-
 /** Data laboratorim **/
 $routes->group('master-data/laboratorium', function ($routes) {
     $routes->get('', 'LaboratoriumMaster::index');
@@ -57,4 +56,15 @@ $routes->group('master-data/biaya-akomodasi', function ($routes) {
     $routes->get('edit-data/(:num)', 'BiayaAkomodasiMaster::edit/$1');
     $routes->post('update-data', 'BiayaAkomodasiMaster::update');
     $routes->delete('delete-data/(:num)', 'BiayaAkomodasiMaster::delete/$1');
+});
+
+/** Data daerah **/
+$routes->group('master-data/daerah', function ($routes) {
+    $routes->get('', 'Daerah::index');
+    $routes->get('list-data', 'Daerah::list');
+    $routes->get('add-data', 'JenisSampelMaster::new');
+    $routes->post('create-data', 'JenisSampelMaster::create');
+    $routes->get('edit-data/(:num)', 'JenisSampelMaster::edit/$1');
+    $routes->post('update-data', 'JenisSampelMaster::update');
+    $routes->delete('delete-data/(:num)', 'JenisSampelMaster::delete/$1');
 });

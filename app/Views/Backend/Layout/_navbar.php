@@ -58,6 +58,12 @@
                         <span class="pc-mtext">Biaya Akomodasi</span>
                     </a>
                 </li>
+                 <li class="pc-item">
+                    <a href="<?= base_url('master-data/daerah'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-mtext">Daerah</span>
+                    </a>
+                </li>
             </ul>
             <div class="card text-center">
                 <!-- Blank -->
