@@ -330,6 +330,44 @@ class BukuTamu extends BaseController
         }
     }
 
+    public function list_all()
+    {
+        $tglAwal = $this->model->where('tanggal', date('Y-m-d', strtotime($this->today)))->countAllResults();     
+        $dataAkhir = $this->model->orderBy('id', 'DESC')->get()->getRow();
+        $tglAkhir = date('Y-m-d', strtotime('0 day', strtotime(@$dataAkhir->tanggal)));
+        $tglAwal = date('Y-m-d', strtotime('-1 day', strtotime($this->today)));
+
+       
+        $data = [
+            'title' => $this->title,
+            'items' => $this->model->get_data_list_all($tglAwal, $tglAkhir),
+            'tgl_akhir' => $tglAkhir,
+            'tgl_awal' => $tglAwal
+        ];
+
+        return view('Frontend/Buku-tamu/_list_all', $data);
+    }
+
+    public function cari_data_tamu()
+    {
+        $tglAwal = $this->model->where('tanggal', date('Y-m-d', strtotime($this->today)))->countAllResults();     
+        $dataAkhir = $this->model->orderBy('id')->get()->getRow();
+        $tglAkhir = date('Y-m-d', strtotime('0 day', strtotime(@$dataAkhir->tanggal)));
+     
+        $tgl_awal = $this->request->getVar('tgl_awal');
+        $tgl_akhir = $this->request->getVar('tgl_akhir');
+     
+        $data = [
+            'title' => $this->title,
+            'tgl_awal' => $tgl_awal,
+            'tgl_akhir' => $tgl_akhir,
+            'items' => $this->model->get_data_list_all($tgl_awal, $tgl_akhir),
+
+        ];
+
+        return view('Frontend/Buku-tamu/_list_all', $data);
+    }
+
 
 }
 

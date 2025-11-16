@@ -10,10 +10,13 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link text-light active" aria-current="page" href="<?= base_url('program-layanan'); ?>"><span class="fa-solid fa-home"></span> Home</a>
+                                    <a class="nav-link text-light" aria-current="page" href="<?= base_url('program-layanan'); ?>"><span class="fa-solid fa-home"></span> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light active" aria-current="page" href="<?= base_url('program-layanan/buku-tamu'); ?>"><span class="fa-solid fa-book"></span> Buku tamu</a>
+                                    <a class="nav-link text-light" aria-current="page" href="<?= base_url('program-layanan/buku-tamu'); ?>"><span class="fa-solid fa-book"></span> Buku tamu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" aria-current="page" href="<?= base_url('program-layanan/buku-tamu/list-all'); ?>"><span class="fa-solid fa-list"></span> List buku tamu</a>
                                 </li>
                             </ul>
                         </div>

@@ -93,4 +93,27 @@ class BukuTamuModel extends Model
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
+    public function get_data_list_all($tglMulai = null, $tglAkhir = null)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT
+                bt.tanggal,no_antrian,nama,
+                mi.nama_instansi,
+                mk.keperluan,
+                bt.jam_masuk,jam_keluar,
+                bt.jumlah_coolbox,
+                mbt.jumlah_sampel,
+                mp.penyakit
+                FROM buku_tamu bt 
+                LEFT JOIN mapp_buku_tamu mbt ON mbt.id_buku_tamu = bt.id 
+                LEFT JOIN master_instansi mi ON mi.id = bt.id_instansi
+                LEFT JOIN master_penyakit mp ON mp.id = mbt.id_penyakit
+                LEFT JOIN master_keperluan mk ON mk.id = bt.id_keperluan WHERE
+                bt.tanggal >= "'.$tglMulai.'" AND bt.tanggal <= "'.$tglAkhir.'"');
+                $result = $query->getResultArray();
+        return $result;
+    }
+
+
 }
