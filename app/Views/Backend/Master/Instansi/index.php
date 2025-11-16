@@ -58,7 +58,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/daerah/list-data'); ?>",
+            url: "<?= site_url('master-data/instansi/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);

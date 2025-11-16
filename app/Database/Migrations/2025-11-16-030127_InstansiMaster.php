@@ -4,27 +4,24 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class BiayaAkomodasiMaster extends Migration
+class InstansiMaster extends Migration
 {
     public function up()
     {
-        $this->forge->addField([
+       $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'uraian' => [
+            'nama_instansi' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'transport' => [
+            'wilayah' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
-            ],
-            'uang_harian' => [
-                'type'       => 'NUMERIC'
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -42,11 +39,11 @@ class BiayaAkomodasiMaster extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('master_biaya_akomodasi');
+        $this->forge->createTable('master_instansi');
     }
 
     public function down()
     {
-        $this->forge->dropTable('master_biaya_akomodasi');
+        $this->forge->dropTable('master_instansi');
     }
 }

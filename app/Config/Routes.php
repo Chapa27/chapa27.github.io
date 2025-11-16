@@ -59,12 +59,12 @@ $routes->group('master-data/biaya-akomodasi', function ($routes) {
 });
 
 /** Data daerah **/
-$routes->group('master-data/daerah', function ($routes) {
-    $routes->get('', 'Daerah::index');
-    $routes->get('list-data', 'Daerah::list');
-    $routes->get('add-data', 'JenisSampelMaster::new');
-    $routes->post('create-data', 'JenisSampelMaster::create');
-    $routes->get('edit-data/(:num)', 'JenisSampelMaster::edit/$1');
-    $routes->post('update-data', 'JenisSampelMaster::update');
-    $routes->delete('delete-data/(:num)', 'JenisSampelMaster::delete/$1');
+$routes->group('master-data/instansi', function ($routes) {
+    $routes->get('', 'InstansiMaster::index');
+    $routes->get('list-data', 'InstansiMaster::list');
+    $routes->get('add-data', 'InstansiMaster::new');
+    $routes->post('create-data', 'InstansiMaster::create');
+    $routes->get('edit-data/(:num)', 'InstansiMaster::edit/$1');
+    $routes->post('update-data', 'InstansiMaster::update');
+    $routes->delete('delete-data/(:num)', 'InstansiMaster::delete/$1');
 });

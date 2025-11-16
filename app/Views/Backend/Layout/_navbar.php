@@ -59,7 +59,7 @@
                     </a>
                 </li>
                  <li class="pc-item">
-                    <a href="<?= base_url('master-data/daerah'); ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
                         <span class="pc-mtext">Daerah</span>
                     </a>

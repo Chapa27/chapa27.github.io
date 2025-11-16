@@ -2,44 +2,44 @@
 
 namespace App\Controllers;
 
-use App\Models\DaerahModel;
+use App\Models\InstansiModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
-class DaerahMaster extends ResourceController
+class InstansiMaster extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
      *
      * @return ResponseInterface
      */
+
     protected $title;
     protected $model;
-    protected $validation;
 
     public function __construct()
     {
-        $this->title = 'Nama Daerah';
-        $this->model = new DaerahModel();
-        $this->validation = \Config\Services::validation();
+        $this->title = 'Instansi';
+        $this->model = new InstansiModel();
     }
 
     public function index()
     {
-        $data = [
-            'title' => 'Data ' . $this->title,
+         $data = [
+            'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Daerah/index', $data);
+        return view('Backend/Master/Instansi/index', $data);
     }
 
     public function list()
     {
+
         if ($this->request->isAJAX()) {
             $data = [
                 'items' => $this->model->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Master/Daerah/_data', $data)
+                'data' => view('Backend/Master/Instansi/_data', $data)
             ];
 
             echo json_encode($msg);
