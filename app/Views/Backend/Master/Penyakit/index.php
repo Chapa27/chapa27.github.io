@@ -76,7 +76,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('master-data/jenis-sampel/add-data'); ?>",
+                url: "<?= site_url('master-data/penyakit/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 success: function(response) {

@@ -29,11 +29,11 @@
             $.ajax({
                 cache: false,
                 beforeSend: function() {
-                    $('#refBtn').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('#refBtn').html('<span class="fa fa-spin fa-spinner"></span>');
                 },
                 success: function() {
                     listData();
-                    $('#refBtn').html('<i class="fa-solid fa-refresh"></i>');
+                    $('#refBtn').html('<span class="fa-solid fa-refresh"></span>');
                 }
             })
         })

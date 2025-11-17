@@ -69,7 +69,19 @@ class PenyakitMaster extends ResourceController
      */
     public function new()
     {
-        //
+         if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'masterLab' => $this->model->findAll()
+            ];
+            $msg = [
+                'data' => view('Backend/Master/Penyakit/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -79,7 +91,36 @@ class PenyakitMaster extends ResourceController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'penyakit' => [
+                    'label' => 'Penyakit',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'penyakit' => $this->validation->getError('penyakit')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'penyakit' => $this->request->getVar('penyakit')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -91,7 +132,19 @@ class PenyakitMaster extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id)
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Penyakit/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -103,7 +156,36 @@ class PenyakitMaster extends ResourceController
      */
     public function update($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'penyakit' => [
+                    'label' => 'Penyakit',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'penyakit' => $this->validation->getError('penyakit')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'penyakit' => $this->request->getVar('penyakit')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -115,6 +197,15 @@ class PenyakitMaster extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil dihapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }

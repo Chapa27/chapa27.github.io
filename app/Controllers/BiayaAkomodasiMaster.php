@@ -184,19 +184,19 @@ class BiayaAkomodasiMaster extends ResourceController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
+                  'transport' => [
+                    'label' => 'Transport',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
                 'uang_harian' => [
                     'label' => 'Uang harian',
                     'rules' => 'required|numeric',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',
                         'numeric' => '{field} harus berisi angka'
-                    ]
-                ],
-                'transport' => [
-                    'label' => 'Transport',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
                     ]
                 ]
             ]);

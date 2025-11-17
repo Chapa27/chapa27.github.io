@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
+                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
                 </div>
             </form>

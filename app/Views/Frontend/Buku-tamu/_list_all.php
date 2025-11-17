@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
 <?= $this->section('content'); ?>
-<div class="row mb-3">
+<div class="row mb-2">
     <div class="col-md-7">
         <form action="<?= base_url('program-layanan/buku-tamu/cari-data-tamu'); ?>" method="post" class="form-data">
             <div class="row">
@@ -25,7 +25,7 @@
     </div>
 </div>
 <table id="example" class="table table-hover table-bordered bg-white">
-     <thead style="font-family: calibri; size: 11px;">
+     <thead style="font-family: calibri; size: 12px;">
         <tr>
             <th rowspan="2">No.</th>
             <th rowspan="2">No.antrian</th>
@@ -44,7 +44,7 @@
             <th>Sampel</th>
         </tr>
      </thead>
-     <tbody style="font-family: arial; font-size:11px;">
+     <tbody style="font-family: arial; font-size:13px;">
          <?php $no = 1; foreach ($items as $row) :?>
             <tr>
              <td class="text-center"><?=  $no++; ?></td>
@@ -70,7 +70,11 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script>
      $("#refBtn").click(function(e) {
-        window.location.reload();
+        $(this).html('<span class="fa fa-spin fa-spinner"></span>');
+        setTimeout(() => {
+           window.location.reload();
+        }, 1000);
+       
     })
      $(document).ready(function() {
          new DataTable('#example', {

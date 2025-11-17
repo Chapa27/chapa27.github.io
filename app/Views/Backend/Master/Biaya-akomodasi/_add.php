@@ -46,12 +46,12 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-simpan').html('<span class="fa fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                    $('.btn-simpan').html('<span class="fas fa-save"></span> Simpan');
                 },
                 success: function(response) {
                     var err = response.error

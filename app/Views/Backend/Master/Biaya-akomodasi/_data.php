@@ -37,7 +37,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/laboratorium/edit-data/'); ?>' + id,
+            url: '<?= site_url('master-data/biaya-akomodasi/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
