@@ -70,6 +70,12 @@
                         <span class="pc-mtext">Penyakit</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/coolbox'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-mtext">Coolbox</span>
+                    </a>
+                </li>
             </ul>
             <div class="card text-center">
                 <!-- Blank -->
