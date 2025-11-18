@@ -7,7 +7,6 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-
 $routes->group('program-layanan', function ($routes) {
     $routes->get('', 'ProgramLayanan::index');
 });
@@ -104,4 +103,17 @@ $routes->group('master-data/pelanggan', function ($routes) {
     $routes->get('edit-data/(:num)', 'PelangganMaster::edit/$1');
     $routes->post('update-data', 'PelangganMaster::update');
     $routes->delete('delete-data/(:num)', 'PelangganMaster::delete/$1');
+});
+
+/** Modul Pelayanan Sampel **/
+/** Pelanggan **/
+$routes->group('pelayanan-sampel/pengantar-lhu', function ($routes) {
+    $routes->get('', 'PengantarLhu::index');
+    $routes->get('list-data', 'PengantarLhu::list');
+    $routes->get('add-data', 'PengantarLhu::new');
+    $routes->post('create-data', 'PengantarLhu::create');
+    $routes->get('edit-data/(:num)', 'PengantarLhu::edit/$1');
+    $routes->post('update-data', 'PengantarLhu::update');
+    $routes->delete('delete-data/(:num)', 'PengantarLhu::delete/$1');
+    $routes->get('setting-lab/(:num)', 'PengantarLhu::setting_lab/$1');
 });

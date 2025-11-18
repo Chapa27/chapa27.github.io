@@ -36,6 +36,12 @@
                         <span class="pc-mtext">Biaya pengujian sampel</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('pelayanan-sampel/pengantar-lhu'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
+                        <span class="pc-mtext">Pengantar LHU</span>
+                    </a>
+                </li>
                 <li class="pc-item pc-caption">
                     <label>Master Data</label>
                     <i class="ti ti-databases"></i>
