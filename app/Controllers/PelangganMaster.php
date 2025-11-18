@@ -126,7 +126,7 @@ class PelangganMaster extends ResourceController
                         'numeric' => '{field} harus angka'
                     ]
                 ],
-                    'nama_pjb' => [
+                'nama_pjb' => [
                     'label' => 'Nama penanggung jawab',
                     'rules' => 'required',
                     'errors' => [
@@ -141,7 +141,7 @@ class PelangganMaster extends ResourceController
                         'nama' => $this->validation->getError('nama'),
                         'alamat' => $this->validation->getError('alamat'),
                         'no_telp' => $this->validation->getError('no_telp'),
-                        'nama_pjb' => $this->validation->getError('nama_pjb'),
+                        'nama_pjb' => $this->validation->getError('nama_pjb')
                     ]
                 ];
             } else {
@@ -172,7 +172,19 @@ class PelangganMaster extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Pelanggan/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -184,7 +196,65 @@ class PelangganMaster extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama' => [
+                    'label' => 'Nama pelanggan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'alamat' => [
+                    'label' => 'Alamat',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'no_telp' => [
+                    'label' => 'No.Telepon',
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} harus angka'
+                    ]
+                ],
+                'nama_pjb' => [
+                    'label' => 'Nama penanggung jawab',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama' => $this->validation->getError('nama'),
+                        'alamat' => $this->validation->getError('alamat'),
+                        'no_telp' => $this->validation->getError('no_telp'),
+                        'nama_pjb' => $this->validation->getError('nama_pjb')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'nama' => $this->request->getVar('nama'),
+                    'alamat' => $this->request->getVar('alamat'),
+                    'no_telp' => $this->request->getVar('no_telp'),
+                    'nama_pjb' => $this->request->getVar('nama_pjb')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -196,6 +266,15 @@ class PelangganMaster extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil di hapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }
