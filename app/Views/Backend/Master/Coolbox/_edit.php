@@ -6,14 +6,28 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/penyakit/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/coolbox/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="penyakit" class="form-label h5" style="font-family: calibri;">Penyakit</label>
-                        <input type="text" name="penyakit" value="<?= $items['penyakit']; ?>" class="form-control" id="penyakit">
-                        <div class="invalid-feedback errorPenyakit"></div>
+                   <div class="mb-3">
+                        <label for="id-instansi" class="form-label h5" style="font-family: calibri;">Laboratorium</label>
+                        <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">
+                            <option value="">-- Pilih --</option>
+                            <?php
+                            foreach ($masterInstansi as $row) :
+                                if ($row['id'] == $items['id']) {
+                                   $selected = 'selected';
+                                }else{
+                                   $selected = '';
+                                }
+                            ?>
+                                <option value="<?= $row['id']; ?>" <?= $selected; ?>><?= $row['nama_instansi']; ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorAsalInstansi"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -46,28 +60,12 @@
                 success: function(response) {
                     if (response.error) {
 
-                        if (response.error.jenis_sampel) {
-                            $('#jenis-sampel').addClass('is-invalid');
-                            $('.errorJenisSampel').html(response.error.jenis_sampel);
+                        if (response.error.id_instansi) {
+                            $("#id-instansi").addClass('is-invalid');
+                            $('.errorAsalInstansi').html(response.error.id_instansi);
                         } else {
-                            $('#jenis-sampel').removeClass('is-invalid');
-                            $('.errorJenisSampel').html('');
-                        }
-
-                        if (response.error.pnbp) {
-                            $('#pnbp').addClass('is-invalid');
-                            $('.errorPnbp').html(response.error.pnbp);
-                        } else {
-                            $('#pnbp').removeClass('is-invalid');
-                            $('.errorPnbp').html('');
-                        }
-
-                        if (response.error.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(response.error.id_lab);
-                        } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
+                            $('#id-instansi').removeClass('is-invalid');
+                            $('.errorAsalInstansi').html('');
                         }
 
                     } else {

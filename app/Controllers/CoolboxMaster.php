@@ -151,7 +151,20 @@ class CoolboxMaster extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id),
+                'masterInstansi' => $this->masterInstansi->findAll()
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Coolbox/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -163,7 +176,38 @@ class CoolboxMaster extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+               'id_instansi' => [
+                    'label' => 'Asal instansi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_instansi' => $this->validation->getError('id_instansi')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                   'id' => $this->request->getVar('id'),
+                   'kode_coolbox' => $this->request->getVar('kode_coolbox'),
+                   'id_instansi' => $this->request->getVar('id_instansi')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -175,6 +219,15 @@ class CoolboxMaster extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil dihapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }
