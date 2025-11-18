@@ -41,6 +41,12 @@
                     <i class="ti ti-databases"></i>
                 </li>
                 <li class="pc-item">
+                    <a href="<?= base_url('master-data/pelanggan'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-mtext">Pelanggan</span>
+                    </a>
+                </li>
+                <li class="pc-item">
                     <a href="<?= base_url('master-data/laboratorium'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
                         <span class="pc-mtext">Laboratorium</span>
