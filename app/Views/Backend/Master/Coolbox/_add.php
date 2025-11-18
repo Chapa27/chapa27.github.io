@@ -9,12 +9,8 @@
             <form action="<?= base_url('master-data/coolbox/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="" class="form-label h5" style="font-family: calibri;">Kode Coolbox</label>
-                        <input type="text" name="kode_coolbox" value="<?= $kodeCoolbox; ?>" class="form-control" readonly>
-                    </div>
                    <div class="mb-3">
-                        <label for="id-instansi" class="form-label h5" style="font-family: calibri;">Laboratorium</label>
+                        <label for="id-instansi" class="form-label h5" style="font-family: calibri;">Instansi</label>
                         <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php

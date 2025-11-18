@@ -60,24 +60,26 @@ class CoolboxMaster extends ResourceController
      *
      * @return ResponseInterface
      */
+    
+    public function show($id = null)
+    {
+        //
+    }
+
     public function generate_kode_coolbox() 
     {
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
         $count = $this->model->countAllResults();
        
         // Buat nomor urut baru
-        $nourut = $count + 1;
+        $nomorUrut = $count + 1;
 
-        // Format kode coolbox
-        $kodeCoolbox = 'CB' . sprintf('%02d', $nourut);
+        // Format nomor antrian
+        $nomorAntrian = 'CB' . sprintf('%04d', $nomorUrut);
         
-        return $kodeCoolbox;
+        return $nomorAntrian;
     }
-    
-    public function show($id = null)
-    {
-        //
-    }
+
 
     /**
      * Return a new resource object, with default properties.
@@ -89,8 +91,7 @@ class CoolboxMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterInstansi' => $this->masterInstansi->findAll(),
-                'kodeCoolbox' => $this->generate_kode_coolbox()
+                'masterInstansi' => $this->masterInstansi->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Master/Coolbox/_add', $data)
@@ -128,7 +129,7 @@ class CoolboxMaster extends ResourceController
                 ];
             } else {
                 $simpandata = [
-                    'kode_coolbox' => $this->request->getVar('kode_coolbox'),
+                    'kode_coolbox' => $this->generate_kode_coolbox(),
                     'id_instansi' => $this->request->getVar('id_instansi')
                 ];
                 $this->model->save($simpandata);
@@ -196,7 +197,6 @@ class CoolboxMaster extends ResourceController
             } else {
                 $simpandata = [
                    'id' => $this->request->getVar('id'),
-                   'kode_coolbox' => $this->request->getVar('kode_coolbox'),
                    'id_instansi' => $this->request->getVar('id_instansi')
                 ];
                 $this->model->save($simpandata);

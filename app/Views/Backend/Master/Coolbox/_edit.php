@@ -11,18 +11,13 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                    <div class="mb-3">
-                        <label for="id-instansi" class="form-label h5" style="font-family: calibri;">Laboratorium</label>
+                        <label for="id-instansi" class="form-label h5" style="font-family: calibri;">Instansi</label>
                         <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterInstansi as $row) :
-                                if ($row['id'] == $items['id']) {
-                                   $selected = 'selected';
-                                }else{
-                                   $selected = '';
-                                }
                             ?>
-                                <option value="<?= $row['id']; ?>" <?= $selected; ?>><?= $row['nama_instansi']; ?></option>
+                                <option value="<?= $row['id']; ?>" <?= $items['id_instansi'] == $row['id'] ? 'selected' : ''; ?>><?= $row['nama_instansi']; ?></option>
                             <?php
                             endforeach;
                             ?>
