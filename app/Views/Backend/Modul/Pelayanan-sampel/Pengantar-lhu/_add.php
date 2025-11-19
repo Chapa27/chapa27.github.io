@@ -6,24 +6,25 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/laboratorium/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan-sampel/pengantar-lhu/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Nama laboratorium</label>
-                        <input type="text" name="nama_lab" class="form-control" id="nama-lab">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="pelanggan" class="form-label h5">Pelanggan</label>
+                        <select name="id_pelanggan" class="form-select" id="pelanggan" aria-label="Default select example">
+                            <option value="">-- Pilih --</option>
+                            <?php 
+                            foreach ($masterPelanggan as $row) :
+                            ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['nama']; ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorPelanggan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="lantai" class="form-label h5">Lantai</label>
-                        <select name="lantai" class="form-select" id="lantai" aria-label="Default select example">
-                            <option value="">-- Pilih --</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                        <div class="invalid-feedback errorLantai"></div>
+                        <label for="tanggal" class="form-label h5">Tanggal</label>
+                        <input type="date" name="tanggal" value="<?= date('Y-m-d'); ?>" class="form-control">
+                        <div class="invalid-feedback errorTanggal"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

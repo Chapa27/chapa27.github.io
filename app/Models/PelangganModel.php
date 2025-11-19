@@ -17,7 +17,8 @@ class PelangganModel extends Model
         'nama', 
         'alamat', 
         'no_telp',
-        'nama_pjb'
+        'nama_pjb',
+        'is_active'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -49,4 +50,5 @@ class PelangganModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
 }

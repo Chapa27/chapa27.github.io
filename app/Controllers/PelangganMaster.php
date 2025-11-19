@@ -244,7 +244,8 @@ class PelangganMaster extends ResourceController
                     'nama' => $this->request->getVar('nama'),
                     'alamat' => $this->request->getVar('alamat'),
                     'no_telp' => $this->request->getVar('no_telp'),
-                    'nama_pjb' => $this->request->getVar('nama_pjb')
+                    'nama_pjb' => $this->request->getVar('nama_pjb'),
+                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
                 $msg = [

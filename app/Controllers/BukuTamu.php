@@ -108,7 +108,7 @@ class BukuTamu extends BaseController
         $today = date('Y-m-d', strtotime($this->time));
 
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        $count = $this->model->where('tanggal', $today)->countAllResults();
+        $count = $this->model->tanggal', $today)->countAllResults();
        
         // Buat nomor urut baru
         $nomorUrut = $count + 1;

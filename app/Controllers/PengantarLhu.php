@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\LaboratoriumModel;
 use App\Models\MappSettingLabModel;
+use App\Models\PelangganModel;
 use App\Models\PengantarLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
@@ -20,6 +21,7 @@ class PengantarLhu extends ResourceController
     protected $validation;
     protected $modelLab;
     protected $modelMapSetLab;
+    protected $modelPelanggan;
 
     public function __construct()
     {
@@ -27,6 +29,7 @@ class PengantarLhu extends ResourceController
         $this->model = new PengantarLhuModel();
         $this->modelLab = new LaboratoriumModel();
         $this->modelMapSetLab = new MappSettingLabModel();
+        $this->modelPelanggan = new PelangganModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -89,11 +92,13 @@ class PengantarLhu extends ResourceController
     public function new()
     {
         if ($this->request->isAJAX()) {
+
             $data = [
                 'title' => 'Tambah ' . $this->title,
+                'masterPelanggan' => $this->modelPelanggan->where('is_active', 1)->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-sampel/Laboratorium/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/_add', $data)
             ];
 
             echo json_encode($msg);

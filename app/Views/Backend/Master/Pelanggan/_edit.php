@@ -30,6 +30,20 @@
                         <input type="text" name="nama_pjb" value="<?= $items['nama_pjb'];?>" class="form-control" id="nama-pjb">
                         <div class="invalid-feedback errorNamaPjb"></div>
                     </div>
+                     <div class="mb-3">
+                        <label for="status" class="form-label h5" style="font-family: calibri;">Status</label>
+                        <select name="is_active" class="form-select" id="status" aria-label="Default select example">
+                            <?php
+                            $status = [
+                                0 => 'Tidak aktif',
+                                1 => 'Aktif'
+                            ];
+                            foreach ($status as $key => $value) :
+                            ?>    
+                            <option value="<?= $key; ?>" <?= $key == $items['is_active'] ? 'selected' : ''; ?>><?= $value; ?></option>
+                           <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
