@@ -12,7 +12,7 @@ class MappSettingLabModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_pelanggan', 'kode_pengantar', 'id_laboratorium'];
+    protected $allowedFields    = ['id_pelanggan', 'id_pengantar_lhu', 'kode_pengantar', 'id_laboratorium'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

@@ -28,15 +28,26 @@ class SettingLhu extends ResourceController
 
     public function index($id = null)
     {
-        $pengantar_lhu = $this->modelPengantarLhu->find($id);
-        $kode_lhu = $pengantar_lhu['kode_pengantar'];
-        $menu_lab = $this->modelMapSettingLab->get_data($kode_lhu);
+        $kode_pengantar = $id;
         $data = [
             'title' => 'Entry ' . $this->title,
-            'items' => $this->modelPengantarLhu->get_data_by_id_lhu($id),
-            'menu_lab' => $menu_lab
+            'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
+            'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar)
         ];
        return view('Backend/Modul/Pelayanan-sampel/Lhu/index', $data);
+    }
+
+    public function list_menu($id)
+    {
+        $kode_pengantar = $id;
+        $data = [
+            'title' => 'Entry ' . $this->title,
+            'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
+            'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar)
+        ];
+        if ($id == 2) {
+             return view('Backend/Modul/Pelayanan-sampel/Lhu/Biologi-lingkungan/index', $data);
+        }
     }
 
     /**

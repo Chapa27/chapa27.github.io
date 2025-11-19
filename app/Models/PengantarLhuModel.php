@@ -59,13 +59,13 @@ class PengantarLhuModel extends Model
         return $query;
     }
 
-    public function get_data_by_id_lhu($params)
+    public function get_data_by_kode_pengantar($params)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lhu');
         $builder->select('pengantar_lhu.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
         $builder->join("master_pelanggan", "master_pelanggan.id = pengantar_lhu.id_pelanggan");
-        $builder->where('pengantar_lhu.id', $params);
+        $builder->where('pengantar_lhu.kode_pengantar', $params);
         $query = $builder->get()->getResultArray();
         return $query;
     }

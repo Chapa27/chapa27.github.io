@@ -226,6 +226,7 @@ class PengantarLhu extends ResourceController
 
                     $simpandata = [
                         'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                        'id_pengantar_lhu' => $this->request->getVar('id_pengantar_lhu'),
                         'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                         'id_laboratorium' => $idLab[$i]    
                     ];

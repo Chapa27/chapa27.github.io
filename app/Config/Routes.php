@@ -122,12 +122,8 @@ $routes->group('pelayanan-sampel/pengantar-lhu', function ($routes) {
 /** Setting LHU **/
 $routes->group('pelayanan-sampel/setting-lhu', function ($routes) {
     $routes->get('index-lhu/(:any)', 'SettingLhu::index/$1');
-    $routes->get('list-data', 'PengantarLhu::list');
-    $routes->get('add-data', 'PengantarLhu::new');
-    $routes->post('create-data', 'PengantarLhu::create');
-    $routes->get('edit-data/(:num)', 'PengantarLhu::edit/$1');
-    $routes->post('update-data', 'PengantarLhu::update');
-    $routes->delete('delete-data/(:num)', 'PengantarLhu::delete/$1');
+    $routes->get('list-menu/(:any)', 'SettingLhu::list_menu/$1');
+    
 });
 
 

@@ -54,25 +54,12 @@
                             foreach ($menu_lab as $m) :
                             ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><?= $m['nama_lab'] ?></a>
+                                <a class="nav-link" href="<?= base_url('pelayanan-sampel/setting-lhu/list-menu/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
                             </li>
                             <?php endforeach;?>
                         </ul>
                         <br>
-                        <table id="example" class="table table-hover table-bordered">
-                            <thead style="font-family: calibri;">
-                                <?php
-                                $arrth = ['No', 'Kode sampel', 'Jenis sampel', 'Tahun', 'Status', ''];
-                                echo '<tr>';
-                                foreach ($arrth as $th) :
-                                    echo '<th>' . $th . '</th>';
-                                endforeach;
-                                echo '</tr>';
-                                ?>
-                            </thead>
-                            <tbody style="font-family: arial;">
-                            </tbody>
-                        </table>
+                        <?= $this->renderSection('content_menu'); ?>
                     </div>
                 </div>
             </div>
@@ -82,46 +69,4 @@
     </div>
 </div>
 <div class="view-modal" style="display: none;"></div>
-<?= $this->endSection(); ?>
-
-<?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
-<script>
-    // function listData() {
-    //     $.ajax({
-    //         url: "<?= site_url('pelayanan-sampel/pengantar-lhu/list-data'); ?>",
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             $(".view-data").html(response.data);
-    //         },
-    //         error: function(xhr, ajaxOptions, thrownError) {
-    //             alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-    //         }
-    //     })
-    // }
-
-
-    // $(document).ready(function() {
-    //     listData();
-
-    //     $(".btn-tambah").click(function(e) {
-    //         e.preventDefault();
-    //         $.ajax({
-    //             url: "<?= site_url('pelayanan-sampel/pengantar-lhu/add-data'); ?>",
-    //             dataType: 'json',
-    //             cache: false,
-    //             success: function(response) {
-    //                 $(".view-modal").html(response.data).show();
-    //                 $("#exampleModal").modal('show');
-    //             },
-    //             error: function(xhr, ajaxOptions, thrownError) {
-    //                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-    //             }
-    //         })
-    //     })
-    // })
-</script>
 <?= $this->endSection(); ?>

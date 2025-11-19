@@ -15,6 +15,7 @@
                             foreach ($items as $row) :
                             ?>
                             <input type="hidden" name="id_pelanggan" value="<?= $row['id_pelanggan']; ?>">
+                            <input type="hidden" name="id_pengantar_lhu" value="<?= $row['id_pengantar']; ?>">  
                             <input type="hidden" name="kode_pengantar" value="<?= $row['kode_pengantar']; ?>">
                             <tr>
                                 <td width="100px;">Kode LHU</td>
