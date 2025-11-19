@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
-        $arrth = ['No', 'Kode LHU', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Tahun', 'status', ''];
+        $arrth = ['No', 'Kode LHU', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Tahun', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -28,9 +28,16 @@
                         <button type="button" class="btn btn-primary btn-sm" onclick="settingLab(<?= $row['id_lhu']; ?>)" title="Setting Lab">
                             <i class="fa-solid fa-circle-plus"></i>
                         </button>
-                        <button type="button" class="btn btn-secondary btn-sm" onclick="deleteData(<?= $row['id_lhu']; ?>)" title="Proses">
+                        <?php 
+                        foreach ($cek_setting_lab as $r) : endforeach;
+                            if ($row['kode_lhu'] === @$r['kode_lhu']) :
+                        ?>
+                        <a href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.$row['id_lhu']) ?>" class="btn btn-secondary btn-sm" title="Proses">
                             <i class="fa-solid fa-arrow-circle-right"></i>
-                        </button>
+                        </a>
+                        <?php 
+                        endif;
+                        ?>
                     </div>
                 </td>
             </tr>
@@ -53,47 +60,6 @@
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
             }
         })
-    }
-
-
-    function deleteData(id) {
-        var myElement = $('#myId-' + id);
-        if (myElement.data('urut')) {
-            myElement.addClass('bg bg-danger');
-        }
-        Swal.fire({
-            title: "Yakin untuk menghapus data ?",
-            text: `No.urut : ` + myElement.data('urut'),
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Ya, Hapus!",
-            cancelButtonText: "Tidak",
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type: 'delete',
-                    url: '<?= site_url('master-data/laboratorium/delete-data/'); ?>' + id,
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.sukses) {
-                            Swal.fire({
-                                title: "Hapus Data !",
-                                text: response.sukses,
-                                icon: "success"
-                            });
-                            listData();
-                        }
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                    }
-                })
-            } else {
-                myElement.removeClass('bg bg-danger');
-            }
-        });
     }
 
     $(document).ready(function() {

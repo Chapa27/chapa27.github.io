@@ -76,7 +76,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('master-data/laboratorium/add-data'); ?>",
+                url: "<?= site_url('pelayanan-sampel/pengantar-lhu/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 success: function(response) {

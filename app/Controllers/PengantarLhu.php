@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\LaboratoriumModel;
+use App\Models\MappSettingLabModel;
 use App\Models\PengantarLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
@@ -18,21 +19,37 @@ class PengantarLhu extends ResourceController
     protected $model;
     protected $validation;
     protected $modelLab;
+    protected $modelMapSetLab;
 
     public function __construct()
     {
         $this->title = 'Pengantar LHU';
         $this->model = new PengantarLhuModel();
         $this->modelLab = new LaboratoriumModel();
+        $this->modelMapSetLab = new MappSettingLabModel();
         $this->validation = \Config\Services::validation();
     }
 
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title,
+            'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Pengantar-lhu/index', $data);
+        return view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/index', $data);
+    }
+
+    public function generate_kode_lhu() 
+    {
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $this->model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = 'LH' . sprintf('%04d', $nomorUrut);
+        
+        return $nomorAntrian;
     }
 
     /**
@@ -46,10 +63,11 @@ class PengantarLhu extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->get_data()
+                'items' => $this->model->get_data(),
+                'cek_setting_lab' => $this->modelMapSetLab->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Master/Pengantar-lhu/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -70,7 +88,18 @@ class PengantarLhu extends ResourceController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan-sampel/Laboratorium/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -128,7 +157,7 @@ class PengantarLhu extends ResourceController
                 'masterLab' => $this->modelLab->findAll()
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Pengantar-lhu/_set_lab', $data)
+                'sukses' => view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/_set_lab', $data)
             ];
 
             echo json_encode($msg);
@@ -136,4 +165,31 @@ class PengantarLhu extends ResourceController
             exit('Not Process');
         }       
     }
+
+    public function create_setting_lab()
+    {
+         if ($this->request->isAJAX()) {
+             $idLab = $this->request->getVar('id_laboratorium');
+             $countJlhLab = count($idLab ?? []);
+
+                for ($i=0; $i < $countJlhLab; $i++) { 
+
+                    $simpandata = [
+                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                        'kode_lhu' => $this->request->getVar('kode_lhu'),
+                        'id_laboratorium' => $idLab[$i]    
+                    ];
+
+                    $this->modelMapSetLab->save($simpandata);
+                    $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
+                }
+                echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+           
+    }
+
 }
