@@ -18,6 +18,13 @@
             echo view('Backend/Modul/Pelayanan-sampel/Lhu/Biologi-lingkungan/index', $data);
             break;
         
+        case 3:
+            $data = [
+                'title' => 'Udara/UB'
+            ];
+            echo view('Backend/Modul/Pelayanan-sampel/Lhu/Udara-ub/index', $data);
+            break;
+        
         default:
             # code...
             break;
