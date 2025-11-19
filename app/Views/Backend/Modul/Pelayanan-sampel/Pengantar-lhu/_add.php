@@ -35,9 +35,9 @@
         </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function() {
+       
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -58,19 +58,19 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.nama_lab) {
-                            $('#nama-lab').addClass('is-invalid');
-                            $('.errorNamaLab').html(err.nama_lab);
+                        if (err.id_pelanggan) {
+                            $('#pelanggan').addClass('is-invalid');
+                            $('.errorPelanggan').html(err.id_pelanggan);
                         } else {
-                            $('#nama-lab').removeClass('is-invalid');
-                            $('.errorNamaLab').html('');
+                            $('#pelanggan').removeClass('is-invalid');
+                            $('.errorPelanggan').html('');
                         }
-                        if (err.lantai) {
-                            $('#lantai').addClass('is-invalid');
-                            $('.errorLantai').html(err.lantai);
+                        if (err.tanggal) {
+                            $('#tanggal').addClass('is-invalid');
+                            $('.errorTanggal').html(err.tanggal);
                         } else {
-                            $('#lantai').removeClass('is-invalid');
-                            $('.errorLantai').html('');
+                            $('#tanggal').removeClass('is-invalid');
+                            $('.errorTanggal').html('');
                         }
                     } else {
                         Swal.fire({

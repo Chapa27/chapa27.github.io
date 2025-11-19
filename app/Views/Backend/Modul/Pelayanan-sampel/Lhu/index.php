@@ -33,8 +33,8 @@
                         <table cellpadding="6">
                             <tbody>
                                 <tr>
-                                    <td class="fw-bold" width="100px;">Kode LHU</td>
-                                    <td>: <?= $row['kode_lhu']; ?></td>
+                                    <td class="fw-bold" width="100px;">Kode Pengantar</td>
+                                    <td>: <?= $row['kode_pengantar']; ?></td>
                                     <td class="fw-bold">Alamat</td>
                                     <td>: <?= $row['alamat']; ?></td>
                                 </tr>

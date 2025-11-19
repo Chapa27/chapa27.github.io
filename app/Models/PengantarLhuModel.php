@@ -13,7 +13,7 @@ class PengantarLhuModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'kode_lhu',
+        'kode_pengantar',
         'id_pelanggan',
         'tanggal',
         'tahun'
@@ -53,7 +53,7 @@ class PengantarLhuModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lhu');
-        $builder->select('pengantar_lhu.id as id_lhu,kode_lhu,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
+        $builder->select('pengantar_lhu.id as id_pengantar,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
         $builder->join("master_pelanggan", "master_pelanggan.id = pengantar_lhu.id_pelanggan");
         $query = $builder->get()->getResultArray();
         return $query;
@@ -63,7 +63,7 @@ class PengantarLhuModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lhu');
-        $builder->select('pengantar_lhu.id as id_lhu,id_pelanggan,kode_lhu,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
+        $builder->select('pengantar_lhu.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
         $builder->join("master_pelanggan", "master_pelanggan.id = pengantar_lhu.id_pelanggan");
         $builder->where('pengantar_lhu.id', $params);
         $query = $builder->get()->getResultArray();

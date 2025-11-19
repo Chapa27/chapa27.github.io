@@ -15,11 +15,11 @@
                             foreach ($items as $row) :
                             ?>
                             <input type="hidden" name="id_pelanggan" value="<?= $row['id_pelanggan']; ?>">
-                            <input type="hidden" name="kode_lhu" value="<?= $row['kode_lhu']; ?>">
+                            <input type="hidden" name="kode_pengantar" value="<?= $row['kode_pengantar']; ?>">
                             <tr>
                                 <td width="100px;">Kode LHU</td>
                                 <td>:</td>
-                                <td><?= $row['kode_lhu']; ?></td>
+                                <td><?= $row['kode_pengantar']; ?></td>
                             </tr>
                             <tr>
                                 <td>Nama</td>

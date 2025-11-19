@@ -7,6 +7,7 @@ use App\Models\MappSettingLabModel;
 use App\Models\PelangganModel;
 use App\Models\PengantarLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\I18n\Time;
 use CodeIgniter\RESTful\ResourceController;
 
 class PengantarLhu extends ResourceController
@@ -22,6 +23,8 @@ class PengantarLhu extends ResourceController
     protected $modelLab;
     protected $modelMapSetLab;
     protected $modelPelanggan;
+    protected $time;
+    protected $today;
 
     public function __construct()
     {
@@ -30,6 +33,8 @@ class PengantarLhu extends ResourceController
         $this->modelLab = new LaboratoriumModel();
         $this->modelMapSetLab = new MappSettingLabModel();
         $this->modelPelanggan = new PelangganModel();
+        $this->time = Time::now('Asia/Jakarta'); 
+        $this->today = $this->time->toDateTimeString();
         $this->validation = \Config\Services::validation();
     }
 
@@ -114,7 +119,47 @@ class PengantarLhu extends ResourceController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'id_pelanggan' => [
+                    'label' => 'Pelanggan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tanggal' => [
+                    'label' => 'Tanggal',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_pelanggan' => $this->validation->getError('id_pelanggan'),
+                        'tanggal' => $this->validation->getError('tanggal')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'kode_pengantar' => $this->generate_kode_lhu(),
+                    'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                    'tanggal' => $this->request->getVar('tanggal'),
+                    'tahun' => date('Y', strtotime($this->today))
+                ];
+                $this->model->insert($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -181,7 +226,7 @@ class PengantarLhu extends ResourceController
 
                     $simpandata = [
                         'id_pelanggan' => $this->request->getVar('id_pelanggan'),
-                        'kode_lhu' => $this->request->getVar('kode_lhu'),
+                        'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                         'id_laboratorium' => $idLab[$i]    
                     ];
 

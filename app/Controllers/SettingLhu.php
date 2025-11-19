@@ -29,7 +29,7 @@ class SettingLhu extends ResourceController
     public function index($id = null)
     {
         $pengantar_lhu = $this->modelPengantarLhu->find($id);
-        $kode_lhu = $pengantar_lhu['kode_lhu'];
+        $kode_lhu = $pengantar_lhu['kode_pengantar'];
         $menu_lab = $this->modelMapSettingLab->get_data($kode_lhu);
         $data = [
             'title' => 'Entry ' . $this->title,

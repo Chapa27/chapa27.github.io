@@ -12,7 +12,7 @@ class MappSettingLabModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_pelanggan', 'kode_lhu', 'id_laboratorium'];
+    protected $allowedFields    = ['id_pelanggan', 'kode_pengantar', 'id_laboratorium'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -44,16 +44,13 @@ class MappSettingLabModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-//     SELECT master_laboratorium.id AS id_lab,nama_lab, mapp_setting_lab.kode_lhu FROM master_laboratorium
-// JOIN mapp_setting_lab ON mapp_setting_lab.id_laboratorium = master_laboratorium.id
-// WHERE mapp_setting_lab.kode_lhu = 'LHU0001';
     public function get_data($params)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('master_laboratorium');
-        $builder->select('master_laboratorium.id AS id_lab,nama_lab, mapp_setting_lab.kode_lhu');
+        $builder->select('master_laboratorium.id AS id_lab,nama_lab, mapp_setting_lab.kode_pengantar');
         $builder->join("mapp_setting_lab", "mapp_setting_lab.id_laboratorium = master_laboratorium.id");
-        $builder->where("mapp_setting_lab.kode_lhu", $params);
+        $builder->where("mapp_setting_lab.kode_pengantar", $params);
         $query = $builder->get()->getResultArray();
         return $query;
     }

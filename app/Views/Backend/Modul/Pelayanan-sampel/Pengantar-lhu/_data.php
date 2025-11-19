@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
-        $arrth = ['No', 'Kode LHU', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Tahun', 'Status', ''];
+        $arrth = ['No', 'Kode Pengantar', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Tahun', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -14,9 +14,9 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id_lhu']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_pengantar']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['kode_lhu']; ?></td>
+                <td><?= $row['kode_pengantar']; ?></td>
                 <td><?= $row['nama']; ?></td>
                 <td><?= $row['alamat']; ?></td>
                 <td><?= $row['no_telp']; ?></td>
@@ -25,14 +25,14 @@
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-primary btn-sm" onclick="settingLab(<?= $row['id_lhu']; ?>)" title="Setting Lab">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="settingLab(<?= $row['id_pengantar']; ?>)" title="Setting Lab">
                             <i class="fa-solid fa-circle-plus"></i>
                         </button>
                         <?php 
                         foreach ($cek_setting_lab as $r) : endforeach;
-                            if ($row['kode_lhu'] === @$r['kode_lhu']) :
+                            if ($row['kode_pengantar'] === @$r['kode_pengantar']) :
                         ?>
-                        <a href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.$row['id_lhu']) ?>" class="btn btn-secondary btn-sm" title="Proses">
+                        <a href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.$row['id_pengantar']) ?>" class="btn btn-secondary btn-sm" title="Proses">
                             <i class="fa-solid fa-arrow-circle-right"></i>
                         </a>
                         <?php 
