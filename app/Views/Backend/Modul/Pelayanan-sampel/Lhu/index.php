@@ -54,12 +54,11 @@
                             foreach ($menu_lab as $m) :
                             ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('pelayanan-sampel/setting-lhu/list-menu/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
+                                <a class="nav-link" href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.$m['kode_pengantar'].'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
                             </li>
                             <?php endforeach;?>
                         </ul>
                         <br>
-                        <?= $this->renderSection('content_menu'); ?>
                     </div>
                 </div>
             </div>

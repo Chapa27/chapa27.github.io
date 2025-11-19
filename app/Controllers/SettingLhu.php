@@ -43,11 +43,11 @@ class SettingLhu extends ResourceController
         $data = [
             'title' => 'Entry ' . $this->title,
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
-            'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar)
+            'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar),
+            'ml' => 'Biologi-lingkungan'
         ];
-        if ($id == 2) {
-             return view('Backend/Modul/Pelayanan-sampel/Lhu/Biologi-lingkungan/index', $data);
-        }
+        return view('Backend/Modul/Pelayanan-sampel/Lhu/index', $data);
+
     }
 
     /**
