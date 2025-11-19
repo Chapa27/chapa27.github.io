@@ -123,7 +123,10 @@ $routes->group('pelayanan-sampel/pengantar-lhu', function ($routes) {
 $routes->group('pelayanan-sampel/setting-lhu', function ($routes) {
     $routes->get('index-lhu/(:any)', 'SettingLhu::index/$1');
     $routes->get('list-menu/(:any)', 'SettingLhu::list_menu/$1');
-    
+});
+
+$routes->group('pelayanan-sampel/lhu/fisika-kimia-air', function ($routes) {
+    $routes->get('index/(:any)/(:any)', 'FisikaKimiaAir::index/$1/$1');
 });
 
 

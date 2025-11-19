@@ -27,13 +27,14 @@
                 <div class="card">
                     <div class="card-header p-6" style="padding-bottom: 2px;">
                         <h4 style="font-family: calibri;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
-                         <?php 
+                        <?php 
                         foreach ($items as $row) :
+                            $kode_pengantar = $row['kode_pengantar'];
                         ?>
                         <table cellpadding="6">
                             <tbody>
                                 <tr>
-                                    <td class="fw-bold" width="100px;">Kode Pengantar</td>
+                                    <td class="fw-bold" width="120px;">Kode Pengantar</td>
                                     <td>: <?= $row['kode_pengantar']; ?></td>
                                     <td class="fw-bold">Alamat</td>
                                     <td>: <?= $row['alamat']; ?></td>
@@ -49,16 +50,26 @@
                         <?php endforeach;?>
                     </div>
                     <div class="card-body" style="padding: 4px;">
+                        
                         <ul class="nav nav-tabs">
                             <?php 
+                            
                             foreach ($menu_lab as $m) :
+                                if (@$id_lab == $m['id_lab']) {
+                                    $bg = 'active';
+                                }else{
+                                    $bg = '';
+                                }
+                                ?>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $bg ?>" aria-current="page" href="<?= base_url('pelayanan-sampel/setting-lhu/list-menu/'.$kode_pengantar.'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
+                                </li>
+                                <?php
+                            endforeach;
                             ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.$m['kode_pengantar'].'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
-                            </li>
-                            <?php endforeach;?>
                         </ul>
                         <br> 
+                         <?= $this->renderSection('content_menu'); ?> 
                     </div>
                 </div>
             </div>

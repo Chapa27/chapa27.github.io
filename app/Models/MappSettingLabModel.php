@@ -50,6 +50,7 @@ class MappSettingLabModel extends Model
         $builder = $db->table('master_laboratorium');
         $builder->select('master_laboratorium.id AS id_lab,nama_lab, mapp_setting_lab.kode_pengantar');
         $builder->join("mapp_setting_lab", "mapp_setting_lab.id_laboratorium = master_laboratorium.id");
+        $builder->orderBy('master_laboratorium.id', 'ASC');
         $builder->where("mapp_setting_lab.kode_pengantar", $params);
         $query = $builder->get()->getResultArray();
         return $query;
