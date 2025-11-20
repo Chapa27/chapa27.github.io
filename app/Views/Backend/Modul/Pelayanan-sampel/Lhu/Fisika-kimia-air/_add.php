@@ -9,6 +9,7 @@
             <form action="<?= base_url('master-data/jenis-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
+                <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h5" style="font-family: calibri;">Jenis sampel</label>
@@ -48,6 +49,11 @@
                         <label for="jenis-wadah" class="form-label h5" style="font-family: calibri;">Jenis wadah</label>
                         <input type="text" name="jenis_wadah" class="form-control" id="jenis-wadah">
                         <div class="invalid-feedback errorJenisWadah"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jenis-pengawet" class="form-label h5" style="font-family: calibri;">Jenis pengawet</label>
+                        <input type="text" name="jenis_pengawet" class="form-control" id="jenis-pengawet">
+                        <div class="invalid-feedback errorJenisPengawet"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -8,7 +8,8 @@
         case 1:
             $data = [
                 'title' => 'Fisika kimia air',
-                'id_lab' => $id_lab
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar
             ];
             echo view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/index', $data);
             break;

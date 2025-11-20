@@ -14,7 +14,7 @@
                                 <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
                             </button>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm btn-tambah" data-id="<?= $id_lab; ?>">
+                            <button type="button" class="btn btn-primary btn-sm btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
                                 <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
                             </button>
                         </div>
@@ -55,10 +55,14 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             var id_lab = $(this).data("id");
+            var kode_pengantar = $(this).data('kode');
             $.ajax({
                 url: "<?= site_url('pelayanan-sampel/lhu/fisika-kimia-air/add-data'); ?>",
                 dataType: 'json',
-                data:{id_lab:id_lab},
+                data:{
+                    id_lab:id_lab,
+                    kode_pengantar:kode_pengantar
+                },
                 cache: false,
                 success: function(response) {
                     $(".view-modal").html(response.data).show();

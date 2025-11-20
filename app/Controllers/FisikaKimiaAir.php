@@ -27,7 +27,8 @@ class FisikaKimiaAir extends BaseController
 
     public function index($param1, $param2)
     {
-         return view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/index');
+         $data = ['param1' => $param1];
+         return view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/index', $data);
     }
 
      public function generate_kode_sampel() 
@@ -64,11 +65,13 @@ class FisikaKimiaAir extends BaseController
     {
         if ($this->request->isAJAX()) {
             $id_lab = $this->request->getVar('id_lab');
+            $kode_pengantar = $this->request->getVar('kode_pengantar');
             $data = [
                 'title' => 'Tambah ' . $this->title,
                 'masterLab' => $this->model->findAll(),
                 'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)->find(),
-                'id_lab' => $id_lab
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/_add', $data)

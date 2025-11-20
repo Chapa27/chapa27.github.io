@@ -52,7 +52,8 @@ class SettingLhu extends ResourceController
             'title' => 'Entry ' . $this->title,
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
             'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar),
-            'id_lab' => $id_lab
+            'id_lab' => $id_lab,
+            'kode_pengantar' => $param1
         ];
        return view('Backend/Modul/Pelayanan-sampel/Lhu/_temp_menu', $data);
     }
