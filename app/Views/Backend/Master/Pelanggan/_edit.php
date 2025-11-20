@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/pelanggan/update-data'); ?>" class="form-data">
@@ -12,7 +12,7 @@
                  <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-pelanggan" class="form-label h5">Pelanggan</label>
-                        <input type="text" name="nama" value="<?= $items['nama']; ?>" class="form-control" id="nama-pelanggan">
+                        <input type="text" name="nama" value="<?= $items['nama']; ?>" class="form-control" id="nama-pelanggan" autocomplete="off">
                         <div class="invalid-feedback errorNamaPelanggan"></div>
                     </div>
                     <div class="mb-3">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="no-telp" class="form-label h5">No.Telepon</label>
-                        <input type="text" name="no_telp" value="<?= $items['no_telp'];?>" class="form-control" id="no-telp">
+                        <input type="text" name="no_telp" value="<?= $items['no_telp'];?>" class="form-control" id="no-telp" autocomplete="off">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
                     <div class="mb-3">

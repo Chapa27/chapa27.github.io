@@ -4,3 +4,8 @@
   overflow: scroll; /* Always show scrollbars */
   /* padding: 10px; */
 }
+
+.navtabs:hover{
+  background-color: rgb(182, 215, 215);
+  color: black;
+}

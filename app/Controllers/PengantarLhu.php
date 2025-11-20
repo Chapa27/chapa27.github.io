@@ -41,7 +41,8 @@ class PengantarLhu extends ResourceController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => 'Data ' . $this->title,
+            'items' => $this->modelMapSetLab->findAll()
         ];
         return view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/index', $data);
     }

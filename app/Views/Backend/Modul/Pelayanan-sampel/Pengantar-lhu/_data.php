@@ -1,6 +1,9 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
+
+use App\Models\MappSettingLabModel;
+
         $arrth = ['No', 'Kode Pengantar', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Tahun', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
@@ -28,16 +31,9 @@
                         <button type="button" class="btn btn-primary btn-sm" onclick="settingLab(<?= $row['id_pengantar']; ?>)" title="Setting Lab">
                             <i class="fa-solid fa-circle-plus"></i>
                         </button>
-                        <?php 
-                        foreach ($cek_setting_lab as $r) : endforeach;
-                            if ($row['kode_pengantar'] === @$r['kode_pengantar']) :
-                        ?>
-                        <a href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.$row['kode_pengantar']) ?>" class="btn btn-secondary btn-sm" title="Proses">
+                         <a href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.$row['kode_pengantar']) ?>" class="btn btn-secondary btn-sm" title="Proses">
                             <i class="fa-solid fa-arrow-circle-right"></i>
                         </a>
-                        <?php 
-                        endif;
-                        ?>
                     </div>
                 </td>
             </tr>

@@ -62,7 +62,7 @@
                                 }
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-sampel/setting-lhu/list-menu/'.$kode_pengantar.'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
+                                    <a class="nav-link navtabs <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-sampel/setting-lhu/list-menu/'.$kode_pengantar.'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
                                 </li>
                                 <?php
                             endforeach;
