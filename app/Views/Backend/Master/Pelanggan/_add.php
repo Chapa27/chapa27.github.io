@@ -10,7 +10,7 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-pelanggan" class="form-label h5">Nama</label>
+                        <label for="nama-pelanggan" class="form-label h5">Pelanggan</label>
                         <input type="text" name="nama" class="form-control" id="nama-pelanggan">
                         <div class="invalid-feedback errorNamaPelanggan"></div>
                     </div>

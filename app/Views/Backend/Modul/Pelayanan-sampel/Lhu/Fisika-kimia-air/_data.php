@@ -3,10 +3,10 @@
         <?php
         $arrth = [
             'No', 'Kode sampel', 'Jenis sampel', 'Lokasi pengambilan sampel', 
-            'Tanggal/jam', 'Metode pemeriksaan', 'Volume/Berat', 'Jenis wadah', 'Jenis pengawet', ' '];
+            'Tanggal/Jam', 'Peraturan/Baku mutu', 'Metode pemeriksaan', 'Volume/Berat', 'Jenis wadah', 'Jenis pengawet', ' '];
         echo '<tr>';
         foreach ($arrth as $th) :
-            echo '<th>' . $th . '</th>';
+            echo '<th>' . ucwords($th) . '</th>';
         endforeach;
         echo '</tr>';
         ?>
@@ -19,9 +19,10 @@
             <tr id="myId-<?= $row['id_fka']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_sampel']; ?></td>
-                <td><?= explode(",", $row['jenis_sampel'])[1]; ?></td>
+                <td><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
                 <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
                 <td><?= $row['tgl_jam_ambil_sampel']; ?></td>
+                <td><?= explode(', ', $row['jenis_sampel'])[1]; ?></td>
                 <td><?= $row['metode_pemeriksaan']; ?></td>
                 <td><?= $row['volume_atau_berat']; ?></td>
                 <td><?= $row['jenis_wadah']; ?></td>

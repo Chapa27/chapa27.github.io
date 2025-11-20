@@ -42,9 +42,15 @@
 
 <script>
     function listData() {
+        var id_lab = $(this).data("id");
+        var kode_pengantar = $(this).data('kode');
         $.ajax({
             url: "<?= site_url('pelayanan-sampel/lhu/fisika-kimia-air/list-data'); ?>",
             dataType: 'json',
+            data:{
+                 id_lab:id_lab,
+                 kode_pengantar:kode_pengantar
+            },
             success: function(response) {
                 $(".view-data").html(response.data);
             },

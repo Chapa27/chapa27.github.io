@@ -23,7 +23,7 @@
                                 <td><?= $row['kode_pengantar']; ?></td>
                             </tr>
                             <tr>
-                                <td>Nama</td>
+                                <td>Pelanggan</td>
                                 <td>:</td>
                                 <td><?= $row['nama']; ?></td>
                             </tr>

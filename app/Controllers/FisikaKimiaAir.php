@@ -54,8 +54,10 @@ class FisikaKimiaAir extends BaseController
     public function list() 
     {
         if ($this->request->isAJAX()) {
+            $id_lab = $this->request->getVar('id_lab');
+            $kode_pengantar = $this->request->getVar('kode_pengantar');
             $data = [
-                'items' => $this->model->get_data()
+                'items' => $this->model->get_data($kode_pengantar, $id_lab)
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/_data', $data)

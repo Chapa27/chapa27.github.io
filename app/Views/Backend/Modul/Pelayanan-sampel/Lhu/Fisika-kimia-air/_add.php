@@ -32,7 +32,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-ambil-sampel" class="form-label h5" style="font-family: calibri;">Tanggal pengambilan sampel</label>
-                        <input type="date" name="tgl_jam_pengambilan_sampel" class="form-control" id="tgl-ambil-sampel">
+                        <input type="datetime" name="tgl_jam_pengambilan_sampel" class="form-control" id="tgl-ambil-sampel">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
                     </div>
                     <div class="mb-3">

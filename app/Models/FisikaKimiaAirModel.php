@@ -56,7 +56,7 @@ class FisikaKimiaAirModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function get_data()
+    public function get_data($param1, $param2)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('fisika_kimia_air');
@@ -70,6 +70,8 @@ class FisikaKimiaAirModel extends Model
         fisika_kimia_air.jenis_wadah,
         fisika_kimia_air.jenis_pengawet');
         $builder->join("master_jenis_sampel", "master_jenis_sampel.id = fisika_kimia_air.id_jenis_sampel");
+        $builder->where('kode_pengantar', $param1);
+        $builder->where('id_laboratorium', $param2);
         $query = $builder->get()->getResultArray();
         return $query;
     }
