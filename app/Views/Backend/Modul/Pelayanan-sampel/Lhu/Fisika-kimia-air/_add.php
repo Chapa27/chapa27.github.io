@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,9 +11,6 @@
                 <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
                 <div class="modal-body">
-                    <div class="mb-3">
-                       search : <input type="text" id="hint" name="hint" />
-                    </div>
                     <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h5" style="font-family: calibri;">Jenis sampel</label>
                         <select name="id_jenis_sampel" class="form-select" id="jenis-sampel" aria-label="Default select example">
@@ -69,6 +66,7 @@
 </div>
 <script>
     $(document).ready(function() { 
+        $('.js-example-basic-single').select2();
         
         $(".form-data").submit(function(e) {
             e.preventDefault();

@@ -1,7 +1,10 @@
 <?= $this->extend('Backend/Modul/Pelayanan-sampel/Lhu/index'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
+<!-- select2 -->
+<link rel="stylesheet" href="<?= base_url('assets/css/plugins/select2.min.css'); ?>" id="main-style-link">
 <?= $this->endSection(); ?>
+
 <?= $this->section('content_menu'); ?>
     <!-- [ Main Content ] start -->
         <div class="row p-0">
@@ -34,6 +37,9 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
+<script src="<?= base_url('js/jquery-3.7.1.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/select2.min.js'); ?>"></script>
+
 <script>
     function listData() {
         $.ajax({
@@ -51,7 +57,6 @@
 
     $(document).ready(function() {
         listData();
-
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             var id_lab = $(this).data("id");
