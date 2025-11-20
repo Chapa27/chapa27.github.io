@@ -58,8 +58,6 @@ class SettingLhu extends ResourceController
        return view('Backend/Modul/Pelayanan-sampel/Lhu/_temp_menu', $data);
     }
 
-  
-
     /**
      * Return the properties of a resource object.
      *

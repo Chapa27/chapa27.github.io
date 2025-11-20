@@ -156,19 +156,4 @@ class FisikaKimiaAir extends BaseController
         }    
     }
 
-    public function cari_data() 
-    {
-         $q= $this->request->getVar('q'); 
-            // $sql="SELECT `fname` FROM `Property` WHERE fname LIKE '%$q%'";
-            // $result = mysql_query($sql);
-
-            $data = $this->masterJenisSampel->find($q);
-            $json = array();
-
-            while($row = $data) {
-                array_push($json, $row['jenis_sampel']);
-            }
-
-            echo json_encode($json);
-    }
 }

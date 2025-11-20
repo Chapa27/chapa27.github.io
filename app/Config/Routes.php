@@ -123,6 +123,8 @@ $routes->group('pelayanan-sampel/pengantar-lhu', function ($routes) {
 $routes->group('pelayanan-sampel/setting-lhu', function ($routes) {
     $routes->get('index-lhu/(:any)', 'SettingLhu::index/$1');
     $routes->get('list-menu/(:any)', 'SettingLhu::list_menu/$1');
+    $routes->get('keterangan-lhu/(:any)', 'SettingLhu::ket_lhu/$1');
+
 });
 
 $routes->group('pelayanan-sampel/lhu/fisika-kimia-air', function ($routes) {
@@ -130,8 +132,13 @@ $routes->group('pelayanan-sampel/lhu/fisika-kimia-air', function ($routes) {
     $routes->get('list-data', 'FisikaKimiaAir::list');
     $routes->get('add-data', 'FisikaKimiaAir::new');
     $routes->post('create-data', 'FisikaKimiaAir::create');
-    $routes->post('cari-data', 'FisikaKimiaAir::cari_data');
+});
 
+$routes->group('pelayanan-sampel/lhu/keterangan-sampel', function ($routes) {
+    $routes->get('index/(:any)', 'KeteranganSampel::index/$1');
+    $routes->get('list-data', 'KeteranganSampel::list');
+    $routes->get('add-data', 'FisikaKimiaAir::new');
+    $routes->post('create-data', 'FisikaKimiaAir::create');
 });
 
 
