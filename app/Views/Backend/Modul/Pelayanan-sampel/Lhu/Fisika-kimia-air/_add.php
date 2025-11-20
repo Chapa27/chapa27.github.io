@@ -8,30 +8,46 @@
             </div>
             <form action="<?= base_url('master-data/jenis-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
+                <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h5" style="font-family: calibri;">Jenis sampel</label>
-                        <input type="text" name="jenis_sampel" class="form-control" id="jenis-sampel">
-                        <div class="invalid-feedback errorJenisSampel"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="pnbp" class="form-label h5" style="font-family: calibri;">PNBP (Rp)</label>
-                        <input type="text" name="pnbp" class="form-control" id="pnbp">
-                        <div class="invalid-feedback errorPnbp"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="id-lab" class="form-label h5" style="font-family: calibri;">Laboratorium</label>
-                        <select name="id_lab" class="form-select" id="id-lab" aria-label="Default select example">
+                        <select name="id_jenis_sampel" class="form-select" id="jenis-sampel" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
-                            foreach ($masterLab as $row) :
+                            foreach ($masterJenisSampel as $row) :
                             ?>
-                                <option value="<?= $row['id']; ?>"><?= $row['nama_lab']; ?></option>
+                                <option value="<?= $row['id']; ?>" style="font-size: 12px;"><?= $row['jenis_sampel']; ?></option>
                             <?php
                             endforeach;
                             ?>
                         </select>
-                        <div class="invalid-feedback errorIdLab"></div>
+                        <div class="invalid-feedback errorIdJenisSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lokasi-ambil-sampel" class="form-label h5" style="font-family: calibri;">Lokasi pengambilan sampel</label>
+                        <input type="text" name="pnbp" class="form-control" id="lokasi-ambil-sampel">
+                        <div class="invalid-feedback errorLokasiAmbilSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tgl-ambil-sampel" class="form-label h5" style="font-family: calibri;">Tanggal pengambilan sampel</label>
+                        <input type="date" name="tgl_jam_pengambilan_sampel" class="form-control" id="tgl-ambil-sampel">
+                        <div class="invalid-feedback errorTglAmbilSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="metode-pemeriksaan" class="form-label h5" style="font-family: calibri;">Metode pemeriksaan</label>
+                        <input type="text" name="metode_pemeriksaan" class="form-control" id="metode-pemeriksaan">
+                        <div class="invalid-feedback errorMetodePemeriksaan"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="volume-berat" class="form-label h5" style="font-family: calibri;">Volume/Berat</label>
+                        <input type="text" name="volume_berat" class="form-control" id="volume-berat">
+                        <div class="invalid-feedback errorVolumeBerat"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jenis-wadah" class="form-label h5" style="font-family: calibri;">Jenis wadah</label>
+                        <input type="text" name="jenis_wadah" class="form-control" id="jenis-wadah">
+                        <div class="invalid-feedback errorJenisWadah"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -46,7 +46,7 @@ class PengantarLhu extends ResourceController
         return view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/index', $data);
     }
 
-    public function generate_kode_lhu() 
+    public function generate_kode_pengantar() 
     {
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
         $count = $this->model->countAllResults();
@@ -146,7 +146,7 @@ class PengantarLhu extends ResourceController
                 ];
             } else {
                 $simpandata = [
-                    'kode_pengantar' => $this->generate_kode_lhu(),
+                    'kode_pengantar' => $this->generate_kode_pengantar(),
                     'id_pelanggan' => $this->request->getVar('id_pelanggan'),
                     'tanggal' => $this->request->getVar('tanggal'),
                     'tahun' => date('Y', strtotime($this->today))

@@ -7,7 +7,8 @@
     switch ($id_lab) {
         case 1:
             $data = [
-                'title' => 'Fisika kimia air'
+                'title' => 'Fisika kimia air',
+                'id_lab' => $id_lab
             ];
             echo view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/index', $data);
             break;

@@ -52,7 +52,6 @@
                     <div class="card-body" style="padding: 4px;">
                         <ul class="nav nav-tabs">
                             <?php 
-                            
                             foreach ($menu_lab as $m) :
                                 if (@$id_lab == $m['id_lab']) {
                                     $active = 'active';

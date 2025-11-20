@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\FisikaKimiaAirModel;
+use App\Models\JenisSampelModel;
+use App\Models\LaboratoriumModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class FisikaKimiaAir extends BaseController
@@ -11,17 +13,35 @@ class FisikaKimiaAir extends BaseController
     protected $title;
     protected $model;
     protected $validation;
+    protected $masterJenisSampel;
+    protected $masterLab;
 
     public function __construct()
     {
         $this->title = 'Fisika kimia air';
         $this->model = new FisikaKimiaAirModel();
+        $this->masterJenisSampel = new JenisSampelModel();
+        $this->masterLab = new LaboratoriumModel();
         $this->validation = \Config\Services::validation();
     }
 
     public function index($param1, $param2)
     {
          return view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/index');
+    }
+
+     public function generate_kode_sampel() 
+    {
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $this->model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = 'KP' . sprintf('%04d', $nomorUrut);
+        
+        return $nomorAntrian;
     }
 
     public function list() 
@@ -43,9 +63,12 @@ class FisikaKimiaAir extends BaseController
     public function new()
     {
         if ($this->request->isAJAX()) {
+            $id_lab = $this->request->getVar('id_lab');
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterLab' => $this->model->findAll()
+                'masterLab' => $this->model->findAll(),
+                'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)->find(),
+                'id_lab' => $id_lab
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/_add', $data)
