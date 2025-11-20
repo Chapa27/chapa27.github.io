@@ -10,7 +10,7 @@
                 <?= csrf_field();?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <table class="table" border="1px">
+                        <table class="table" style="border: 1px solid; padding:10px;">
                             <?php 
                             foreach ($items as $row) :
                             ?>
@@ -18,7 +18,7 @@
                             <input type="hidden" name="id_pengantar_lhu" value="<?= $row['id_pengantar']; ?>">  
                             <input type="hidden" name="kode_pengantar" value="<?= $row['kode_pengantar']; ?>">
                             <tr>
-                                <td width="100px;">Kode LHU</td>
+                                <td width="130px;">Kode Pengantar</td>
                                 <td>:</td>
                                 <td><?= $row['kode_pengantar']; ?></td>
                             </tr>

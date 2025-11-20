@@ -25,7 +25,7 @@
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header p-6" style="padding-bottom: 2px;">
+                    <div class="card-header">
                         <h4 style="font-family: calibri;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <?php 
                         foreach ($items as $row) :
@@ -50,19 +50,20 @@
                         <?php endforeach;?>
                     </div>
                     <div class="card-body" style="padding: 4px;">
-                        
                         <ul class="nav nav-tabs">
                             <?php 
                             
                             foreach ($menu_lab as $m) :
                                 if (@$id_lab == $m['id_lab']) {
-                                    $bg = 'active';
+                                    $active = 'active';
+                                    $bg = 'style="background-color:#effeff; color:#497e89; font-weight:bold;"';
                                 }else{
+                                    $active = '';
                                     $bg = '';
                                 }
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link <?= $bg ?>" aria-current="page" href="<?= base_url('pelayanan-sampel/setting-lhu/list-menu/'.$kode_pengantar.'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
+                                    <a class="nav-link <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-sampel/setting-lhu/list-menu/'.$kode_pengantar.'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
                                 </li>
                                 <?php
                             endforeach;

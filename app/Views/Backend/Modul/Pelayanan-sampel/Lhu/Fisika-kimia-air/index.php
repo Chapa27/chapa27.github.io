@@ -6,7 +6,7 @@
     <!-- [ Main Content ] start -->
         <div class="row p-0">
             <!-- [ sample-page ] start -->
-            <div class="col-sm-12" style="padding: 1px;">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-6" style="padding:0px;">
                         <div class="d-flex justify-content-end align-items-center gap-1">
@@ -37,7 +37,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/jenis-sampel/list-data'); ?>",
+            url: "<?= site_url('pelayanan-sampel/lhu/fisika-kimia-air/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -55,7 +55,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('master-data/jenis-sampel/add-data'); ?>",
+                url: "<?= site_url('pelayanan-sampel/lhu/fisika-kimia-air/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 success: function(response) {

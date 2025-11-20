@@ -1,7 +1,9 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
-        $arrth = ['No', 'Jenis sampel', 'PNBP (Rp)', 'Laboratorium', 'Status', ''];
+        $arrth = [
+            'No', 'Kode sampel', 'Jenis sampel', 'Lokasi pengambilan sampel', 
+            'Tanggal', 'Jam', 'Metode pemeriksaan', 'Volume/Berat', 'Jenis wadah', 'Jenis pengawet', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,6 +18,7 @@
         ?>
             <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
+                <td>{kode_sampel}</td>
                 <td><?= $row['jenis_sampel']; ?></td>
                 <td><?= $row['pnbp']; ?></td>
                 <td><?= $row['nama_lab']; ?></td>
