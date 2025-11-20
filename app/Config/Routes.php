@@ -129,7 +129,7 @@ $routes->group('pelayanan-sampel/lhu/fisika-kimia-air', function ($routes) {
     $routes->get('index/(:any)/(:any)', 'FisikaKimiaAir::index/$1/$1');
     $routes->get('list-data', 'FisikaKimiaAir::list');
     $routes->get('add-data', 'FisikaKimiaAir::new');
-
+    $routes->post('create-data', 'FisikaKimiaAir::create');
 });
 
 

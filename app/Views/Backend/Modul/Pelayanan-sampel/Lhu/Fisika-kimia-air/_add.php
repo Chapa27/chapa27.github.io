@@ -6,7 +6,7 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/jenis-sampel/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan-sampel/lhu/fisika-kimia-air/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
@@ -23,11 +23,11 @@
                             endforeach;
                             ?>
                         </select>
-                        <div class="invalid-feedback errorIdJenisSampel"></div>
+                        <div class="invalid-feedback errorJenisSampel"></div>
                     </div>
                     <div class="mb-3">
                         <label for="lokasi-ambil-sampel" class="form-label h5" style="font-family: calibri;">Lokasi pengambilan sampel</label>
-                        <input type="text" name="pnbp" class="form-control" id="lokasi-ambil-sampel">
+                        <input type="text" name="lokasi_pengambilan_sampel" class="form-control" id="lokasi-ambil-sampel">
                         <div class="invalid-feedback errorLokasiAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
@@ -87,26 +87,47 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.jenis_sampel) {
+                        if (err.id_jenis_sampel) {
                             $("#jenis-sampel").addClass('is-invalid');
-                            $('.errorJenisSampel').html(err.jenis_sampel);
+                            $('.errorJenisSampel').html(err.id_jenis_sampel);
                         } else {
                             $('#jenis-sampel').removeClass('is-invalid');
                             $('.errorJenisSampel').html('');
                         }
-                        if (err.pnbp) {
-                            $('#pnbp').addClass('is-invalid');
-                            $('.errorPnbp').html(err.pnbp);
+                        if (err.lokasi_pengambilan_sampel) {
+                            $('#lokasi-ambil-sampel').addClass('is-invalid');
+                            $('.errorLokasiAmbilSampel').html(err.lokasi_pengambilan_sampel);
                         } else {
-                            $('#pnbp').removeClass('is-invalid');
-                            $('.errorPnbp').html('');
+                            $('#lokasi-ambil-sampel').removeClass('is-invalid');
+                            $('.errorLokasiAmbilSampel').html('');
                         }
-                        if (err.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(err.id_lab);
+                        if (err.metode_pemeriksaan) {
+                            $('#metode-pemeriksaan').addClass('is-invalid');
+                            $('.errorMetodePemeriksaan').html(err.metode_pemeriksaan);
                         } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
+                            $('#metode-pemeriksaan').removeClass('is-invalid');
+                            $('.errorMetodePemeriksaan').html('');
+                        }
+                        if (err.volume_berat) {
+                            $('#volume-berat').addClass('is-invalid');
+                            $('.errorVolumeBerat').html(err.volume_berat);
+                        } else {
+                            $('#volume-berat').removeClass('is-invalid');
+                            $('.errorVolumeBerat').html('');
+                        }
+                        if (err.jenis_wadah) {
+                            $('#jenis-wadah').addClass('is-invalid');
+                            $('.errorJenisWadah').html(err.jenis_wadah);
+                        } else {
+                            $('#jenis-wadah').removeClass('is-invalid');
+                            $('.errorJenisWadah').html('');
+                        }
+                        if (err.jenis_pengawet) {
+                            $('#jenis-pengawet').addClass('is-invalid');
+                            $('.errorJenisPengawet').html(err.jenis_pengawet);
+                        } else {
+                            $('#jenis-pengawet').removeClass('is-invalid');
+                            $('.errorJenisPengawet').html('');
                         }
                     } else {
                         Swal.fire({
