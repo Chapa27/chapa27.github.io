@@ -3,7 +3,7 @@
         <?php
         $arrth = [
             'No', 'Kode sampel', 'Jenis sampel', 'Lokasi pengambilan sampel', 
-            'Tanggal', 'Jam', 'Metode pemeriksaan', 'Volume/Berat', 'Jenis wadah', 'Jenis pengawet', 'Status', ''];
+            'Tanggal/jam', 'Metode pemeriksaan', 'Volume/Berat', 'Jenis wadah', 'Jenis pengawet', ' '];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,19 +16,22 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_fka']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td>{kode_sampel}</td>
-                <td><?= $row['jenis_sampel']; ?></td>
-                <td><?= $row['pnbp']; ?></td>
-                <td><?= $row['nama_lab']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
+                <td><?= $row['kode_sampel']; ?></td>
+                <td><?= explode(",", $row['jenis_sampel'])[1]; ?></td>
+                <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
+                <td><?= $row['tgl_jam_ambil_sampel']; ?></td>
+                <td><?= $row['metode_pemeriksaan']; ?></td>
+                <td><?= $row['volume_atau_berat']; ?></td>
+                <td><?= $row['jenis_wadah']; ?></td>
+                <td><?= $row['jenis_pengawet']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id_fka']; ?>)" title="Edit data">
                             <i class="fa-solid fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id_fka']; ?>)" title="Hapus data">
                             <i class="fa-solid fa-trash-alt"></i>
                         </button>
                     </div>

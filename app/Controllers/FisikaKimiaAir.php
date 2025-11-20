@@ -34,7 +34,8 @@ class FisikaKimiaAir extends BaseController
      public function generate_kode_sampel($idlab) 
     {
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        $count = $this->model->where($idlab)->countAllResults();
+
+        $count = $this->model->where('id_laboratorium', intval($idlab))->countAllResults();
        
         // Buat nomor urut baru
         $nomorUrut = $count + 1;
@@ -54,7 +55,7 @@ class FisikaKimiaAir extends BaseController
     {
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->findAll()
+                'items' => $this->model->get_data()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/_data', $data)
@@ -91,6 +92,8 @@ class FisikaKimiaAir extends BaseController
     public function create()
     {
          if ($this->request->isAJAX()) {
+            $id_laboratorium = $this->request->getVar('id_laboratorium');
+
             $valid = $this->validate([
                 'id_jenis_sampel' => [
                     'label' => 'Jenis sampel',
@@ -124,10 +127,7 @@ class FisikaKimiaAir extends BaseController
                     ]
                 ];
             } else {
-                $id_laboratorium = $this->request->get('id_laboratorium');
-                $cek = $this->generate_kode_sampel($id_laboratorium);
-                var_dump($cek);
-                die;
+
                 $simpandata = [
                     'kode_sampel' => $this->generate_kode_sampel($id_laboratorium),
                     'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
@@ -149,5 +149,21 @@ class FisikaKimiaAir extends BaseController
         } else {
             exit('Not Process');
         }    
+    }
+
+    public function cari_data() 
+    {
+         $q= $this->request->getVar('q'); 
+            // $sql="SELECT `fname` FROM `Property` WHERE fname LIKE '%$q%'";
+            // $result = mysql_query($sql);
+
+            $data = $this->masterJenisSampel->find($q);
+            $json = array();
+
+            while($row = $data) {
+                array_push($json, $row['jenis_sampel']);
+            }
+
+            echo json_encode($json);
     }
 }

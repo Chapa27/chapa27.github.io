@@ -12,6 +12,9 @@
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
+                       search : <input type="text" id="hint" name="hint" />
+                    </div>
+                    <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h5" style="font-family: calibri;">Jenis sampel</label>
                         <select name="id_jenis_sampel" class="form-select" id="jenis-sampel" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
@@ -64,9 +67,9 @@
         </div>
     </div>
 </div>
-
 <script>
-    $(document).ready(function() {
+    $(document).ready(function() { 
+        
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({

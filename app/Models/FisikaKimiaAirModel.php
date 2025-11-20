@@ -55,4 +55,22 @@ class FisikaKimiaAirModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function get_data()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('fisika_kimia_air');
+        $builder->select('fisika_kimia_air.id AS id_fka,
+        fisika_kimia_air.kode_sampel,
+        master_jenis_sampel.jenis_sampel,
+        fisika_kimia_air.lokasi_pengambilan_sampel,
+        fisika_kimia_air.tgl_jam_ambil_sampel,
+        fisika_kimia_air.metode_pemeriksaan,
+        fisika_kimia_air.volume_atau_berat,
+        fisika_kimia_air.jenis_wadah,
+        fisika_kimia_air.jenis_pengawet');
+        $builder->join("master_jenis_sampel", "master_jenis_sampel.id = fisika_kimia_air.id_jenis_sampel");
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
 }
