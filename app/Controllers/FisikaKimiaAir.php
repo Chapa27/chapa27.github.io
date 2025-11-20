@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\FisikaKimiaAirModel;
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
-use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\I18n\Time;
 
 class FisikaKimiaAir extends BaseController
 {
@@ -15,6 +15,7 @@ class FisikaKimiaAir extends BaseController
     protected $validation;
     protected $masterJenisSampel;
     protected $masterLab;
+    protected $time;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class FisikaKimiaAir extends BaseController
         $this->masterJenisSampel = new JenisSampelModel();
         $this->masterLab = new LaboratoriumModel();
         $this->validation = \Config\Services::validation();
+        $this->time = Time::now('Asia/Jakarta'); 
     }
 
     public function index($param1, $param2)
@@ -57,7 +59,8 @@ class FisikaKimiaAir extends BaseController
             $id_lab = $this->request->getVar('id_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
             $data = [
-                'items' => $this->model->get_data($kode_pengantar, $id_lab)
+                'items' => $this->model->get_data($kode_pengantar, $id_lab),
+                'kp' => $kode_pengantar
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/_data', $data)

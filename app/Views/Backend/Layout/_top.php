@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style-preset.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('css/style.css'); ?>">
 
-    
     <?= $this->renderSection('topAssets'); ?>
 
     <title><?= $title; ?></title>
