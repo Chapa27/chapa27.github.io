@@ -19,7 +19,6 @@
             ];
             echo view('Backend/Modul/Pelayanan-sampel/Lhu/Biologi-lingkungan/index', $data);
             break;
-        
         case 3:
             $data = [
                 'title' => 'Udara/UB'

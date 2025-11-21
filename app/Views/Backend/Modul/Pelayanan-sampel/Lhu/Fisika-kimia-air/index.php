@@ -12,7 +12,13 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-6" style="padding:0px;">
-                        <div class="d-flex justify-content-end align-items-center gap-1">
+                        <div class="d-flex align-items-center gap-1">
+                            <!-- Button trigger modal -->
+                            <div class="col-md">
+                                <button type="button" class="btn btn-secondary btn-sm btn-kondisi-lingkungan" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
+                                    <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Kondisi lingkungan
+                                </button>
+                            </div>
                             <button type="button" class="btn btn-dark btn-sm" id="refBtn">
                                 <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
                             </button>
@@ -85,6 +91,29 @@
                 }
             })
         })
+
+        $(".btn-kondisi-lingkungan").click(function(e) {
+            e.preventDefault();
+            var id_lab = $(this).data("id");
+            var kode_pengantar = $(this).data('kode');
+            $.ajax({
+                url: "<?= site_url('pelayanan-sampel/lhu/kondisi-lingkungan/add-data'); ?>",
+                dataType: 'json',
+                data:{
+                    id_lab:id_lab,
+                    kode_pengantar:kode_pengantar
+                },
+                cache: false,
+                success: function(response) {
+                    $(".view-modal").html(response.data).show();
+                    $("#exampleModal").modal('show');
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                }
+            })
+        })
+
     })
 </script>
 <?= $this->endSection(); ?>

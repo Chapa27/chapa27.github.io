@@ -67,9 +67,6 @@
                                 <?php
                             endforeach;
                             ?>
-                             <li class="nav-item">
-                                <a class="nav-link navtabs" aria-current="page" href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.$kode_pengantar) ?>">Keterangan</a>
-                             </li>
                         </ul>
                         <br> 
                          <?= $this->renderSection('content_menu'); ?> 
