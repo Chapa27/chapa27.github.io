@@ -18,6 +18,9 @@
                                 <button type="button" class="btn btn-secondary btn-sm btn-kondisi-lingkungan" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
                                     <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Kondisi lingkungan
                                 </button>
+                                <button type="button" class="btn btn-secondary btn-sm btn-kondisi-lingkungan" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
+                                    <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Keterangan
+                                </button>
                             </div>
                             <button type="button" class="btn btn-dark btn-sm" id="refBtn">
                                 <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
