@@ -34,12 +34,14 @@ class ProsesLhu extends ResourceController
         foreach ($first_menu as $row) {
            $fm =  $row['id_laboratorium'];
         }
+
         $data = [
             'title' => 'Data pelanggan',
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
-            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
+            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar)
             // 'first_menu' => $fm
         ];
+
        return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index', $data);
     }
 
