@@ -3,7 +3,7 @@
         <div class="m-header bg-teal-100">
             <a href="#" class="b-brand text-primary">
                 <!-- ========   Change your logo from here   ============ -->
-                <img src="<?= base_url('img/bblkm-jakarta.png'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
+                <img src="<?= base_url('assets/img/logo-bblabkes-jkt.png'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
             </a>
         </div>
         <div class="navbar-content">
