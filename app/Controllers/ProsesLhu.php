@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\MappSettingLabModel;
+use App\Models\LaboratoriumTujuanModel;
 use App\Models\PengantarLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
@@ -16,13 +16,13 @@ class ProsesLhu extends ResourceController
      */
     protected $title;
     protected $modelPengantarLhu;
-    protected $modelMapSettingLab;
+    protected $modelLabTujuan;
 
     public function __construct()
     {
         $this->title = 'Pengantar LHU';
         $this->modelPengantarLhu = new PengantarLhuModel();
-        $this->modelMapSettingLab = new MappSettingLabModel();
+        $this->modelLabTujuan = new LaboratoriumTujuanModel();
     }
 
     public function index($id = null)
@@ -57,7 +57,7 @@ class ProsesLhu extends ResourceController
         $data = [
             'title' => 'Entry ' . $this->title,
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
-            'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar),
+            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
             'id_lab' => $id_lab,
             'kode_pengantar' => $kode_pengantar
         ];

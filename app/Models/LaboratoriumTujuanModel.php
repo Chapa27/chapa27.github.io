@@ -4,15 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MappSettingLabModel extends Model
+class LaboratoriumTujuanModel extends Model
 {
-    protected $table            = 'mapp_setting_lab';
+    protected $table            = 'laboratorium_tujuan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_pelanggan', 'id_pengantar_lhu', 'kode_pengantar', 'id_laboratorium'];
+    protected $allowedFields    = [
+        'id_pelanggan', 
+        'id_pengantar_lhu', 
+        'kode_pengantar', 
+        'id_laboratorium'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +26,7 @@ class MappSettingLabModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
