@@ -100,8 +100,10 @@ class SampelLingkungan extends ResourceController
         if ($this->request->isAJAX()) {
             $id_lab = $this->request->getVar('id_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $lab = $this->masterLab->find($id_lab);
+            $nama_lab = $lab['nama_lab'];
             $data = [
-                'title' => 'Tambah ' . $this->title,
+                'title' => 'Tambah ' . $nama_lab,
                 'masterLab' => $this->model->findAll(),
                 'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)->find(),
                 'id_lab' => $id_lab,
