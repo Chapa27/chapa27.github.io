@@ -54,8 +54,7 @@
 <?= $this->section('bottomAssets'); ?>
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.min.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/dataTables.responsive.min.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all/min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
 <script src="<?= base_url('assets/js/jquery-3.7.1.min.js'); ?>"></script>
 

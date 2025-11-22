@@ -5,9 +5,7 @@
 <script src="<?= base_url('assets/js/fonts/custom-ant-icon.js'); ?>"></script>
 <script src="<?= base_url('assets/js/pcoded.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/feather.min.js'); ?>"></script>
- <!-- Buy Now Link  -->
-
-   
+  
 <script>
   layout_change('light');
 </script>
@@ -28,7 +26,6 @@
   font_change('Public-Sans');
 </script>
 
-<?= $this->renderSection('bottomAssets'); ?>
 
   
 </body>
