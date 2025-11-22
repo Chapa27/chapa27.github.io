@@ -2,6 +2,7 @@
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div class="pc-container">
     <div class="pc-content">
@@ -11,45 +12,37 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Modul Pelayanan Sampel</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- [ breadcrumb ] end -->
-
-        <!-- [ Main Content ] start -->
-        <div class="row p-0">
-            <!-- [ sample-page ] start -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 style="font-family: calibri;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h5>
-                        <?php 
-                        foreach ($items as $row) :
+        <div class="card">
+            <div class="card-header">
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <?php foreach ($items as $row) :  
                             $kode_pengantar = $row['kode_pengantar'];
                         ?>
-                        <table cellpadding="6">
-                            <tbody>
-                                <tr>
-                                    <td class="fw-bold" width="120px;">Kode Pengantar</td>
-                                    <td>: <?= $row['kode_pengantar']; ?></td>
-                                    <td class="fw-bold">Alamat</td>
-                                    <td>: <?= $row['alamat']; ?></td>
-                                </tr>
-                                 <tr>
-                                    <td class="fw-bold" width="100px;">Pelanggan</td>
-                                    <td>: <?= $row['nama']; ?></td>
-                                    <td class="fw-bold">Tanggal</td>
-                                    <td>: <?= date('d/m/Y', strtotime($row['tanggal'])); ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <?php endforeach;?>
+                        <div class="row">
+                            <div class="col-md-2 fw-bold">Kode pengantar</div>
+                            <div class="col-md-4">: <?= $row['kode_pengantar']; ?></div>
+                            <div class="col-md-2 fw-bold">Pelanggan</div>
+                            <div class="col-md-4">: <?= $row['nama']; ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 fw-bold">Alamat</div>
+                            <div class="col-md-4">: <?= $row['alamat']; ?></div>
+                            <div class="col-md-2 fw-bold">No.Telepon</div>
+                            <div class="col-md-4">: <?= $row['no_telp']; ?></div>
+                        </div>
+                        <?php endforeach; ?>
                     </div>
-                    <div class="card-body" style="padding: 4px;">
+                </div>
+            </div>
+            <div class="card-body" style="padding: 4px;">
                         <ul class="nav nav-tabs">
                             <?php 
                             foreach ($menu_lab as $m) :
@@ -62,7 +55,7 @@
                                 }
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link navtabs <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-sampel/setting-lhu/list-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
+                                    <a class="nav-link navtabs <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-sampel/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
                                 </li>
                                 <?php
                             endforeach;
@@ -70,12 +63,8 @@
                         </ul>
                         <br> 
                          <?= $this->renderSection('content_menu'); ?> 
-                    </div>
-                </div>
             </div>
-            <!-- [ sample-page ] end -->
         </div>
-        <!-- [ Main Content ] end -->
     </div>
 </div>
 <div class="view-modal" style="display: none;"></div>

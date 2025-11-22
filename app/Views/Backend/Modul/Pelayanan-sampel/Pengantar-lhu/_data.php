@@ -31,7 +31,7 @@ use App\Models\MappSettingLabModel;
                         <button type="button" class="btn btn-primary btn-sm" onclick="settingLab(<?= $row['id_pengantar']; ?>)" title="Setting Lab">
                             <i class="fa-solid fa-circle-plus"></i>
                         </button>
-                         <a href="<?= base_url('pelayanan-sampel/setting-lhu/index-lhu/'.strtolower($row['kode_pengantar'].'/lhu')) ?>" class="btn btn-secondary btn-sm" title="Proses">
+                         <a href="<?= base_url('pelayanan-sampel/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary btn-sm" title="Proses LHU">
                             <i class="fa-solid fa-arrow-circle-right"></i>
                         </a>
                     </div>

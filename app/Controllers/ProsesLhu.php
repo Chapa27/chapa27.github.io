@@ -7,7 +7,7 @@ use App\Models\PengantarLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
-class SettingLhu extends ResourceController
+class ProsesLhu extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -23,7 +23,6 @@ class SettingLhu extends ResourceController
         $this->title = 'Pengantar LHU';
         $this->modelPengantarLhu = new PengantarLhuModel();
         $this->modelMapSettingLab = new MappSettingLabModel();
-
     }
 
     public function index($id = null)
@@ -36,7 +35,7 @@ class SettingLhu extends ResourceController
            $fm =  $row['id_laboratorium'];
         }
         $data = [
-            'title' => 'Entry ' . $this->title,
+            'title' => 'Data pelanggan',
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
             'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar),
             // 'first_menu' => $fm
@@ -44,7 +43,14 @@ class SettingLhu extends ResourceController
        return view('Backend/Modul/Pelayanan-sampel/Lhu/index', $data);
     }
 
-    public function list_menu($param1, $param2) 
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function list_menu($param1, $param2)
     {
         $kode_pengantar = $param1;
         $id_lab = $param2;
@@ -55,19 +61,7 @@ class SettingLhu extends ResourceController
             'id_lab' => $id_lab,
             'kode_pengantar' => $param1
         ];
-       return view('Backend/Modul/Pelayanan-sampel/Lhu/_temp_menu', $data);
-    }
-
-    /**
-     * Return the properties of a resource object.
-     *
-     * @param int|string|null $id
-     *
-     * @return ResponseInterface
-     */
-    public function show($id = null)
-    {
-        //
+       return view('Backend/Modul/Pelayanan-sampel/Lhu/_menu', $data);
     }
 
     /**

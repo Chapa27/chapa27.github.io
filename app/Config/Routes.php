@@ -120,11 +120,10 @@ $routes->group('pelayanan-sampel/pengantar-lhu', function ($routes) {
 });
 
 /** Setting LHU **/
-$routes->group('pelayanan-sampel/setting-lhu', function ($routes) {
-    $routes->get('index-lhu/(:any)', 'SettingLhu::index/$1');
-    $routes->get('list-menu/(:any)', 'SettingLhu::list_menu/$1');
-    $routes->get('keterangan-lhu/(:any)', 'SettingLhu::ket_lhu/$1');
-
+$routes->group('pelayanan-sampel/proses-lhu', function ($routes) {
+    $routes->get('index/(:any)', 'ProsesLhu::index/$1');
+    $routes->get('list-menu/(:any)', 'ProsesLhu::list_menu/$1');
+    $routes->get('keterangan-lhu/(:any)', 'ProsesLhu::ket_lhu/$1');
 });
 
 $routes->group('pelayanan-sampel/lhu/fisika-kimia-air', function ($routes) {
