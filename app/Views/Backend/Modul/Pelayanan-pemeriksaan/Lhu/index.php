@@ -22,6 +22,7 @@
         </div>
         <div class="card">
             <div class="card-header">
+                    <h4 style="font-family: calibri;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data pelanggan</h4>
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <?php foreach ($items as $row) :  
