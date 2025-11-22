@@ -1,97 +1,173 @@
 <nav class="pc-sidebar">
-    <div class="navbar-wrapper">
-        <div class="m-header bg-teal-100">
-            <a href="#" class="b-brand text-primary">
-                <!-- ========   Change your logo from here   ============ -->
-                <img src="<?= base_url('img/bblkm-jakarta.png'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
-            </a>
-        </div>
-        <div class="navbar-content">
-            <ul class="pc-navbar">
-                <li class="pc-item">
-                    <a href="<?= base_url('home/dashboard'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-home"></i></span>
-                        <span class="pc-mtext">Home</span>
-                    </a>
-                </li>
-                <li class="pc-item pc-caption">
-                    <label>Modul Pelayanan Sampel</label>
-                    <i class="ti ti-dashboard"></i>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-sampel/permintaan'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
-                        <span class="pc-mtext">Permintaan</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-sampel/penawaran'); ?>" class="pc-link" onclick="showLoading()">
-                        <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
-                        <span class="pc-mtext">Penawaran</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-sampel/biaya-pengujian-sampel'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
-                        <span class="pc-mtext">Biaya pengujian sampel</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-sampel/pengantar-lhu'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
-                        <span class="pc-mtext">Pengantar LHU</span>
-                    </a>
-                </li>
-                <li class="pc-item pc-caption">
-                    <label>Master Data</label>
-                    <i class="ti ti-databases"></i>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('master-data/pelanggan'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                        <span class="pc-mtext">Pelanggan</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('master-data/laboratorium'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                        <span class="pc-mtext">Laboratorium</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('master-data/jenis-sampel'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                        <span class="pc-mtext">Jenis Sampel</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('master-data/biaya-akomodasi'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                        <span class="pc-mtext">Biaya Akomodasi</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                        <span class="pc-mtext">Instansi</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('master-data/penyakit'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                        <span class="pc-mtext">Penyakit</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('master-data/coolbox'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                        <span class="pc-mtext">Coolbox</span>
-                    </a>
-                </li>
-            </ul>
-            <div class="card text-center">
-                <!-- Blank -->
-            </div>
-        </div>
+  <div class="navbar-wrapper">
+    <div class="m-header">
+      <a href="../dashboard/index.html" class="b-brand text-primary">
+        <!-- ========   Change your logo from here   ============ -->
+        <img src="../assets/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo">
+      </a>
     </div>
+    <div class="navbar-content">
+      <ul class="pc-navbar">
+        <li class="pc-item">
+          <a href="../dashboard/index.html" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#dashboard"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="pc-item pc-caption">
+          <label data-i18n="Widget">UI Components</label>
+          <i class="pc-micon">
+            <svg class="pc-icon">
+              <use xlink:href="#line-chart"></use>
+            </svg>
+          </i>
+        </li>
+        <li class="pc-item">
+          <a href="../elements/bc_typography.html" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#font-size"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Typography</span>
+          </a>
+        </li>
+        <li class="pc-item">
+          <a href="../elements/bc_color.html" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#bg-colors"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Color</span>
+          </a>
+        </li>
+        <li class="pc-item">
+          <a href="../elements/icon-tabler.html" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#highlight"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Icons</span>
+          </a>
+        </li>
+        <li class="pc-item pc-caption">
+          <label data-i18n="Widget">Pages</label>
+          <i class="pc-micon">
+            <svg class="pc-icon">
+              <use xlink:href="#line-chart"></use>
+            </svg>
+          </i>
+        </li>
+        <li class="pc-item">
+          <a href="../pages/login.html" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#lock"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Login</span>
+          </a>
+        </li>
+        <li class="pc-item">
+          <a href="../pages/register.html" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#user-add"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Register</span>
+          </a>
+        </li>
+        <li class="pc-item pc-caption">
+          <label data-i18n="Widget">Other</label>
+          <i class="pc-micon">
+            <svg class="pc-icon">
+              <use xlink:href="#line-chart"></use>
+            </svg>
+          </i>
+        </li>
+
+        <li class="pc-item pc-hasmenu">
+          <a href="#!" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#swap"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext" data-i18n="Menu levels">Menu levels</span>
+            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+          </a>
+          <ul class="pc-submenu">
+            <li class="pc-item"><a class="pc-link" href="#!" data-i18n="Level 2.1">Level 2.1</a></li>
+            <li class="pc-item pc-hasmenu">
+              <a href="#!" class="pc-link">
+                <span data-i18n="Level 2.2">Level 2.2</span>
+                <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+              </a>
+              <ul class="pc-submenu">
+                <li class="pc-item"><a class="pc-link" href="#!" data-i18n="Level 3.1">Level 3.1</a></li>
+                <li class="pc-item"><a class="pc-link" href="#!" data-i18n="Level 3.2">Level 3.2</a></li>
+                <li class="pc-item pc-hasmenu">
+                  <a href="#!" class="pc-link">
+                    <span data-i18n="Level 3.3">Level 3.3</span>
+                    <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                  </a>
+                  <ul class="pc-submenu">
+                    <li class="pc-item"><a class="pc-link" href="#!" data-i18n="Level 4.1">Level 4.1</a></li>
+                    <li class="pc-item"><a class="pc-link" href="#!" data-i18n="Level 4.2">Level 4.2</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="pc-item pc-hasmenu">
+              <a href="#!" class="pc-link">
+                <span data-i18n="Level 2.2">Level 2.3</span>
+                <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+              </a>
+              <ul class="pc-submenu">
+                <li class="pc-item"><a class="pc-link" href="#!" data-i18n="Level 3.1">Level 3.1</a></li>
+                <li class="pc-item"><a class="pc-link" href="#!" data-i18n="Level 3.2">Level 3.2</a></li>
+                <li class="pc-item pc-hasmenu">
+                  <a href="#!" class="pc-link">
+                    <span data-i18n="Level 3.3">Level 3.3</span>
+                    <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                  </a>
+                  <ul class="pc-submenu">
+                    <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
+                    <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="pc-item">
+          <a href="../other/sample-page.html" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#chrome"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext" data-i18n="Sample Page">Sample page</span>
+          </a>
+        </li>
+      </ul>
+      <div class="card text-center">
+        <div class="card-body">
+          <img src="../assets/images/img-navbar-card.png" alt="images" class="img-fluid mb-2">
+          <h5>Upgrade To Pro</h5>
+          <p>To get more features and components</p>
+          <a href="https://codedthemes.com/item/mantis-bootstrap-admin-dashboard/" target="_blank"
+          class="btn btn-success">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
