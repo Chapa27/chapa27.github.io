@@ -55,10 +55,7 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.min.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all/min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
-<script src="<?= base_url('assets/js/jquery-3.7.1.min.js'); ?>"></script>
-
 <script>
     function listData() {
         $.ajax({
@@ -76,11 +73,7 @@
 
     $(document).ready(function() {
         listData();
-Swal.fire({
-                            title: "Berhasil",
-                            text: "response.sukses",
-                            icon: "success"
-                        });
+
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
