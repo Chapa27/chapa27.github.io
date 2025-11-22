@@ -28,7 +28,7 @@ use App\Models\MappSettingLabModel;
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-primary btn-sm" onclick="settingLab(<?= $row['id_pengantar']; ?>)" title="Setting Lab">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="addLabTujuan(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
                             <i class="fa-solid fa-circle-plus"></i>
                         </button>
                          <a href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary btn-sm" title="Proses LHU">
@@ -41,10 +41,10 @@ use App\Models\MappSettingLabModel;
     </tbody>
 </table>
 <script>
-    function settingLab(id) {
+    function addLabTujuan(id) {
        $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan-pemeriksaan/pengantar-lhu/setting-lab/'); ?>' + id,
+            url: '<?= site_url('laboratorium-tujuan/add-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {

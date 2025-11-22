@@ -199,27 +199,9 @@ class PengantarLhu extends ResourceController
         //
     }
 
-    public function setting_lab($id = null) 
-    {
-        if ($this->request->isAJAX()) {
-            $data = [
-                'title' => 'Setting Tujuan Laboratorium',
-                'items' => $this->model->get_data_by_id_lhu($id),
-                'masterLab' => $this->modelLab->findAll()
-            ];
-            $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/_set_lab', $data)
-            ];
-
-            echo json_encode($msg);
-        } else {
-            exit('Not Process');
-        }       
-    }
-
     public function create_setting_lab()
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
              $idLab = $this->request->getVar('id_laboratorium');
              $countJlhLab = count($idLab ?? []);
 

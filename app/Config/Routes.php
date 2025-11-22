@@ -133,5 +133,16 @@ $routes->group('pelayanan-pemeriksaan/lhu/fisika-kimia-air', function ($routes) 
     $routes->post('create-data', 'FisikaKimiaAir::create');
 });
 
+/** Laboratorium tujuan **/
+$routes->group('laboratorium-tujuan', function ($routes) {
+    $routes->get('', 'LaboratoriumTujuan::index');
+    $routes->get('list-data', 'LaboratoriumTujuan::list');
+    $routes->get('add-data/(:any)', 'LaboratoriumTujuan::new/$1');
+    $routes->post('create-data', 'LaboratoriumTujuan::create');
+    $routes->get('edit-data/(:num)', 'LaboratoriumTujuan::edit/$1');
+    $routes->post('update-data', 'LaboratoriumTujuan::update');
+    $routes->delete('delete-data/(:num)', 'LaboratoriumTujuan::delete/$1');
+});
+
 
 
