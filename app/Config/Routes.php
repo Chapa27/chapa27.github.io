@@ -122,7 +122,7 @@ $routes->group('pelayanan-pemeriksaan/pengantar-lhu', function ($routes) {
 /** Setting LHU **/
 $routes->group('pelayanan-pemeriksaan/proses-lhu', function ($routes) {
     $routes->get('index/(:any)', 'ProsesLhu::index/$1');
-    $routes->get('list-menu/(:any)/(:any)', 'ProsesLhu::list_menu/$1/$1');
+    $routes->get('list-menu/(:any)', 'ProsesLhu::list_menu/$1');
 });
 
 $routes->group('pelayanan-pemeriksaan/lhu/fisika-kimia-air', function ($routes) {

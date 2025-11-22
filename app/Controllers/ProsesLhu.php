@@ -52,7 +52,7 @@ class ProsesLhu extends ResourceController
      */
     public function list_menu($param1, $param2)
     {
-        $kode_pengantar = $param1;
+        $kode_pengantar = strtoupper($param1);
         $id_lab = $param2;
         $data = [
             'title' => 'Entry ' . $this->title,
