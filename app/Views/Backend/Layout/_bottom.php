@@ -6,7 +6,6 @@
 <script src="<?= base_url('assets/js/pcoded.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/feather.min.js'); ?>"></script>
  <!-- Buy Now Link  -->
-<script defer src="<?= base_url('assets/js/fomo.js'); ?>" ></script>
 
    
 <script>
@@ -29,6 +28,7 @@
   font_change('Public-Sans');
 </script>
 
+<?= $this->renderSection('bottomAssets'); ?>
 
   
 </body>

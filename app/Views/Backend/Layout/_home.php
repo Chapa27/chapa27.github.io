@@ -1,3 +1,6 @@
+<?= $this->extend('Backend/Layout/_main'); ?>
+<?= $this->section('content'); ?>
+
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
@@ -8,8 +11,7 @@
                 <div class="col-md-12">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="javascript: void(0)">Other</a></li>
-                    <li class="breadcrumb-item" aria-current="page">Sample Page</li>
+                    <li class="breadcrumb-item" aria-current="page"><badge class="badge badge-primary">Sample Page</badge></li>
                 </ul>
                 </div>
                 <div class="col-md-12">
@@ -41,3 +43,5 @@
       <!-- [ Main Content ] end -->
     </div>
 </div>
+
+<?= $this->endSection(); ?>
