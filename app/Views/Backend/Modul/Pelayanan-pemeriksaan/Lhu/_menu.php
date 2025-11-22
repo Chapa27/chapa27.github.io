@@ -11,9 +11,9 @@
         $id_kat_lab = $row['id_kat_lab'];
         $id_lab = $row['id_laboratorium'];
         $nama_lab = $row['nama_lab'];
-        $kode_pengantar = $row['kode_pengantar'];
+        $kode_pengantar = $row['kode_pengantar'];        
     }
-    switch ($id_kat_lab) {
+    switch ($id_kat_lab ?? $id_lab) {
         case 1:
             $data = [
                 'title' => $nama_lab,
@@ -22,7 +22,12 @@
             ];
             echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Sampel-lingkungan/index', $data);
             break;
-        
+        case 'keterangan':
+            echo 'keterangan';
+            break;
+        case 'kondisi_lingkungan':
+            echo 'kondisi_lingkungan';
+            break;
         default:
             break;
     }

@@ -73,7 +73,10 @@
                     endforeach;
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link navtabs" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/keterangan/'.strtolower($kode_pengantar)) ?>">Keterangan</a>
+                        <a class="nav-link navtabs" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan') ?>">Keterangan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navtabs" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi_lingkungan') ?>">Kondisi lingkungan</a>
                     </li>
                 </ul>
                 <?php } ?>
