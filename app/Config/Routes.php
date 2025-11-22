@@ -153,7 +153,7 @@ $routes->group('pelayanan-pemeriksaan/keterangan-lhu', function ($routes) {
     $routes->post('create-data', 'KeteranganLhu::create');
     $routes->get('edit-data/(:num)', 'LaboratoriumTujuan::edit/$1');
     $routes->post('update-data', 'LaboratoriumTujuan::update');
-    $routes->delete('delete-data/(:num)', 'LaboratoriumTujuan::delete/$1');
+    $routes->delete('delete-data/(:num)', 'KeteranganLhu::delete/$1');
 });
 
 

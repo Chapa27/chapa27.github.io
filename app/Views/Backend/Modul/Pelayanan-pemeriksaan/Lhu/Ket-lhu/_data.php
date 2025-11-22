@@ -1,11 +1,12 @@
 <table id="example" class="table table-hover table-bordered">
-    <tbody style="font-family: arial;">
-        <tr>
-            <td><b>Keterangan</b></td>
-        </tr>
+    <p><b>Keterangan</b></p>
         <?php
         foreach ($items as $row) :
         ?>
+        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                            <i class="fa-solid fa-trash-alt"></i>
+                        </button>
+    <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
         <tr>
             <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
             <td>: <?= $row['paramater_tidak_dapat_di_uji'] ?></td>
@@ -22,8 +23,8 @@
             <td><b>Permintaan khusus</b></td>
             <td>: <?= $row['permintaan_khusus'] ?></td>
         </tr>
-        <?php endforeach;?>
     </tbody>
+        <?php endforeach;?>
 </table>
 <script>
     function editData(id) {
@@ -46,12 +47,12 @@
 
     function deleteData(id) {
         var myElement = $('#myId-' + id);
-        if (myElement.data('urut')) {
+        if (myElement) {
             myElement.addClass('bg bg-danger');
         }
         Swal.fire({
             title: "Yakin untuk menghapus data ?",
-            text: `No.urut : ` + myElement.data('urut'),
+            text: `No.id : ` + id,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -62,7 +63,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/laboratorium/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan-pemeriksaan/keterangan-lhu/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
