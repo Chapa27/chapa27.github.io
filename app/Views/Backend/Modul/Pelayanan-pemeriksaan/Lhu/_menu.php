@@ -20,7 +20,7 @@
                 'id_lab' => $id_lab,
                 'kode_pengantar' => $kode_pengantar
             ];
-            echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Fisika-kimia-air/index', $data);
+            echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Sampel-lingkungan/index', $data);
             break;
         
         default:

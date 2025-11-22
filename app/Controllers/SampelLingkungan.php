@@ -2,14 +2,20 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-use App\Models\FisikaKimiaAirModel;
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\SampelLingkunganModel;
+use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
+use CodeIgniter\RESTful\ResourceController;
 
-class FisikaKimiaAir extends BaseController
+class SampelLingkungan extends ResourceController
 {
+    /**
+     * Return an array of resource objects, themselves in array format.
+     *
+     * @return ResponseInterface
+     */
     protected $title;
     protected $model;
     protected $validation;
@@ -20,20 +26,28 @@ class FisikaKimiaAir extends BaseController
     public function __construct()
     {
         $this->title = 'Fisika kimia air';
-        $this->model = new FisikaKimiaAirModel();
+        $this->model = new SampelLingkunganModel();
         $this->masterJenisSampel = new JenisSampelModel();
         $this->masterLab = new LaboratoriumModel();
         $this->validation = \Config\Services::validation();
         $this->time = Time::now('Asia/Jakarta'); 
     }
 
-    public function index($param1, $param2)
+    public function index($param1 = null, $param2 = null)
     {
          $data = ['param1' => $param1];
-         return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Fisika-kimia-air/index', $data);
+         return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Sampel-lingkungan/index', $data);
     }
 
-     public function generate_kode_sampel($idlab) 
+
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function generate_kode_sampel($idlab) 
     {
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
 
@@ -63,7 +77,7 @@ class FisikaKimiaAir extends BaseController
                 'kp' => $kode_pengantar
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Fisika-kimia-air/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Sampel-lingkungan/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -72,6 +86,16 @@ class FisikaKimiaAir extends BaseController
         }    
     }
 
+    public function show($id = null)
+    {
+        //
+    }
+
+    /**
+     * Return a new resource object, with default properties.
+     *
+     * @return ResponseInterface
+     */
     public function new()
     {
         if ($this->request->isAJAX()) {
@@ -85,7 +109,7 @@ class FisikaKimiaAir extends BaseController
                 'kode_pengantar' => $kode_pengantar
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Fisika-kimia-air/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Sampel-lingkungan/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -94,9 +118,14 @@ class FisikaKimiaAir extends BaseController
         }
     }
 
+    /**
+     * Create a new resource object, from "posted" parameters.
+     *
+     * @return ResponseInterface
+     */
     public function create()
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $id_laboratorium = $this->request->getVar('id_laboratorium');
 
             $valid = $this->validate([
@@ -128,7 +157,7 @@ class FisikaKimiaAir extends BaseController
                     'error' => [
                         'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel'),
                         'lokasi_pengambilan_sampel' => $this->validation->getError('lokasi_pengambilan_sampel'),
-                        'tgl_jam_pengambilan_sampel' => $this->validation->getError('tgl_jam_pengambilan_sampel')
+                        'tgl_jam_ambil_sampel' => $this->validation->getError('tgl_jam_pengambilan_sampel')
                     ]
                 ];
             } else {
@@ -153,7 +182,42 @@ class FisikaKimiaAir extends BaseController
             echo json_encode($msg);
         } else {
             exit('Not Process');
-        }    
+        }   
     }
 
+    /**
+     * Return the editable properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function edit($id = null)
+    {
+        //
+    }
+
+    /**
+     * Add or update a model resource, from "posted" properties.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function update($id = null)
+    {
+        //
+    }
+
+    /**
+     * Delete the designated resource object from the model.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function delete($id = null)
+    {
+        //
+    }
 }

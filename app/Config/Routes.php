@@ -126,11 +126,11 @@ $routes->group('pelayanan-pemeriksaan/proses-lhu', function ($routes) {
     $routes->get('keterangan/(:any)', 'KeteranganPemeriksaan::index/$1');
 });
 
-$routes->group('pelayanan-pemeriksaan/lhu/fisika-kimia-air', function ($routes) {
-    $routes->get('index/(:any)/(:any)', 'FisikaKimiaAir::index/$1/$1');
-    $routes->get('list-data', 'FisikaKimiaAir::list');
-    $routes->get('add-data', 'FisikaKimiaAir::new');
-    $routes->post('create-data', 'FisikaKimiaAir::create');
+$routes->group('pelayanan-pemeriksaan/lhu/sampel-lingkungan', function ($routes) {
+    $routes->get('index/(:any)/(:any)', 'SampelLingkungan::index/$1/$1');
+    $routes->get('list-data', 'SampelLingkungan::list');
+    $routes->get('add-data', 'SampelLingkungan::new');
+    $routes->post('create-data', 'SampelLingkungan::create');
 });
 
 /** Laboratorium tujuan **/

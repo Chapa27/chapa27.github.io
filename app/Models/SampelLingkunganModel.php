@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class FisikaKimiaAirModel extends Model
+class SampelLingkunganModel extends Model
 {
-    protected $table            = 'fisika_kimia_air';
+    protected $table            = 'pelayanan_sampel_lingkungan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -59,17 +59,17 @@ class FisikaKimiaAirModel extends Model
     public function get_data($param1, $param2)
     {
         $db = \Config\Database::connect();
-        $builder = $db->table('fisika_kimia_air');
-        $builder->select('fisika_kimia_air.id AS id_fka,
-        fisika_kimia_air.kode_sampel,
+        $builder = $db->table('pelayanan_sampel_lingkungan');
+        $builder->select('pelayanan_sampel_lingkungan.id AS id_fka,
+        pelayanan_sampel_lingkungan.kode_sampel,
         master_jenis_sampel.jenis_sampel,
-        fisika_kimia_air.lokasi_pengambilan_sampel,
-        fisika_kimia_air.tgl_jam_ambil_sampel,
-        fisika_kimia_air.metode_pemeriksaan,
-        fisika_kimia_air.volume_atau_berat,
-        fisika_kimia_air.jenis_wadah,
-        fisika_kimia_air.jenis_pengawet');
-        $builder->join("master_jenis_sampel", "master_jenis_sampel.id = fisika_kimia_air.id_jenis_sampel");
+        pelayanan_sampel_lingkungan.lokasi_pengambilan_sampel,
+        pelayanan_sampel_lingkungan.tgl_jam_ambil_sampel,
+        pelayanan_sampel_lingkungan.metode_pemeriksaan,
+        pelayanan_sampel_lingkungan.volume_atau_berat,
+        pelayanan_sampel_lingkungan.jenis_wadah,
+        pelayanan_sampel_lingkungan.jenis_pengawet');
+        $builder->join("master_jenis_sampel", "master_jenis_sampel.id = pelayanan_sampel_lingkungan.id_jenis_sampel");
         $builder->where('kode_pengantar', $param1);
         $builder->where('id_laboratorium', $param2);
         $query = $builder->get()->getResultArray();
