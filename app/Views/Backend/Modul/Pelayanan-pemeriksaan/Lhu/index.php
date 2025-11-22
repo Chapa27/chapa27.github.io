@@ -44,8 +44,19 @@
                 </div>
             </div>
             <div class="card-body" style="padding: 4px;">
+                 <?php 
+                    $bg = '';
+                    if (!$menu_lab) {
+                        ?>
+                        <div class="alert alert-danger fw-bold" role="alert">
+                            Laboratorim tujuan belum di pilih !
+                            <a href="<?= base_url('pelayanan-pemeriksaan/pengantar-lhu'); ?>" class="href"> [Kembali]</a>
+                        </div>
+                        <?php
+                    }else{
+                    ?>
                 <ul class="nav nav-tabs">
-                    <?php 
+                   <?php
                     foreach ($menu_lab as $m) :
                         if (@$id_lab == $m['id_lab']) {
                             $active = 'active';
@@ -65,6 +76,7 @@
                         <a class="nav-link navtabs" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/keterangan/'.strtolower($kode_pengantar)) ?>">Keterangan</a>
                     </li>
                 </ul>
+                <?php } ?>
                 <br> 
                 <?= $this->renderSection('content_menu'); ?> 
             </div>

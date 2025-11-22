@@ -28,7 +28,7 @@ class ProsesLhu extends ResourceController
     public function index($id = null)
     {
         $kode_pengantar = $id;
-        $first_menu = $this->modelMapSettingLab->where('kode_pengantar', $kode_pengantar)
+        $first_menu = $this->modelLabTujuan->where('kode_pengantar', $kode_pengantar)
             ->orderBy('id', 'ASC')->limit(1)->get()->getResultArray();
 
         foreach ($first_menu as $row) {
@@ -37,7 +37,7 @@ class ProsesLhu extends ResourceController
         $data = [
             'title' => 'Data pelanggan',
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
-            'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar),
+            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
             // 'first_menu' => $fm
         ];
        return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index', $data);

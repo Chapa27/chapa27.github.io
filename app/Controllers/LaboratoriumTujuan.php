@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\LaboratoriumModel;
-use App\Models\MappSettingLabModel;
+use App\Models\LaboratoriumTujuanModel;
 use App\Models\PengantarLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
@@ -22,14 +22,14 @@ class LaboratoriumTujuan extends ResourceController
     protected $validation;
     protected $today;
     protected $modelPengantarLhu;
-    protected $modelMapSetLab;
+    protected $modelLabTujuan;
 
     public function __construct()
     {
         $this->title = 'Laboratorium Tujuan';
         $this->model = new LaboratoriumModel();
         $this->modelPengantarLhu = new PengantarLhuModel();
-        $this->modelMapSetLab = new MappSettingLabModel();
+        $this->modelLabTujuan = new LaboratoriumTujuanModel();
         $this->time = Time::now('Asia/Jakarta'); 
         $this->today = $this->time->toDateTimeString();
         $this->validation = \Config\Services::validation();
@@ -95,7 +95,7 @@ class LaboratoriumTujuan extends ResourceController
                         'id_laboratorium' => $idLab[$i]    
                     ];
 
-                    $this->modelMapSetLab->save($simpandata);
+                    $this->modelLabTujuan->save($simpandata);
                     $msg = [
                         'sukses' => 'Data berhasil disimpan'
                     ];

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\LaboratoriumModel;
-use App\Models\MappSettingLabModel;
+use App\Models\LaboratoriumTujuanModel;
 use App\Models\PelangganModel;
 use App\Models\PengantarLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -21,7 +21,7 @@ class PengantarLhu extends ResourceController
     protected $model;
     protected $validation;
     protected $modelLab;
-    protected $modelMapSetLab;
+    protected $modelLabTujuan;
     protected $modelPelanggan;
     protected $time;
     protected $today;
@@ -31,7 +31,7 @@ class PengantarLhu extends ResourceController
         $this->title = 'Pengantar LHU';
         $this->model = new PengantarLhuModel();
         $this->modelLab = new LaboratoriumModel();
-        $this->modelMapSetLab = new MappSettingLabModel();
+        $this->modelLabTujuan = new LaboratoriumTujuanModel();
         $this->modelPelanggan = new PelangganModel();
         $this->time = Time::now('Asia/Jakarta'); 
         $this->today = $this->time->toDateTimeString();
@@ -42,7 +42,7 @@ class PengantarLhu extends ResourceController
     {
         $data = [
             'title' => 'Data ' . $this->title,
-            'items' => $this->modelMapSetLab->findAll()
+            'items' => $this->modelLabTujuan->findAll()
         ];
         return view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/index', $data);
     }
@@ -73,7 +73,7 @@ class PengantarLhu extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'items' => $this->model->get_data(),
-                'cek_setting_lab' => $this->modelMapSetLab->findAll()
+                'cek_setting_lab' => $this->modelLabTujuan->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/_data', $data)
