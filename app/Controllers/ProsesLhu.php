@@ -52,14 +52,14 @@ class ProsesLhu extends ResourceController
      */
     public function list_menu($param1, $param2)
     {
-        $kode_pengantar = strtoupper($param1);
+        $kode_pengantar = $param1;
         $id_lab = $param2;
         $data = [
             'title' => 'Entry ' . $this->title,
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
             'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar),
             'id_lab' => $id_lab,
-            'kode_pengantar' => $param1
+            'kode_pengantar' => $kode_pengantar
         ];
        return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/_menu', $data);
     }
@@ -69,9 +69,14 @@ class ProsesLhu extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function new()
+    public function keterangan($id = null)
     {
-        //
+        $kode_pengantar = $id;
+        $data = [
+            'title' => 'Keterangan',
+            'kode_pengantar' => $kode_pengantar
+        ];
+        return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Keterangan/index', $data);
     }
 
     /**

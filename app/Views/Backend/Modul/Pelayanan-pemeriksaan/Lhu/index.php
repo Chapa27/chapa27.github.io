@@ -44,26 +44,29 @@
                 </div>
             </div>
             <div class="card-body" style="padding: 4px;">
-                        <ul class="nav nav-tabs">
-                            <?php 
-                            foreach ($menu_lab as $m) :
-                                if (@$id_lab == $m['id_lab']) {
-                                    $active = 'active';
-                                    $bg = 'style="background-color:#effeff; color:#497e89; font-weight:bold;"';
-                                }else{
-                                    $active = '';
-                                    $bg = '';
-                                }
-                                ?>
-                                <li class="nav-item">
-                                    <a class="nav-link navtabs <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
-                                </li>
-                                <?php
-                            endforeach;
-                            ?>
-                        </ul>
-                        <br> 
-                        <?= $this->renderSection('content_menu'); ?> 
+                <ul class="nav nav-tabs">
+                    <?php 
+                    foreach ($menu_lab as $m) :
+                        if (@$id_lab == $m['id_lab']) {
+                            $active = 'active';
+                            $bg = 'style="background-color:#effeff; color:#497e89; font-weight:bold;"';
+                        }else{
+                            $active = '';
+                            $bg = '';
+                        }
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link navtabs <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
+                        </li>
+                        <?php
+                    endforeach;
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link navtabs" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/keterangan/'.strtolower($kode_pengantar)) ?>">Keterangan</a>
+                    </li>
+                </ul>
+                <br> 
+                <?= $this->renderSection('content_menu'); ?> 
             </div>
         </div>
     </div>

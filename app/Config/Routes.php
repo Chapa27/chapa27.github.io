@@ -123,6 +123,7 @@ $routes->group('pelayanan-pemeriksaan/pengantar-lhu', function ($routes) {
 $routes->group('pelayanan-pemeriksaan/proses-lhu', function ($routes) {
     $routes->get('index/(:any)', 'ProsesLhu::index/$1');
     $routes->get('list-menu/(:any)', 'ProsesLhu::list_menu/$1');
+    $routes->get('keterangan/(:any)', 'KeteranganPemeriksaan::index/$1');
 });
 
 $routes->group('pelayanan-pemeriksaan/lhu/fisika-kimia-air', function ($routes) {
