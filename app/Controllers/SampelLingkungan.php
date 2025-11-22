@@ -73,8 +73,7 @@ class SampelLingkungan extends ResourceController
             $id_lab = $this->request->getVar('id_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
             $data = [
-                'items' => $this->model->get_data($kode_pengantar, $id_lab),
-                'kp' => $kode_pengantar
+                'items' => $this->model->get_data($kode_pengantar, $id_lab)
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Sampel-lingkungan/_data', $data)
@@ -193,8 +192,25 @@ class SampelLingkungan extends ResourceController
      * @return ResponseInterface
      */
     public function edit($id = null)
-    {
-        //
+    {    
+        $query = $this->model->find($id);
+        $lab = $this->masterLab->find($query['id_laboratorium']);
+        $id_lab = $lab['id'];
+        $nama_lab = $lab['nama_lab'];
+
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Edit ' . $nama_lab,
+                'items' => $this->model->find($id),
+                'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)->find()
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Sampel-lingkungan/_edit', $data)
+            ];
+            echo json_encode($msg);
+        }else{
+             exit('Not Process');
+        }
     }
 
     /**
@@ -206,7 +222,60 @@ class SampelLingkungan extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'id_jenis_sampel' => [
+                    'label' => 'Jenis sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'lokasi_pengambilan_sampel' => [
+                    'label' => 'Lokasi pengambilan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_jam_pengambilan_sampel' => [
+                    'label' => 'Tanggal & jam pengambilan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel'),
+                        'lokasi_pengambilan_sampel' => $this->validation->getError('lokasi_pengambilan_sampel'),
+                        'tgl_jam_ambil_sampel' => $this->validation->getError('tgl_jam_pengambilan_sampel')
+                    ]
+                ];
+            } else {
+
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                    'lokasi_pengambilan_sampel' => $this->request->getVar('lokasi_pengambilan_sampel'),
+                    'tgl_jam_ambil_sampel' => $this->request->getVar('tgl_jam_pengambilan_sampel'),
+                    'metode_pemeriksaan' => $this->request->getVar('metode_pemeriksaan'),
+                    'volume_atau_berat' => $this->request->getVar('volume_berat'),
+                    'jenis_wadah' => $this->request->getVar('jenis_wadah'),
+                    'jenis_pengawet' => $this->request->getVar('jenis_pengawet'),
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

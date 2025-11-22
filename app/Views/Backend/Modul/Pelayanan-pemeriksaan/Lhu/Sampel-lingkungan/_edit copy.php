@@ -6,9 +6,9 @@
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan-pemeriksaan/lhu/sampel-lingkungan/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/jenis-sampel/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id" value="<?= $items['id']; ?>">
+                <?= var_dump($tems); ?>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h5" style="font-family: calibri;">Jenis sampel</label>
@@ -17,7 +17,7 @@
                             <?php
                             foreach ($masterJenisSampel as $row) :
                             ?>
-                                <option value="<?= $row['id']; ?>" <?= $row['id'] == $items['id_jenis_sampel'] ? 'selected' : ''; ?> style="font-size: 12px;"><?= $row['jenis_sampel']; ?></option>
+                                <option value="<?= $row['id']; ?>" style="font-size: 12px;"><?= $row['jenis_sampel']; ?></option>
                             <?php
                             endforeach;
                             ?>
@@ -26,32 +26,32 @@
                     </div>
                     <div class="mb-3">
                         <label for="lokasi-ambil-sampel" class="form-label h5" style="font-family: calibri;">Lokasi pengambilan sampel</label>
-                        <input type="text" name="lokasi_pengambilan_sampel" value="<?= $items['lokasi_pengambilan_sampel']; ?>" class="form-control" id="lokasi-ambil-sampel">
+                        <input type="text" name="lokasi_pengambilan_sampel" class="form-control" id="lokasi-ambil-sampel">
                         <div class="invalid-feedback errorLokasiAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
                         <label for="tgl-ambil-sampel" class="form-label h5" style="font-family: calibri;">Tanggal pengambilan sampel</label>
-                        <input type="date" name="tgl_jam_pengambilan_sampel" value="<?= $items['tgl_jam_ambil_sampel']; ?>" class="form-control" id="tgl-ambil-sampel">
+                        <input type="date" name="tgl_jam_pengambilan_sampel" class="form-control" id="tgl-ambil-sampel">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
                         <label for="metode-pemeriksaan" class="form-label h5" style="font-family: calibri;">Metode pemeriksaan</label>
-                        <input type="text" name="metode_pemeriksaan" value="<?= $items['metode_pemeriksaan']; ?>" class="form-control" id="metode-pemeriksaan">
+                        <input type="text" name="metode_pemeriksaan" class="form-control" id="metode-pemeriksaan">
                         <div class="invalid-feedback errorMetodePemeriksaan"></div>
                     </div>
                     <div class="mb-3">
                         <label for="volume-berat" class="form-label h5" style="font-family: calibri;">Volume/Berat</label>
-                        <input type="text" name="volume_berat" value="<?= $items['volume_atau_berat']; ?>" class="form-control" id="volume-berat">
+                        <input type="text" name="volume_berat" class="form-control" id="volume-berat">
                         <div class="invalid-feedback errorVolumeBerat"></div>
                     </div>
                     <div class="mb-3">
                         <label for="jenis-wadah" class="form-label h5" style="font-family: calibri;">Jenis wadah</label>
-                        <input type="text" name="jenis_wadah" value="<?= $items['jenis_wadah']; ?>" class="form-control" id="jenis-wadah">
+                        <input type="text" name="jenis_wadah" class="form-control" id="jenis-wadah">
                         <div class="invalid-feedback errorJenisWadah"></div>
                     </div>
                     <div class="mb-3">
                         <label for="jenis-pengawet" class="form-label h5" style="font-family: calibri;">Jenis pengawet</label>
-                        <input type="text" name="jenis_pengawet" value="<?= $items['jenis_pengawet']; ?>" class="form-control" id="jenis-pengawet">
+                        <input type="text" name="jenis_pengawet" class="form-control" id="jenis-pengawet">
                         <div class="invalid-feedback errorJenisPengawet"></div>
                     </div>
                 </div>

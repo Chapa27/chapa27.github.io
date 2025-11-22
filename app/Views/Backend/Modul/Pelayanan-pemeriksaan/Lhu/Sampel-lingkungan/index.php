@@ -86,28 +86,6 @@
             })
         })
 
-        $(".btn-kondisi-lingkungan").click(function(e) {
-            e.preventDefault();
-            var id_lab = $(this).data("id");
-            var kode_pengantar = $(this).data('kode');
-            $.ajax({
-                url: "<?= site_url('pelayanan-pemeriksaan/lhu/kondisi-lingkungan/add-data'); ?>",
-                dataType: 'json',
-                data:{
-                    id_lab:id_lab,
-                    kode_pengantar:kode_pengantar
-                },
-                cache: false,
-                success: function(response) {
-                    $(".view-modal").html(response.data).show();
-                    $("#exampleModal").modal('show');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                }
-            })
-        })
-
     })
 </script>
 <?= $this->endSection(); ?>

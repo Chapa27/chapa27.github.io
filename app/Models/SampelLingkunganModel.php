@@ -60,7 +60,7 @@ class SampelLingkunganModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pelayanan_sampel_lingkungan');
-        $builder->select('pelayanan_sampel_lingkungan.id AS id_fka,
+        $builder->select('pelayanan_sampel_lingkungan.id AS id_psl,
         pelayanan_sampel_lingkungan.kode_sampel,
         master_jenis_sampel.jenis_sampel,
         pelayanan_sampel_lingkungan.lokasi_pengambilan_sampel,

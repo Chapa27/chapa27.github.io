@@ -131,6 +131,8 @@ $routes->group('pelayanan-pemeriksaan/lhu/sampel-lingkungan', function ($routes)
     $routes->get('list-data', 'SampelLingkungan::list');
     $routes->get('add-data', 'SampelLingkungan::new');
     $routes->post('create-data', 'SampelLingkungan::create');
+    $routes->get('edit-data/(:any)', 'SampelLingkungan::edit/$1');
+    $routes->post('update-data', 'SampelLingkungan::update');
 });
 
 /** Laboratorium tujuan **/

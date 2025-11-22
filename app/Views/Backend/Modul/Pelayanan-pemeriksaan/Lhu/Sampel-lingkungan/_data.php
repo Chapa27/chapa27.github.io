@@ -16,7 +16,7 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id_fka']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_psl']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_sampel']; ?></td>
                 <td><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
@@ -29,10 +29,10 @@
                 <td><?= $row['jenis_pengawet']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id_fka']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id_psl']; ?>)" title="Edit data">
                             <i class="fa-solid fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id_fka']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id_psl']; ?>)" title="Hapus data">
                             <i class="fa-solid fa-trash-alt"></i>
                         </button>
                     </div>
@@ -45,7 +45,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/jenis-sampel/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan-pemeriksaan/lhu/sampel-lingkungan/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
