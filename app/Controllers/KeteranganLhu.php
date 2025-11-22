@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\KeteranganLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -12,9 +13,23 @@ class KeteranganLhu extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function index()
+    protected $title;
+    protected $model;
+    protected $validation;
+
+    public function __construct()
     {
-        //
+        $this->title = 'Keterangan';
+        $this->model = new KeteranganLhuModel();
+        $this->validation = \Config\Services::validation();
+    }
+
+    public function index()
+    {   
+         $data = [
+            'title' => 'Data ' . $this->title
+        ];
+        return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Ket-lhu/index', $data);
     }
 
     /**
@@ -24,9 +39,21 @@ class KeteranganLhu extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function show($id = null)
+    public function list()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $data = [
+                'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Ket-lhu/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -36,7 +63,23 @@ class KeteranganLhu extends ResourceController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $id_lab = $this->request->getVar('id_lab');
+            $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar,
+                'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Ket-lhu/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -46,7 +89,23 @@ class KeteranganLhu extends ResourceController
      */
     public function create()
     {
-        //
+         if ($this->request->isAJAX()) {
+            $simpandata = [
+                'kode_pengantar' => $this->request->getVar('kode_pengantar'),
+                'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),
+                'sub_kontrak' => $this->request->getVar('sub_kontrak'),
+                'kontrak_diulang' => $this->request->getVar('kontrak_diulang'),
+                'permintaan_khusus' => $this->request->getVar('permintaan_khusus')
+                
+            ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            echo json_encode($msg);
+        }else{
+            exit('Not Process');
+        }
     }
 
     /**

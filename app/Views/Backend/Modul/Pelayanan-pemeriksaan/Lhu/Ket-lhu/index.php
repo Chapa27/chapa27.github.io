@@ -1,8 +1,5 @@
 <?= $this->extend('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index'); ?>
 
-<?= $this->section('topAssets'); ?>
-<link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
-<?= $this->endSection(); ?>
 <?= $this->section('content_menu'); ?>
 <div class="row p-0">
             <!-- [ sample-page ] start -->
@@ -30,15 +27,18 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
 <script>
     function listData() {
+        var id_lab = $('.btn-tambah').data("id");
+        var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('master-data/laboratorium/list-data'); ?>",
+            url: "<?= site_url('pelayanan-pemeriksaan/keterangan-lhu/list-data'); ?>",
             dataType: 'json',
+            data:{
+                 id_lab:id_lab,
+                 kode_pengantar:kode_pengantar
+            },
             success: function(response) {
                 $(".view-data").html(response.data);
             },
@@ -51,12 +51,17 @@
 
     $(document).ready(function() {
         listData();
-
+        var id_lab = $('.btn-tambah').data("id");
+        var kode_pengantar = $('.btn-tambah').data('kode');
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('master-data/laboratorium/add-data'); ?>",
+                url: "<?= site_url('pelayanan-pemeriksaan/keterangan-lhu/add-data'); ?>",
                 dataType: 'json',
+                data:{
+                 id_lab:id_lab,
+                 kode_pengantar:kode_pengantar
+                },
                 cache: false,
                 success: function(response) {
                     $(".view-modal").html(response.data).show();

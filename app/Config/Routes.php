@@ -137,7 +137,7 @@ $routes->group('pelayanan-pemeriksaan/lhu/sampel-lingkungan', function ($routes)
 
 /** Laboratorium tujuan **/
 $routes->group('laboratorium-tujuan', function ($routes) {
-    $routes->get('', 'LaboratoriumTujuan::index');
+    $routes->get('index/(:any)', 'LaboratoriumTujuan::index/$1');
     $routes->get('list-data', 'LaboratoriumTujuan::list');
     $routes->get('add-data/(:any)', 'LaboratoriumTujuan::new/$1');
     $routes->post('create-data', 'LaboratoriumTujuan::create');
@@ -149,8 +149,8 @@ $routes->group('laboratorium-tujuan', function ($routes) {
 $routes->group('pelayanan-pemeriksaan/keterangan-lhu', function ($routes) {
     $routes->get('', 'KeteranganLhu::index');
     $routes->get('list-data', 'KeteranganLhu::list');
-    $routes->get('add-data/(:any)', 'KeteranganLhu::new/$1');
-    $routes->post('create-data', 'LaboratoriumTujuan::create');
+    $routes->get('add-data', 'KeteranganLhu::new');
+    $routes->post('create-data', 'KeteranganLhu::create');
     $routes->get('edit-data/(:num)', 'LaboratoriumTujuan::edit/$1');
     $routes->post('update-data', 'LaboratoriumTujuan::update');
     $routes->delete('delete-data/(:num)', 'LaboratoriumTujuan::delete/$1');

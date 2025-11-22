@@ -1,36 +1,28 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: calibri;">
-        <?php
-        $arrth = ['No', 'Laboratorium', 'Lantai', 'status', ''];
-        echo '<tr>';
-        foreach ($arrth as $th) :
-            echo '<th>' . $th . '</th>';
-        endforeach;
-        echo '</tr>';
-        ?>
-    </thead>
     <tbody style="font-family: arial;">
+        <tr>
+            <td><b>Keterangan</b></td>
+        </tr>
         <?php
-        $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
-                <td><b><?= $no++; ?></b></td>
-                <td><?= $row['nama_lab']; ?></td>
-                <td><?= $row['lantai']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
-                <td>
-                    <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
-                            <i class="fa-solid fa-edit"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
-                            <i class="fa-solid fa-trash-alt"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        <?php endforeach; ?>
+        <tr>
+            <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
+            <td>: <?= $row['paramater_tidak_dapat_di_uji'] ?></td>
+        </tr>
+         <tr>
+            <td><b>Sub kontrak</b></td>
+            <td>: <?= $row['sub_kontrak'] ?></td>
+        </tr>
+        <tr>
+            <td><b>Kontrak di ulang</b></td>
+            <td>: <?= $row['kontrak_diulang'] ?></td>
+        </tr>
+        <tr>
+            <td><b>Permintaan khusus</b></td>
+            <td>: <?= $row['permintaan_khusus'] ?></td>
+        </tr>
+        <?php endforeach;?>
     </tbody>
 </table>
 <script>
