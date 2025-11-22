@@ -1,4 +1,5 @@
 <?= $this->extend('Backend/Layout/_main'); ?>
+
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
@@ -12,7 +13,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Modul Pelayanan Sampel</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Modul Pelayanan Pemeriksaan</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -55,14 +56,14 @@
                                 }
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link navtabs <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-sampel/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
+                                    <a class="nav-link navtabs <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
                                 </li>
                                 <?php
                             endforeach;
                             ?>
                         </ul>
                         <br> 
-                         <?= $this->renderSection('content_menu'); ?> 
+                        <?= $this->renderSection('content_menu'); ?> 
             </div>
         </div>
     </div>

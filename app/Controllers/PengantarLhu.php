@@ -44,7 +44,7 @@ class PengantarLhu extends ResourceController
             'title' => 'Data ' . $this->title,
             'items' => $this->modelMapSetLab->findAll()
         ];
-        return view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/index', $data);
+        return view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/index', $data);
     }
 
     public function generate_kode_pengantar() 
@@ -76,7 +76,7 @@ class PengantarLhu extends ResourceController
                 'cek_setting_lab' => $this->modelMapSetLab->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -104,7 +104,7 @@ class PengantarLhu extends ResourceController
                 'masterPelanggan' => $this->modelPelanggan->where('is_active', 1)->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -208,7 +208,7 @@ class PengantarLhu extends ResourceController
                 'masterLab' => $this->modelLab->findAll()
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan-sampel/Pengantar-lhu/_set_lab', $data)
+                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/_set_lab', $data)
             ];
 
             echo json_encode($msg);

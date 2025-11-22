@@ -30,7 +30,7 @@ class FisikaKimiaAir extends BaseController
     public function index($param1, $param2)
     {
          $data = ['param1' => $param1];
-         return view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/index', $data);
+         return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Fisika-kimia-air/index', $data);
     }
 
      public function generate_kode_sampel($idlab) 
@@ -63,7 +63,7 @@ class FisikaKimiaAir extends BaseController
                 'kp' => $kode_pengantar
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Fisika-kimia-air/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -85,7 +85,7 @@ class FisikaKimiaAir extends BaseController
                 'kode_pengantar' => $kode_pengantar
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-sampel/Lhu/Fisika-kimia-air/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Fisika-kimia-air/_add', $data)
             ];
 
             echo json_encode($msg);

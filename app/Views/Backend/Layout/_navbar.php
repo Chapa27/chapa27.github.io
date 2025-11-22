@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label>Modul Pelayanan Sampel</label>
+                    <label>Modul Pelayanan Pemeriksaan</label>
                     <i class="ti ti-dashboard"></i>
                 </li>
                 <li class="pc-item">
@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-sampel/pengantar-lhu'); ?>" class="pc-link">
+                    <a href="<?= base_url('pelayanan-pemeriksaan/pengantar-lhu'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
                         <span class="pc-mtext">Pengantar LHU</span>
                     </a>

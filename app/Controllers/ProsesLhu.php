@@ -40,7 +40,7 @@ class ProsesLhu extends ResourceController
             'menu_lab' => $this->modelMapSettingLab->get_data($kode_pengantar),
             // 'first_menu' => $fm
         ];
-       return view('Backend/Modul/Pelayanan-sampel/Lhu/index', $data);
+       return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index', $data);
     }
 
     /**
@@ -61,7 +61,7 @@ class ProsesLhu extends ResourceController
             'id_lab' => $id_lab,
             'kode_pengantar' => $param1
         ];
-       return view('Backend/Modul/Pelayanan-sampel/Lhu/_menu', $data);
+       return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/_menu', $data);
     }
 
     /**

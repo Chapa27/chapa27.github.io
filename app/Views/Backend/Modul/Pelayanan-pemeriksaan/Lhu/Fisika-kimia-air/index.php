@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Modul/Pelayanan-sampel/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <!-- select2 -->

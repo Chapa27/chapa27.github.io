@@ -31,7 +31,7 @@ use App\Models\MappSettingLabModel;
                         <button type="button" class="btn btn-primary btn-sm" onclick="settingLab(<?= $row['id_pengantar']; ?>)" title="Setting Lab">
                             <i class="fa-solid fa-circle-plus"></i>
                         </button>
-                         <a href="<?= base_url('pelayanan-sampel/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary btn-sm" title="Proses LHU">
+                         <a href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary btn-sm" title="Proses LHU">
                             <i class="fa-solid fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -44,7 +44,7 @@ use App\Models\MappSettingLabModel;
     function settingLab(id) {
        $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan-sampel/pengantar-lhu/setting-lab/'); ?>' + id,
+            url: '<?= site_url('pelayanan-pemeriksaan/pengantar-lhu/setting-lab/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
