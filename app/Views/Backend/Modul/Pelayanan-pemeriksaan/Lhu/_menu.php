@@ -23,7 +23,12 @@
             echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Sampel-lingkungan/index', $data);
             break;
         case 'keterangan':
-            echo 'keterangan';
+            $data = [
+                'title' => 'Keterangan',
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar
+            ];
+            echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Ket-lhu/index', $data);
             break;
         case 'kondisi_lingkungan':
             echo 'kondisi_lingkungan';

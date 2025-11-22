@@ -144,5 +144,15 @@ $routes->group('laboratorium-tujuan', function ($routes) {
     $routes->delete('delete-data/(:num)', 'LaboratoriumTujuan::delete/$1');
 });
 
+$routes->group('pelayanan-pemeriksaan/keterangan-lhu', function ($routes) {
+    $routes->get('', 'KeteranganLhu::index');
+    $routes->get('list-data', 'KeteranganLhu::list');
+    $routes->get('add-data/(:any)', 'KeteranganLhu::new/$1');
+    $routes->post('create-data', 'LaboratoriumTujuan::create');
+    $routes->get('edit-data/(:num)', 'LaboratoriumTujuan::edit/$1');
+    $routes->post('update-data', 'LaboratoriumTujuan::update');
+    $routes->delete('delete-data/(:num)', 'LaboratoriumTujuan::delete/$1');
+});
+
 
 

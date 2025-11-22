@@ -1,18 +1,15 @@
 <?= $this->extend('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index'); ?>
+
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
-<!-- select2 -->
-<link rel="stylesheet" href="<?= base_url('assets/css/plugins/select2.min.css'); ?>" id="main-style-link">
 <?= $this->endSection(); ?>
-
 <?= $this->section('content_menu'); ?>
-    <!-- [ Main Content ] start -->
-        <div class="row p-0">
+<div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-6" style="padding:0px;">
-                        <div class="d-flex justify-content-end align-items-center gap-1">    
+                        <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-dark btn-sm" id="refBtn">
                                 <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
                             </button>
@@ -37,20 +34,11 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
-<script src="<?= base_url('js/jquery-3.7.1.min.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/select2.min.js'); ?>"></script>
-
 <script>
     function listData() {
-        var id_lab = $('.btn-tambah').data("id");
-        var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan-pemeriksaan/lhu/sampel-lingkungan/list-data'); ?>",
+            url: "<?= site_url('master-data/laboratorium/list-data'); ?>",
             dataType: 'json',
-            data:{
-                 id_lab:id_lab,
-                 kode_pengantar:kode_pengantar
-            },
             success: function(response) {
                 $(".view-data").html(response.data);
             },
@@ -63,18 +51,12 @@
 
     $(document).ready(function() {
         listData();
-        
+
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
-            var id_lab = $(this).data("id");
-            var kode_pengantar = $(this).data('kode');
             $.ajax({
-                url: "<?= site_url('pelayanan-pemeriksaan/lhu/sampel-lingkungan/add-data'); ?>",
+                url: "<?= site_url('master-data/laboratorium/add-data'); ?>",
                 dataType: 'json',
-                data:{
-                    id_lab:id_lab,
-                    kode_pengantar:kode_pengantar
-                },
                 cache: false,
                 success: function(response) {
                     $(".view-modal").html(response.data).show();
@@ -85,29 +67,6 @@
                 }
             })
         })
-
-        $(".btn-kondisi-lingkungan").click(function(e) {
-            e.preventDefault();
-            var id_lab = $(this).data("id");
-            var kode_pengantar = $(this).data('kode');
-            $.ajax({
-                url: "<?= site_url('pelayanan-pemeriksaan/lhu/kondisi-lingkungan/add-data'); ?>",
-                dataType: 'json',
-                data:{
-                    id_lab:id_lab,
-                    kode_pengantar:kode_pengantar
-                },
-                cache: false,
-                success: function(response) {
-                    $(".view-modal").html(response.data).show();
-                    $("#exampleModal").modal('show');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                }
-            })
-        })
-
     })
 </script>
 <?= $this->endSection(); ?>
