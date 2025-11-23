@@ -8,7 +8,7 @@
                     <div class="card-header p-6" style="padding:0px;">
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-dark btn-sm" id="refBtn">
-                                <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
+                                <span class="pc-micon"><i class="fa-solid fa-refresh"></i></span>
                             </button>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">

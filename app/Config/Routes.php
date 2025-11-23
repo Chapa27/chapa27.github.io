@@ -187,4 +187,15 @@ $routes->group('pelayanan-pemeriksaan/penanggung-jawab-lhu', function ($routes) 
 });
 
 
+$routes->group('pelayanan-pemeriksaan/resume', function ($routes) {
+    $routes->get('', 'PenanggungJawabLhu::index');
+    $routes->get('Pakta-integritas', 'ResumeLayananPemeriksaan::pakta');
+    $routes->get('add-data', 'PenanggungJawabLhu::new');
+    $routes->post('create-data', 'PenanggungJawabLhu::create');
+    $routes->get('edit-data/(:num)', 'PenanggungJawabLhu::edit/$1');
+    $routes->post('update-data', 'PenanggungJawabLhu::update');
+    $routes->delete('delete-data/(:num)', 'PenanggungJawabLhu::delete/$1');
+});
+
+
 

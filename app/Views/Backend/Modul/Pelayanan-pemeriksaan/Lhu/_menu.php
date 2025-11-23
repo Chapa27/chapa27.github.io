@@ -54,6 +54,14 @@
             ];
             echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Penanggung-jawab/index', $data);
             break;
+        case 'resume':
+           $data = [
+                'title' => 'Penanggung jawab',
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar
+            ];
+            echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Resume/index', $data);
+            break;
         default:
             break;
     }

@@ -85,6 +85,9 @@
                     <li class="nav-item">
                         <a class="nav-link navtabs <?= @$id_lab == 'penanggung_jawab' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'penanggung_jawab' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/penanggung_jawab') ?>">Penanggung jawab</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link navtabs <?= @$id_lab == 'resume' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'resume' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/resume') ?>">Resume</a>
+                    </li>
                 </ul>
                 <?php } ?>
                 <br> 
