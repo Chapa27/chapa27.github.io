@@ -12,7 +12,15 @@ class KajiUlangPermintaanKontrakModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'alat_utama',
+        'alat_pendukung',
+        'personil_lab',
+        'metode_pemeriksaan',
+        'uji_mutu',
+        'reagensa_dan_media',
+        'kode_pengantar'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

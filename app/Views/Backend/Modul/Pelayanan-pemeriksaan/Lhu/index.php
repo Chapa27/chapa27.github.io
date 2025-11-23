@@ -77,7 +77,10 @@
                         <a class="nav-link navtabs <?= @$id_lab == 'keterangan' ? 'active' : ''; ?>" <?= @$id_lab == 'keterangan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan') ?>">Keterangan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navtabs <?= @$id_lab == 'kondisi_lingkungan' ? 'active' : ''; ?>" <?= @$id_lab == 'kondisi_lingkungan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi_lingkungan') ?>">Kondisi lingkungan</a>
+                        <a class="nav-link navtabs <?= @$id_lab == 'kondisi_lingkungan' ? 'active' : ''; ?>" <?= @$id_lab == 'kondisi_lingkungan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi_lingkungan') ?>">Kondisi lingkungan sekitar sampel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navtabs <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? 'active' : ''; ?>" <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kaji_ulang_permintaan_kontrak') ?>">Kaji ulang permintaan & kontrak</a>
                     </li>
                 </ul>
                 <?php } ?>

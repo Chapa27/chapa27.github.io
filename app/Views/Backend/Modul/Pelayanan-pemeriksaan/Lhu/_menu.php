@@ -38,6 +38,13 @@
             ];
             echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Kondisi-lingkungan/index', $data);
             break;
+        case 'kaji_ulang_permintaan_kontrak':
+           $data = [
+                'title' => 'Kaji ulang permintaan & kontrak',
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar
+            ];
+            echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Kaji-ulang/index', $data);
             break;
         default:
             break;

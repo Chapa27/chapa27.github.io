@@ -33,7 +33,7 @@
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan-pemeriksaan/keterangan-lhu/list-data'); ?>",
+            url: "<?= site_url('pelayanan-pemeriksaan/kaji-ulang-permintaan-kontrak/list-data'); ?>",
             dataType: 'json',
             data:{
                  id_lab:id_lab,
@@ -56,7 +56,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan-pemeriksaan/keterangan-lhu/add-data'); ?>",
+                url: "<?= site_url('pelayanan-pemeriksaan/kaji-ulang-permintaan-kontrak/add-data'); ?>",
                 dataType: 'json',
                 data:{
                  id_lab:id_lab,

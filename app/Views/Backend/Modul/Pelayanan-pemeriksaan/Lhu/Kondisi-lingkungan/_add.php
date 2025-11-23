@@ -10,7 +10,7 @@
             if ($jumlah > 0) {
                         ?>
                         <div class="alert alert-danger fw-bold" role="alert">
-                            Keterangan sudah di isi !
+                            Kondisi linkungan sekitar sampel sudah di isi !
                         </div>
                         <?php
                     }else{

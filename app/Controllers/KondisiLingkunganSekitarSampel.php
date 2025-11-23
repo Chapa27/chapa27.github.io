@@ -32,7 +32,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
         return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Kondisi-lingkungan/index', $data);
     }
 
-     public function list()
+    public function list()
     {
         if ($this->request->isAJAX()) {
             $kode_pengantar = $this->request->getVar('kode_pengantar');

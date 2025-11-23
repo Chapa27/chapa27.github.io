@@ -166,5 +166,15 @@ $routes->group('pelayanan-pemeriksaan/kondisi-lingkungan-sekitar-sampel', functi
     $routes->delete('delete-data/(:num)', 'KondisiLingkunganSekitarSampel::delete/$1');
 });
 
+$routes->group('pelayanan-pemeriksaan/kaji-ulang-permintaan-kontrak', function ($routes) {
+    $routes->get('', 'KajiUlangPermintaanKontrak::index');
+    $routes->get('list-data', 'KajiUlangPermintaanKontrak::list');
+    $routes->get('add-data', 'KajiUlangPermintaanKontrak::new');
+    $routes->post('create-data', 'KajiUlangPermintaanKontrak::create');
+    $routes->get('edit-data/(:num)', 'KajiUlangPermintaanKontrak::edit/$1');
+    $routes->post('update-data', 'KajiUlangPermintaanKontrak::update');
+    $routes->delete('delete-data/(:num)', 'KajiUlangPermintaanKontrak::delete/$1');
+});
+
 
 

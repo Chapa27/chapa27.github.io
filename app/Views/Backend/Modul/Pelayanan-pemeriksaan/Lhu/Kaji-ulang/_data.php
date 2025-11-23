@@ -8,20 +8,28 @@
     </button>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
         <tr>
-            <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
-            <td>: <?= $row['paramater_tidak_dapat_di_uji'] ?></td>
+            <td style="width: 25%;"><b>Alat utama</b></td>
+            <td>: <?= $row['alat_utama'] ?></td>
         </tr>
          <tr>
-            <td><b>Sub kontrak</b></td>
-            <td>: <?= $row['sub_kontrak'] ?></td>
+            <td><b>Alat pendukung</b></td>
+            <td>: <?= $row['alat_pendukung'] ?></td>
         </tr>
         <tr>
-            <td><b>Kontrak di ulang</b></td>
-            <td>: <?= $row['kontrak_diulang'] ?></td>
+            <td><b>Personil laboratorium</b></td>
+            <td>: <?= $row['personil_lab'] ?></td>
         </tr>
         <tr>
-            <td><b>Permintaan khusus</b></td>
-            <td>: <?= $row['permintaan_khusus'] ?></td>
+            <td><b>Metode pemeriksaan</b></td>
+            <td>: <?= $row['metode_pemeriksaan'] ?></td>
+        </tr>
+        <tr>
+            <td><b>Uji mutu (Quality control)</b></td>
+            <td>: <?= $row['uji_mutu'] ?></td>
+        </tr>
+        <tr>
+            <td><b>Reagensa dan media</b></td>
+            <td>: <?= $row['reagensa_dan_media'] ?></td>
         </tr>
     </tbody>
     <?php endforeach; ?>
@@ -30,7 +38,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan-pemeriksaan/keterangan-lhu/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan-pemeriksaan/kaji-ulang-permintaan-kontrak/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
