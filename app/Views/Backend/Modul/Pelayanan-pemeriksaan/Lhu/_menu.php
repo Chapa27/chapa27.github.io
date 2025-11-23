@@ -30,7 +30,7 @@
             ];
             echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Ket-lhu/index', $data);
             break;
-        case 'kondisi_lingkungan':
+        case 'kondisi_lingkungan_sekitar_sampel':
            $data = [
                 'title' => 'Kondisi lingkungan sekitar sampel',
                 'id_lab' => $id_lab,
