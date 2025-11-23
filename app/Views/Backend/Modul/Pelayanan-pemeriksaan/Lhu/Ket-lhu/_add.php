@@ -76,7 +76,6 @@
                             text: response.sukses,
                             icon: "success"
                         });
-
                         $("#exampleModal").modal('hide');
                         listData();
                 },

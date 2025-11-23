@@ -1,4 +1,4 @@
-<table id="example" class="table table-hover table-bordered">
+<table id="example" class="table table-responsive table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
         $arrth = [

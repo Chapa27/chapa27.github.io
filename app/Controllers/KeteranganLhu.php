@@ -89,7 +89,7 @@ class KeteranganLhu extends ResourceController
      */
     public function create()
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $simpandata = [
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                 'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),
@@ -117,7 +117,19 @@ class KeteranganLhu extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Ket-lhu/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -129,7 +141,22 @@ class KeteranganLhu extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $simpandata = [
+                'id' => $this->request->getVar('id'),
+                'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),
+                'sub_kontrak' => $this->request->getVar('sub_kontrak'),
+                'kontrak_diulang' => $this->request->getVar('kontrak_diulang'),
+                'permintaan_khusus' => $this->request->getVar('permintaan_khusus')  
+            ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            echo json_encode($msg);
+        }else{
+            exit('Not Process');
+        }
     }
 
     /**

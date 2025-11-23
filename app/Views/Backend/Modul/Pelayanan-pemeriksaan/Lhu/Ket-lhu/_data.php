@@ -1,11 +1,11 @@
 <table id="example" class="table table-hover table-bordered">
-    <p><b>Keterangan</b></p>
-        <?php
-        foreach ($items as $row) :
-        ?>
-        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
-                            <i class="fa-solid fa-trash-alt"></i>
-                        </button>
+    <?php foreach ($items as $row) : ?>
+    <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+       <span class="fa-solid fa-edit"></span>
+    </button>&nbsp;
+    <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+       <span class="fa-solid fa-trash-alt"></span>
+    </button>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
         <tr>
             <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
@@ -24,13 +24,13 @@
             <td>: <?= $row['permintaan_khusus'] ?></td>
         </tr>
     </tbody>
-        <?php endforeach;?>
+    <?php endforeach; ?>
 </table>
 <script>
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/laboratorium/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan-pemeriksaan/keterangan-lhu/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
