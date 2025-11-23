@@ -49,4 +49,10 @@ class KeteranganLhuModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function get_data() 
+    {
+            
+    }
+
 }
