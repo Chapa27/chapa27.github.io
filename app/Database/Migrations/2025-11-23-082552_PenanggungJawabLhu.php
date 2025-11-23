@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class KajiUlangPermintaanKontrakDanTender extends Migration
+class PenanggungJawabLhu extends Migration
 {
     public function up()
     {
@@ -19,25 +19,17 @@ class KajiUlangPermintaanKontrakDanTender extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '150'
             ],
-            'alat_pendukung' => [
+            'nama_pjb' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150'
             ],
-            'personil_lab' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
-            ],
-            'metode_pemeriksaan' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
-            ],
-            'uji_mutu' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
-            ],
-            'reagensa_dan_media' => [
+            'no_telp' => [
                 'type'       => 'CHAR',
-                'constraint' => '150',
+                'constraint' => '20'
+            ],
+            'penerima_sampel' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150'
             ],
             'id_laboratorium' => [
                 'type'       => 'INT'
@@ -63,11 +55,11 @@ class KajiUlangPermintaanKontrakDanTender extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('kaji_ulang_permintaan_kontrak');
+        $this->forge->createTable('penanggung_jawab_lhu');
     }
 
     public function down()
     {
-        $this->forge->dropTable('kaji_ulang_permintaan_kontrak');
+        $this->forge->dropTable('penanggung_jawab_lhu');
     }
 }

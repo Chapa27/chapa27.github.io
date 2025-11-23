@@ -82,6 +82,9 @@
                     <li class="nav-item">
                         <a class="nav-link navtabs <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kaji_ulang_permintaan_kontrak') ?>">Kaji ulang permintaan & kontrak</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link navtabs <?= @$id_lab == 'penanggung_jawab' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'penanggung_jawab' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/penanggung_jawab') ?>">Penanggung jawab</a>
+                    </li>
                 </ul>
                 <?php } ?>
                 <br> 

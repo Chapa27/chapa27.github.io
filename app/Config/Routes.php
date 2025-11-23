@@ -176,5 +176,15 @@ $routes->group('pelayanan-pemeriksaan/kaji-ulang-permintaan-kontrak', function (
     $routes->delete('delete-data/(:num)', 'KajiUlangPermintaanKontrak::delete/$1');
 });
 
+$routes->group('pelayanan-pemeriksaan/penanggung-jawab-lhu', function ($routes) {
+    $routes->get('', 'PenanggungJawabLhu::index');
+    $routes->get('list-data', 'PenanggungJawabLhu::list');
+    $routes->get('add-data', 'PenanggungJawabLhu::new');
+    $routes->post('create-data', 'PenanggungJawabLhu::create');
+    $routes->get('edit-data/(:num)', 'PenanggungJawabLhu::edit/$1');
+    $routes->post('update-data', 'PenanggungJawabLhu::update');
+    $routes->delete('delete-data/(:num)', 'PenanggungJawabLhu::delete/$1');
+});
+
 
 
