@@ -118,7 +118,19 @@ class KondisiLingkunganSekitarSampel extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Kondisi-lingkungan/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -130,7 +142,19 @@ class KondisiLingkunganSekitarSampel extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $simpandata = [
+                'id' => $this->request->getVar('id'),
+                'kondisi_lingkungan_sekitar_sampel' => $this->request->getVar('kondisi_lingkungan_sekitar_sampel')
+            ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            echo json_encode($msg);
+        }else{
+            exit('Not Process');
+        }
     }
 
     /**

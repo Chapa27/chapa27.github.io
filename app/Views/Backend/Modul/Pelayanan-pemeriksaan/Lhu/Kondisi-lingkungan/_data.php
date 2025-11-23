@@ -8,7 +8,7 @@
     </button>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
         <tr>
-            <td style="width: 25%;"><b>Kondisi linkungan sekitar sampel</b></td>
+            <td style="width: 30%;"><b>Kondisi linkungan sekitar sampel</b></td>
             <td>: <?= $row['kondisi_lingkungan_sekitar_sampel'] ?></td>
         </tr>
     </tbody>

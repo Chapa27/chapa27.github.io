@@ -52,17 +52,17 @@ class SampelLingkungan extends ResourceController
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
 
         $count = $this->model->where('id_laboratorium', intval($idlab))->countAllResults();
-       
         // Buat nomor urut baru
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
         $getLab = $this->masterLab->find($idlab);
         if ($getLab['id'] == 1) {
-           $ks = 'K';
+            $ks = 'K';
         }else{
-            $ks = 'O';
+            $ks = 'B';
         }
+       
         $nomorAntrian = $ks.'.' . sprintf('%04d', $nomorUrut);
         return $nomorAntrian;
     }

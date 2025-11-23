@@ -6,28 +6,38 @@
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan-pemeriksaan/keterangan-lhu/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan-pemeriksaan/kaji-ulang-permintaan-kontrak/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Parameter tidak dapat di uji</label>
-                        <input type="text" name="paramater_tidak_dapat_di_uji" value="<?= $items['paramater_tidak_dapat_di_uji']; ?>" class="form-control" id="nama-lab">
+                        <label for="nama-lab" class="form-label h5">Alat utama</label>
+                        <input type="text" name="alat_utama" value="<?= $items['alat_utama']; ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Sub kontrak</label>
-                        <input type="text" name="sub_kontrak" value="<?= $items['sub_kontrak']; ?>" class="form-control" id="nama-lab">
+                        <label for="nama-lab" class="form-label h5">Alat pendukung</label>
+                        <input type="text" name="alat_pendukung" value="<?= $items['alat_pendukung']; ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Kontrak di ulang</label>
-                        <input type="text" name="kontrak_diulang" value="<?= $items['kontrak_diulang']; ?>" class="form-control" id="nama-lab">
+                        <label for="nama-lab" class="form-label h5">Personil laboratorium</label>
+                        <input type="text" name="personil_lab" value="<?= $items['personil_lab']; ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="permintaan-khusus" class="form-label h5">Permintaan khusus</label>
-                        <input type="text" name="permintaan_khusus" value="<?= $items['permintaan_khusus']; ?>" class="form-control" id="permintaan-khusus">
+                        <label for="permintaan-khusus" class="form-label h5">Metode pemeriksaan</label>
+                        <input type="text" name="metode_pemeriksaan" value="<?= $items['metode_pemeriksaan']; ?>" class="form-control" id="permintaan-khusus">
+                        <div class="invalid-feedback errorPermintaan"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="permintaan-khusus" class="form-label h5">Uji mutu (Quality control)</label>
+                        <input type="text" name="uji_mutu" value="<?= $items['uji_mutu']; ?>" class="form-control" id="permintaan-khusus">
+                        <div class="invalid-feedback errorPermintaan"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="permintaan-khusus" class="form-label h5">Reagensa & media</label>
+                        <input type="text" name="reagensa_dan_media" value="<?= $items['reagensa_dan_media']; ?>" class="form-control" id="permintaan-khusus">
                         <div class="invalid-feedback errorPermintaan"></div>
                     </div>
                 </div>

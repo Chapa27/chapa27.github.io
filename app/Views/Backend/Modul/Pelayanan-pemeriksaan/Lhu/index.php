@@ -60,7 +60,7 @@
                    <?php
                     foreach ($menu_lab as $m) :
                         if (@$id_lab == $m['id_lab']) {
-                            $active = 'active';
+                            $active = 'active bg-success text-light';
                             $bg = 'style="background-color:#effeff; color:#497e89; font-weight:bold;"';
                         }else{
                             $active = '';
@@ -74,13 +74,13 @@
                     endforeach;
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link navtabs <?= @$id_lab == 'keterangan' ? 'active' : ''; ?>" <?= @$id_lab == 'keterangan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan') ?>">Keterangan</a>
+                        <a class="nav-link navtabs <?= @$id_lab == 'keterangan' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'keterangan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan') ?>">Keterangan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navtabs <?= @$id_lab == 'kondisi_lingkungan' ? 'active' : ''; ?>" <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi_lingkungan_sekitar_sampel') ?>">Kondisi lingkungan sekitar sampel</a>
+                        <a class="nav-link navtabs <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi_lingkungan_sekitar_sampel') ?>">Kondisi lingkungan sekitar sampel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navtabs <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? 'active' : ''; ?>" <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kaji_ulang_permintaan_kontrak') ?>">Kaji ulang permintaan & kontrak</a>
+                        <a class="nav-link navtabs <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kaji_ulang_permintaan_kontrak') ?>">Kaji ulang permintaan & kontrak</a>
                     </li>
                 </ul>
                 <?php } ?>

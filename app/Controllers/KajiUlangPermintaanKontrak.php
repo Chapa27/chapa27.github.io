@@ -123,7 +123,19 @@ class KajiUlangPermintaanKontrak extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Kaji-ulang/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -135,7 +147,25 @@ class KajiUlangPermintaanKontrak extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $simpandata = [
+                'id' => $this->request->getVar('id'),
+                'alat_utama' => $this->request->getVar('alat_utama'),
+                'alat_pendukung' => $this->request->getVar('alat_pendukung'),
+                'personil_lab' => $this->request->getVar('personil_lab'),
+                'metode_pemeriksaan' => $this->request->getVar('metode_pemeriksaan'),
+                'uji_mutu' => $this->request->getVar('uji_mutu'),  
+                'reagensa_dan_media' => $this->request->getVar('reagensa_dan_media'),  
+
+            ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            echo json_encode($msg);
+        }else{
+            exit('Not Process');
+        }
     }
 
     /**
