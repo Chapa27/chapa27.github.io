@@ -156,5 +156,15 @@ $routes->group('pelayanan-pemeriksaan/keterangan-lhu', function ($routes) {
     $routes->delete('delete-data/(:num)', 'KeteranganLhu::delete/$1');
 });
 
+$routes->group('pelayanan-pemeriksaan/kondisi-lingkungan-sekitar-sampel', function ($routes) {
+    $routes->get('', 'KondisiLingkunganSekitarSampel::index');
+    $routes->get('list-data', 'KondisiLingkunganSekitarSampel::list');
+    $routes->get('add-data', 'KondisiLingkunganSekitarSampel::new');
+    $routes->post('create-data', 'KondisiLingkunganSekitarSampel::create');
+    $routes->get('edit-data/(:num)', 'KondisiLingkunganSekitarSampel::edit/$1');
+    $routes->post('update-data', 'KondisiLingkunganSekitarSampel::update');
+    $routes->delete('delete-data/(:num)', 'KondisiLingkunganSekitarSampel::delete/$1');
+});
+
 
 
