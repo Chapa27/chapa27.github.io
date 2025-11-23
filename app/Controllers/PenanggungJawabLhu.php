@@ -116,7 +116,19 @@ class PenanggungJawabLhu extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Penanggung-jawab/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -128,7 +140,22 @@ class PenanggungJawabLhu extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $simpandata = [
+                'id' => $this->request->getVar('id'),
+                'nama_pjb' => $this->request->getVar('nama_pjb'),
+                'no_telp_pjb' => $this->request->getVar('no_telp_pjb'),
+                'penerima_sampel' => $this->request->getVar('penerima_sampel'),
+                'no_telp_penerima' => $this->request->getVar('no_telp_penerima')
+            ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            echo json_encode($msg);
+        }else{
+            exit('Not Process');
+        }
     }
 
     /**

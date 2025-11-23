@@ -31,7 +31,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan-pemeriksaan/kaji-ulang-permintaan-kontrak/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan-pemeriksaan/penanggung-jawab-lhu/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
