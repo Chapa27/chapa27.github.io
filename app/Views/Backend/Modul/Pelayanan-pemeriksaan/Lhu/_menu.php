@@ -4,18 +4,19 @@
 <?= $this->endSection(); ?>
 <?= $this->section('content_menu'); ?>
     <?php
-
-use App\Models\KeteranganLhuModel;
-use App\Models\KondisiLingkunganSekitarSampelModel;
+    use App\Models\KeteranganLhuModel;
+    use App\Models\KondisiLingkunganSekitarSampelModel;
     use App\Models\LaboratoriumTujuanModel;
     use App\Models\PengantarLhuModel;
     use App\Models\KajiUlangPermintaanKontrakModel;
+    use App\Models\PenanggungJawabLhuModel;
 
     $labTujuan = new LaboratoriumTujuanModel();
     $pengantar_lhu = new PengantarLhuModel();
     $result_a = new KondisiLingkunganSekitarSampelModel();
     $keterangan = new KeteranganLhuModel();
     $kaji_ulang = new KajiUlangPermintaanKontrakModel();
+    $penanggung_jawab = new PenanggungJawabLhuModel();
 
     $result = $labTujuan->get_data_by_id_kode_pengantar($kode_pengantar, $id_lab);
     foreach ($result as $row) {
@@ -74,7 +75,8 @@ use App\Models\KondisiLingkunganSekitarSampelModel;
                 'result_a' => $result_a->where('kode_pengantar', $kode_pengantar)->get()->getResultArray(),
                 'menu_lab' => $labTujuan->get_data($kode_pengantar),
                 'keterangan' => $keterangan->where('kode_pengantar', $kode_pengantar)->get()->getResultArray(),
-                'kaji_ulang' => $kaji_ulang->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
+                'kaji_ulang' => $kaji_ulang->where('kode_pengantar', $kode_pengantar)->get()->getResultArray(),
+                'penanggung_jawab' => $penanggung_jawab->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
             ];
             echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Resume/index', $data);
             break;

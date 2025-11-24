@@ -32,7 +32,8 @@ use App\Models\SampelLingkunganModel;
         $kontrak_diulang = $ket['kontrak_diulang'];
         $permintaan_khusus = $ket['permintaan_khusus'];
     }
-    var_dump($kaji_ulang);
+    
+    // kaji ulang
     foreach ($kaji_ulang as $kl) {
         $alat_utama = $kl['alat_utama'];
         $alat_dukung = $kl['alat_pendukung'];
@@ -42,10 +43,17 @@ use App\Models\SampelLingkunganModel;
         $reagensa_dan_media = $kl['reagensa_dan_media'];
     }   
 
+    //penanggung jawab
+    foreach ($penanggung_jawab as $pj) {
+        $nama_pjb = $pj['nama_pjb'];
+        $no_telp_pjb = $pj['no_telp_pjb'];
+        $penerima_sampel = $pj['penerima_sampel'];
+        $no_telp_ps = $pj['no_telp_penerima'];
+    }
     ?>
     <p><h3><b>PENERIMAAN SAMPEL</b></h3></p><hr style="border: 1px solid;">
 </div>
-<table class="table table-responsive table-bordered" style="border: 1px solid black; width:100%;">
+<table class="table table-responsive table-bordered view-data" style="border: 1px solid black; width:100%;">
     <thead>
         <tbody>
             <tr>
@@ -128,11 +136,12 @@ use App\Models\SampelLingkunganModel;
                                             </tbody>
                                         </td>
                                         <td>
-                                            KAJI ULANG PERMINTAAN
+                                            <br>
+                                            <div class="fw-bold text-center">KAJI ULANG PERMINTAAN</div>
                                             <table class="table table-bordered" style="border: 1px solid;">
                                             <tr>
                 <td style="text-align: center;"><b>SUMBER DAYA</b></td>
-                <td style="text-align: center;">KONDISI</td>
+                <td style="text-align: center;"><b>KONDISI</b></td>
             </tr>
                                             <tr>
                                                 <td>Alat utama</td>
@@ -172,13 +181,13 @@ use App\Models\SampelLingkunganModel;
         <tbody style="font-family: arial;">
             <tr>
                 <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
-                <td>: </td>
-                <td>: </td>
+                <td>: <?= $nama_pjb; ?></td>
+                <td>: <?= $no_telp_pjb; ?></td>
             </tr>
             <tr>
                 <td><b>Penerima sampel</b></td>
-                <td>: </td>
-                <td>: </td>
+                <td>: <?= $penerima_sampel; ?></td>
+                <td>: <?= $no_telp_ps; ?></td>
             </tr>
         </tbody>
                                             </table>

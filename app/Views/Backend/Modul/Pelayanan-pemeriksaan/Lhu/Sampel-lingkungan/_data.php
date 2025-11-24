@@ -21,7 +21,7 @@
                 <td><?= $row['kode_sampel']; ?></td>
                 <td><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
                 <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
-                <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '.$row['jam_ambil_sampel']; ?></td>
+                <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
                 <td><?= explode(', ', $row['jenis_sampel'])[1]; ?></td>
                 <td><?= $row['metode_pemeriksaan']; ?></td>
                 <td><?= $row['volume_atau_berat']; ?></td>
