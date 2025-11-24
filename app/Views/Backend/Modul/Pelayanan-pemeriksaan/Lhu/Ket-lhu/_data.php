@@ -1,5 +1,26 @@
 <table id="example" class="table table-hover table-bordered">
-    <?php foreach ($items as $row) : ?>
+    <?php if (!$items) {
+       ?>
+       <tbody style="font-family: arial;">
+        <tr>
+            <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
+            <td>: </td>
+        </tr>
+         <tr>
+            <td><b>Sub kontrak</b></td>
+            <td>: </td>
+        </tr>
+        <tr>
+            <td><b>Kontrak di ulang</b></td>
+            <td>: </td>
+        </tr>
+        <tr>
+            <td><b>Permintaan khusus</b></td>
+            <td>: </td>
+        </tr>
+    </tbody>
+       <?php
+    } else { foreach ($items as $row) : ?>
     <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
     </button>&nbsp;
@@ -24,7 +45,7 @@
             <td>: <?= $row['permintaan_khusus'] ?></td>
         </tr>
     </tbody>
-    <?php endforeach; ?>
+    <?php endforeach; } ?>
 </table>
 <script>
     function editData(id) {

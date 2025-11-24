@@ -12,22 +12,22 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Parameter tidak dapat di uji</label>
-                        <input type="text" name="paramater_tidak_dapat_di_uji" value="<?= $items['paramater_tidak_dapat_di_uji']; ?>" class="form-control" id="nama-lab">
+                        <input type="text" name="paramater_tidak_dapat_di_uji" value="<?= $items['paramater_tidak_dapat_di_uji']; ?>" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Sub kontrak</label>
-                        <input type="text" name="sub_kontrak" value="<?= $items['sub_kontrak']; ?>" class="form-control" id="nama-lab">
+                        <input type="text" name="sub_kontrak" value="<?= $items['sub_kontrak']; ?>" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Kontrak di ulang</label>
-                        <input type="text" name="kontrak_diulang" value="<?= $items['kontrak_diulang']; ?>" class="form-control" id="nama-lab">
+                        <input type="text" name="kontrak_diulang" value="<?= $items['kontrak_diulang']; ?>" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
                         <label for="permintaan-khusus" class="form-label h5">Permintaan khusus</label>
-                        <input type="text" name="permintaan_khusus" value="<?= $items['permintaan_khusus']; ?>" class="form-control" id="permintaan-khusus">
+                        <input type="text" name="permintaan_khusus" value="<?= $items['permintaan_khusus']; ?>" class="form-control" id="permintaan-khusus" autocomplete="off">
                         <div class="invalid-feedback errorPermintaan"></div>
                     </div>
                 </div>
