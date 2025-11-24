@@ -1,4 +1,27 @@
 <table id="example" class="table table-hover table-bordered">
+    <?php if (!$items) {
+        ?>
+        <thead>
+            <tr>
+                <th>Penanggung jawab</th>
+                <th style="text-align: center;">Nama & Tanda tangan</th>
+                <th style="text-align: center;">No.Telepon</th>
+            </tr>
+        </thead>
+        <tbody style="font-family: arial;">
+            <tr>
+                <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
+                <td>: </td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Penerima sampel</b></td>
+                <td>: </td>
+                <td>: </td>
+            </tr>
+        </tbody>
+        <?php
+    } else { ?>
     <?php foreach ($items as $row) : ?>
     <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
@@ -9,8 +32,8 @@
     <thead>
         <tr>
             <th>Penanggung jawab</th>
-            <th>Nama & Tanda tangan</th>
-            <th>No.Telepon</th>
+            <th style="text-align: center;">Nama & Tanda tangan</th>
+            <th style="text-align: center;">No.Telepon</th>
         </tr>
     </thead>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
@@ -25,7 +48,7 @@
             <td>: <?= $row['no_telp_penerima'] ?></td>
         </tr>
     </tbody>
-    <?php endforeach; ?>
+    <?php endforeach; } ?>
 </table>
 <script>
     function editData(id) {

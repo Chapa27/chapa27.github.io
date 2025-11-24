@@ -35,7 +35,7 @@
                             <td>Kode sampel</td>
                             <td>Jenis sampel</td>
                             <td>Lokasi pengambilan sampel</td>
-                            <td>Tal dan jam pengambilan sampel</td>
+                            <td>Tgl dan jam pengambilan sampel</td>
                             <td>Peraturan baku mutu</td>
                             <td>Metode pemeriksaan</td>
                             <td>Volume/berat</td>

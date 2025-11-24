@@ -1,4 +1,18 @@
 <table id="example" class="table table-hover table-bordered">
+    <?php if (!$items) {
+        ?>
+        <tbody style="font-family: arial;">
+            <tr>
+                <td style="width: 30%;"><b>Kondisi linkungan sekitar sampel</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td style="width: 30%;"><b>Catatan abnormalitas</b></td>
+                <td>: </td>
+            </tr>
+        </tbody>
+        <?php
+    } else {?>
     <?php foreach ($items as $row) : ?>
     <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
@@ -16,7 +30,7 @@
             <td>: <?= $row['catatan_abnormalitas'] ?></td>
         </tr>
     </tbody>
-    <?php endforeach; ?>
+    <?php endforeach; } ?>
 </table>
 <script>
     function editData(id) {

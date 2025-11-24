@@ -19,7 +19,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
 
     public function __construct()
     {
-        $this->title = 'Kondisi lingkungan sekitar sampel';
+        $this->title = 'Kondisi lingkungan sekitar sampel & Catatan Abnormalitas';
         $this->model = new KondisiLingkunganSekitarSampelModel();
         $this->validation = \Config\Services::validation();
     }
@@ -98,6 +98,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
             $simpandata = [
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                 'kondisi_lingkungan_sekitar_sampel' => $this->request->getVar('kondisi_lingkungan_sekitar_sampel'),
+                'catatan_abnormalitas' => $this->request->getVar('catatan_abnormalitas'),
             ];
                 $this->model->save($simpandata);
                 $msg = [

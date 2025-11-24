@@ -1,5 +1,35 @@
 <table id="example" class="table table-hover table-bordered">
-    <?php foreach ($items as $row) : ?>
+    <?php if (!$items) {
+        ?>
+        <tbody style="font-family: arial;">
+            <tr>
+                <td style="width: 25%;"><b>Alat utama</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Alat pendukung</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Personil laboratorium</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Metode pemeriksaan</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Uji mutu (Quality control)</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Reagensa dan media</b></td>
+                <td>: </td>
+            </tr>
+        </tbody>
+        <?php
+    } else {
+    foreach ($items as $row) : ?>
     <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
     </button>&nbsp;
@@ -32,7 +62,7 @@
             <td>: <?= $row['reagensa_dan_media'] ?></td>
         </tr>
     </tbody>
-    <?php endforeach; ?>
+    <?php endforeach; } ?>
 </table>
 <script>
     function editData(id) {

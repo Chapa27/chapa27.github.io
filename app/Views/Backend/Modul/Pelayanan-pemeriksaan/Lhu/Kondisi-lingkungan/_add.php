@@ -10,7 +10,7 @@
             if ($jumlah > 0) {
                         ?>
                         <div class="alert alert-danger fw-bold" role="alert">
-                            Kondisi linkungan sekitar sampel sudah di isi !
+                            Kondisi lingkungan sekitar sampel & Catatan Abnormalitas sudah di isi !
                         </div>
                         <?php
                     }else{
@@ -23,6 +23,10 @@
                         <label for="nama-lab" class="form-label h5">Kondisi Lingkungan Sekitar Sampel</label>
                         <textarea name="kondisi_lingkungan_sekitar_sampel" class="form-control"></textarea>
                         <div class="invalid-feedback errorNamaLab"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama-lab" class="form-label h5">Catatan Abnormalitas</label>
+                        <textarea name="catatan_abnormalitas" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
