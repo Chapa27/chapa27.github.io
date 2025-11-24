@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="false">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
@@ -32,8 +32,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-ambil-sampel" class="form-label h5" style="font-family: calibri;">Tanggal pengambilan sampel</label>
-                        <input type="date" name="tgl_jam_pengambilan_sampel" class="form-control" id="tgl-ambil-sampel">
+                        <input type="text" name="tgl_pengambilan_sampel" class="form-control" id="tgl-ambil-sampel">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jam-ambil-sampel" class="form-label h5" style="font-family: calibri;">Jam pengambilan sampel</label>
+                        <input type="time" name="jam_pengambilan_sampel" class="form-control" id="jam-ambil-sampel">
+                        <div class="invalid-feedback errorJamAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
                         <label for="metode-pemeriksaan" class="form-label h5" style="font-family: calibri;">Metode pemeriksaan</label>
@@ -66,6 +71,8 @@
 </div>
 <script>
     $(document).ready(function() { 
+        $( "#tgl-ambil-sampel" ).datepicker({ dateFormat: 'dd-mm-yy' });
+
         $('.js-example-basic-single').select2();
         $(".form-data").submit(function(e) {
             e.preventDefault();
@@ -128,6 +135,20 @@
                         } else {
                             $('#jenis-pengawet').removeClass('is-invalid');
                             $('.errorJenisPengawet').html('');
+                        }
+                        if (err.tgl_pengambilan_sampel) {
+                            $('#tgl-ambil-sampel').addClass('is-invalid');
+                            $('.errorTglAmbilSampel').html(err.tgl_pengambilan_sampel);
+                        } else {
+                            $('#tgl-ambil-sampel').removeClass('is-invalid');
+                            $('.errorTglAmbilSampel').html('');
+                        }
+                        if (err.jam_pengambilan_sampel) {
+                            $('#jam-ambil-sampel').addClass('is-invalid');
+                            $('.errorJamAmbilSampel').html(err.jam_pengambilan_sampel);
+                        } else {
+                            $('#jam-ambil-sampel').removeClass('is-invalid');
+                            $('.errorJamAmbilSampel').html('');
                         }
                     } else {
                         Swal.fire({

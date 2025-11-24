@@ -11,6 +11,10 @@
             <td style="width: 30%;"><b>Kondisi linkungan sekitar sampel</b></td>
             <td>: <?= $row['kondisi_lingkungan_sekitar_sampel'] ?></td>
         </tr>
+        <tr>
+            <td style="width: 30%;"><b>Catatan abnormalitas</b></td>
+            <td>: <?= $row['catatan_abnormalitas'] ?></td>
+        </tr>
     </tbody>
     <?php endforeach; ?>
 </table>

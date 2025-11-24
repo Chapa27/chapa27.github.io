@@ -23,9 +23,25 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Hello card</h5>
+                        <h5>
+                            <span class="fa-solid fa-home"></span> BB LABKESMAS JAKARTA
+                            Balai Besar Laboratorium Kesehatan Masyarakat Jakarta
+                        </h5>
                     </div>
                     <div class="card-body">
+                        
+                        Jl. Bambu Apus Raya No.6, RT.12/RW.3, Bambu Apus, Kec. Cipayung, Kota Jakarta Timur, <br> 
+                        Daerah Khusus Ibukota Jakarta 13890 <br>
+
+                        Telp : (021) 8484912 Hunting <br>
+
+                        Call center : +62 812 9000 3610 <br>
+
+                        Faksimilie : (021) 22106603 <br>
+
+                        Email : labkesmasjakarta@gmail.com <br>
+
+                        Website : bblkmjakarta.org <br>
                     </div>
                 </div>
             </div>

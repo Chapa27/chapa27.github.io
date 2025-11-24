@@ -13,12 +13,15 @@
                    <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Kondisi Lingkungan Sekitar Sampel</label>
                         <textarea name="kondisi_lingkungan_sekitar_sampel" class="form-control"><?= $items['kondisi_lingkungan_sekitar_sampel']; ?></textarea>
-                        <div class="invalid-feedback errorNamaLab"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama-lab" class="form-label h5">Catatan Abnormalitas</label>
+                        <textarea name="catatan_abnormalitas" class="form-control"><?= $items['catatan_abnormalitas']; ?></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
         </div>

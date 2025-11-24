@@ -145,7 +145,8 @@ class KondisiLingkunganSekitarSampel extends ResourceController
         if ($this->request->isAJAX()) {
             $simpandata = [
                 'id' => $this->request->getVar('id'),
-                'kondisi_lingkungan_sekitar_sampel' => $this->request->getVar('kondisi_lingkungan_sekitar_sampel')
+                'kondisi_lingkungan_sekitar_sampel' => $this->request->getVar('kondisi_lingkungan_sekitar_sampel'),
+                'catatan_abnormalitas' => $this->request->getVar('catatan_abnormalitas')
             ];
                 $this->model->save($simpandata);
                 $msg = [

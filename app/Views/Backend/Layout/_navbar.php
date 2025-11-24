@@ -9,7 +9,7 @@
         <div class="navbar-content">
             <ul class="pc-navbar">
                 <li class="pc-item">
-                    <a href="<?= base_url('home/dashboard'); ?>" class="pc-link">
+                    <a href="<?= base_url('/'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-home"></i></span>
                         <span class="pc-mtext">Home</span>
                     </a>
@@ -18,7 +18,7 @@
                     <label>Modul Pelayanan Pemeriksaan</label>
                     <i class="ti ti-dashboard"></i>
                 </li>
-                <li class="pc-item">
+                <!-- <li class="pc-item">
                     <a href="<?= base_url('pelayanan-sampel/permintaan'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
                         <span class="pc-mtext">Permintaan</span>
@@ -35,7 +35,7 @@
                         <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
                         <span class="pc-mtext">Biaya pengujian sampel</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan-pemeriksaan/pengantar-lhu'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>

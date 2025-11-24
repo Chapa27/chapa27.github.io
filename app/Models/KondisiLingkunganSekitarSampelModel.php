@@ -12,7 +12,7 @@ class KondisiLingkunganSekitarSampelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kondisi_lingkungan_sekitar_sampel', 'kode_pengantar'];
+    protected $allowedFields    = ['kondisi_lingkungan_sekitar_sampel', 'catatan_abnormalitas', 'kode_pengantar'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
