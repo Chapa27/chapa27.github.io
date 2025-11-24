@@ -32,6 +32,15 @@ use App\Models\SampelLingkunganModel;
         $kontrak_diulang = $ket['kontrak_diulang'];
         $permintaan_khusus = $ket['permintaan_khusus'];
     }
+    var_dump($kaji_ulang);
+    foreach ($kaji_ulang as $kl) {
+        $alat_utama = $kl['alat_utama'];
+        $alat_dukung = $kl['alat_pendukung'];
+        $personil_lab = $kl['personil_lab'];
+        $metode_pemeriksaan = $kl['metode_pemeriksaan'];
+        $uji_mutu = $kl['uji_mutu'];
+        $reagensa_dan_media = $kl['reagensa_dan_media'];
+    }   
 
     ?>
     <p><h3><b>PENERIMAAN SAMPEL</b></h3></p><hr style="border: 1px solid;">
@@ -127,27 +136,27 @@ use App\Models\SampelLingkunganModel;
             </tr>
                                             <tr>
                                                 <td>Alat utama</td>
-                                                <td></td>
+                                                <td>: <?= $alat_utama; ?></td>
                                             </tr>
                                             <tr>
                                                     <td><b>Alat pendukung</b></td>
-                                                    <td>: </td>
+                                                    <td>: <?= $alat_dukung; ?> </td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Personil laboratorium</b></td>
-                                                    <td>: </td>
+                                                    <td>: <?= $personil_lab; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Metode pemeriksaan</b></td>
-                                                    <td>: </td>
+                                                    <td>: <?= $metode_pemeriksaan; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Uji mutu (Quality control)</b></td>
-                                                    <td>: </td>
+                                                    <td>: <?= $uji_mutu; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Reagensa dan media</b></td>
-                                                    <td>: </td>
+                                                    <td>: <?= $reagensa_dan_media; ?></td>
                                                 </tr>
                                         </table>
                                         </td>
