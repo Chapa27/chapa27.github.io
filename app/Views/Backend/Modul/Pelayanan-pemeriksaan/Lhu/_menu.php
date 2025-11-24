@@ -4,8 +4,14 @@
 <?= $this->endSection(); ?>
 <?= $this->section('content_menu'); ?>
     <?php
+    use App\Models\KondisiLingkunganSekitarSampelModel;
     use App\Models\LaboratoriumTujuanModel;
+    use App\Models\PengantarLhuModel;
+
     $labTujuan = new LaboratoriumTujuanModel();
+    $pengantar_lhu = new PengantarLhuModel();
+    $result_a = new KondisiLingkunganSekitarSampelModel();
+
     $result = $labTujuan->get_data_by_id_kode_pengantar($kode_pengantar, $id_lab);
     foreach ($result as $row) {
         $id_kat_lab = $row['id_kat_lab'];
@@ -56,9 +62,12 @@
             break;
         case 'resume':
            $data = [
-                'title' => 'Penanggung jawab',
+                'title' => 'Resume',
                 'id_lab' => $id_lab,
-                'kode_pengantar' => $kode_pengantar
+                'kode_pengantar' => $kode_pengantar,
+                'data_pelanggan' => $pengantar_lhu->get_data_by_kode_pengantar($kode_pengantar),
+                'result_a' => $result_a->where('kode_pengantar', $kode_pengantar)->get()->getResultArray(),
+                'menu_lab' => $labTujuan->get_data($kode_pengantar)
             ];
             echo view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Resume/index', $data);
             break;

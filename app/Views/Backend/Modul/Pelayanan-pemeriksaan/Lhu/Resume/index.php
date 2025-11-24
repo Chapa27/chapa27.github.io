@@ -9,6 +9,21 @@
     <span class="pc-micon"><i class="fa-solid fa-print"></i></span></button>
 </div>
 <div class="text-center">
+    <?php
+    foreach ($data_pelanggan as $dp) {
+        $nama = $dp['nama'];
+        $alamat = $dp['alamat'];
+    }
+
+    // lingkungan kondisi sekitar sampel 
+    foreach ($result_a as $ra) {
+        $kondisi_ling_sampel = $ra['kondisi_lingkungan_sekitar_sampel'];
+        $catatan_abnoramalitas = $ra['catatan_abnormalitas'];
+    }
+
+    var_dump($menu_lab);
+
+    ?>
     <p><h3><b>PENERIMAAN SAMPEL</b></h3></p><hr style="border: 1px solid;">
 </div>
 <table class="table table-responsive table-bordered" style="border: 1px solid black; width:100%;">
@@ -16,20 +31,31 @@
         <tbody>
             <tr>
                 <td width="20%"><b>Asal sampel</b></td>
-                <td style="vertical-align: top;">{empty}</td>
+                <td style="vertical-align: top;"><?= $dp['nama']; ?></td>
                 <td width="20%" rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel</b></td>
-                <td style="vertical-align: top;" rowspan="3">{empty}</td>
+                <td style="vertical-align: top;" rowspan="3"><?= $kondisi_ling_sampel; ?></td>
             </tr>
             <tr>
                 <td><b>Alamat</b></td>
-                <td style="vertical-align: top;">{empty}</td>
+                <td style="vertical-align: top;"><?= $dp['alamat'] ?></td>
             </tr>
             <tr>
-                <td colspan="2" style="vertical-align: top;"><b>Catatan abnormalitas : </b> {empty}</td>
+                <td colspan="2" style="vertical-align: top;"><b>Catatan abnormalitas : </b> <?= $ra['catatan_abnormalitas'] ?></td>
             </tr>
             <tr>
                 <table width="100%" class="table table-responsive table-bordered" style="border: 1px solid black;">
                     <tbody>
+                         <?php
+                    // lab tujuan 
+                    foreach ($menu_lab as $lab) {
+                    ?>
+                    <tr>
+                            <td colspan="10" style="font-weight: bold; font-family:Arial;">
+                                 <?php
+                        echo strtoupper($lab['nama_lab']);
+?>
+                            </td>
+                        </tr>
                         <tr style="font-weight:bold; text-align:center;">
                             <td>No.</td>
                             <td>Kode sampel</td>
@@ -54,6 +80,8 @@
                             <td>{empty}</td>
                             <td>{empty}</td>
                         </tr>
+                        
+                <?php } ?>
                        
                                 <tr>
                                     <table>
