@@ -10,6 +10,10 @@
 </div>
 <div class="text-center">
     <?php
+
+use App\Models\SampelLingkunganModel;
+                        $sampel_lingkungan = new SampelLingkunganModel();
+
     foreach ($data_pelanggan as $dp) {
         $nama = $dp['nama'];
         $alamat = $dp['alamat'];
@@ -21,7 +25,13 @@
         $catatan_abnoramalitas = $ra['catatan_abnormalitas'];
     }
 
-    var_dump($menu_lab);
+    // keterangan 
+    foreach ($keterangan as $ket) {
+        $paramater_tidak_dapat_di_uji = $ket['paramater_tidak_dapat_di_uji'];
+        $sub_kontrak = $ket['sub_kontrak'];
+        $kontrak_diulang = $ket['kontrak_diulang'];
+        $permintaan_khusus = $ket['permintaan_khusus'];
+    }
 
     ?>
     <p><h3><b>PENERIMAAN SAMPEL</b></h3></p><hr style="border: 1px solid;">
@@ -51,9 +61,7 @@
                     ?>
                     <tr>
                             <td colspan="10" style="font-weight: bold; font-family:Arial;">
-                                 <?php
-                        echo strtoupper($lab['nama_lab']);
-?>
+                                 <?= strtoupper($lab['nama_lab']);?>
                             </td>
                         </tr>
                         <tr style="font-weight:bold; text-align:center;">
@@ -68,19 +76,25 @@
                             <td>Jenis wadah</td>
                             <td>jenis pengawet</td>
                         </tr>
+                         <?php
+                         $index = 1;
+                         $r = $sampel_lingkungan->get_data($kode_pengantar, $lab['id_lab']);
+                        foreach ($r as $row) {
+                        $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel']));
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>{empty}</td>
-                            <td>{empty}</td>
-                            <td>{empty}</td>
-                            <td>{empty}</td>
-                            <td>{empty}</td>
-                            <td>{empty}</td>
-                            <td>{empty}</td>
-                            <td>{empty}</td>
-                            <td>{empty}</td>
+                            <td><?= $index++ ?></td>
+                            <td><?= $row['kode_sampel']; ?></td>
+                            <td><?= $row['jenis_sampel']; ?></td>
+                            <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
+                            <td style="text-align: center;"><?= $tgl_jam_ambil_sampel;?></td>
+                            <td><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
+                            <td><?= $row['metode_pemeriksaan']; ?></td>
+                            <td style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
+                            <td><?= $row['jenis_wadah']; ?></td>
+                            <td><?= $row['jenis_pengawet']; ?></td>
                         </tr>
-                        
+                        <?php  }?>
                 <?php } ?>
                        
                                 <tr>
@@ -90,10 +104,10 @@
                                             <tr>
                                                 <td style="border: 1px solid black;">
                                                     Keterangan : <br>
-                                                    Parameter yang tidak dapat di uji : <br>
-                                                    Sub kontrak : <br>
-                                                    Kontrak diulang : <br>
-                                                    Permintaan khusus : <br>
+                                                    Parameter yang tidak dapat di uji : <?= $paramater_tidak_dapat_di_uji; ?><br>
+                                                    Sub kontrak : <?= $sub_kontrak; ?><br>
+                                                    Kontrak diulang : <?= $kontrak_diulang; ?><br>
+                                                    Permintaan khusus : <?= $permintaan_khusus; ?><br>
                                                     Kami tidak menjamin kualitas sampel yang tidak sesuai SOP/kriteria penerimaan sampel
                                                 </td>
                                                 <td>
@@ -102,7 +116,63 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                            </tbody>
+                                        </td>
+                                        <td>
+                                            KAJI ULANG PERMINTAAN
+                                            <table class="table table-bordered" style="border: 1px solid;">
+                                            <tr>
+                <td style="text-align: center;"><b>SUMBER DAYA</b></td>
+                <td style="text-align: center;">KONDISI</td>
+            </tr>
+                                            <tr>
+                                                <td>Alat utama</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                    <td><b>Alat pendukung</b></td>
+                                                    <td>: </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Personil laboratorium</b></td>
+                                                    <td>: </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Metode pemeriksaan</b></td>
+                                                    <td>: </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Uji mutu (Quality control)</b></td>
+                                                    <td>: </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Reagensa dan media</b></td>
+                                                    <td>: </td>
+                                                </tr>
+                                        </table>
+                                        </td>
+                                        <td>
+                                            <table class="table table-bordered" style="border: 1px solid;">
+                                                <thead>
+            <tr>
+                <th>Penanggung jawab</th>
+                <th style="text-align: center;">Nama & Tanda tangan</th>
+                <th style="text-align: center;">No.Telepon</th>
+            </tr>
+        </thead>
+        <tbody style="font-family: arial;">
+            <tr>
+                <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
+                <td>: </td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Penerima sampel</b></td>
+                <td>: </td>
+                <td>: </td>
+            </tr>
+        </tbody>
+                                            </table>
                                         </td>
                                     </table>
                                 </tr>
