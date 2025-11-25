@@ -19,6 +19,11 @@
                 <td>: </td>
                 <td>: </td>
             </tr>
+            <tr>
+                <td><b>Tgl. terima sampel</b></td>
+                <td>: </td>
+                <td>: </td>
+            </tr>
         </tbody>
         <?php
     } else { ?>
@@ -30,6 +35,9 @@
        <span class="fa-solid fa-trash-alt"></span>
     </button>
     <thead>
+        <tr>
+            <th colspan="3" class="text-center"><?= 'Jakarta, '.date('d F Y', strtotime($row['tgl_terima_sampel'])).' '.date('H:i', strtotime($row['jam_terima_sampel'])); ?></th>
+        </tr>
         <tr>
             <th>Penanggung jawab</th>
             <th style="text-align: center;">Nama & Tanda tangan</th>

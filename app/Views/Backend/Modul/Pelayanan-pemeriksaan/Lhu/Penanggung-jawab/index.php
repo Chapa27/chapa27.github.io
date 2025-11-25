@@ -1,4 +1,7 @@
 <?= $this->extend('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index'); ?>
+<?= $this->section('topAssets'); ?>
+<link rel="stylesheet" href="<?= base_url('assets/css/plugins/jquery-ui.css'); ?>">
+<?= $this->endSection(); ?>
 
 <?= $this->section('content_menu'); ?>
 <div class="row p-0">
@@ -28,6 +31,8 @@
 
 <?= $this->section('bottomAssets'); ?>
 <script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+
 <script>
     function listData() {
         var id_lab = $('.btn-tambah').data("id");

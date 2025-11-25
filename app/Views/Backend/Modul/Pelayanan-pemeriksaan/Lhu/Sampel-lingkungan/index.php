@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/select2.min.css'); ?>" id="main-style-link">
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/jquery-ui.css'); ?>">
-
 <?= $this->endSection(); ?>
 
 <?= $this->section('content_menu'); ?>

@@ -20,7 +20,8 @@ use App\Models\SampelLingkunganModel;
     }
 
     // lingkungan kondisi sekitar sampel 
-    foreach ($result_a as $ra) {
+    var_dump($kondisi_lingkungan);
+    foreach ($kondisi_lingkungan as $ra) {
         $kondisi_ling_sampel = $ra['kondisi_lingkungan_sekitar_sampel'];
         $catatan_abnoramalitas = $ra['catatan_abnormalitas'];
     }
@@ -49,7 +50,10 @@ use App\Models\SampelLingkunganModel;
         $no_telp_pjb = $pj['no_telp_pjb'];
         $penerima_sampel = $pj['penerima_sampel'];
         $no_telp_ps = $pj['no_telp_penerima'];
+        $tgl_terima_sampel = $pj['tgl_terima_sampel'];
+        $jam_terima_sampel = $pj['jam_terima_sampel'];
     }
+
     ?>
     <p><h3><b>PENERIMAAN SAMPEL</b></h3></p><hr style="border: 1px solid;">
 </div>
@@ -60,14 +64,14 @@ use App\Models\SampelLingkunganModel;
                 <td width="20%"><b>Asal sampel</b></td>
                 <td style="vertical-align: top;"><?= $dp['nama']; ?></td>
                 <td width="20%" rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel</b></td>
-                <td style="vertical-align: top;" rowspan="3"><?= $kondisi_ling_sampel; ?></td>
+                <td style="vertical-align: top;" rowspan="3"><?= @$kondisi_ling_sampel; ?></td>
             </tr>
             <tr>
                 <td><b>Alamat</b></td>
                 <td style="vertical-align: top;"><?= $dp['alamat'] ?></td>
             </tr>
             <tr>
-                <td colspan="2" style="vertical-align: top;"><b>Catatan abnormalitas : </b> <?= $ra['catatan_abnormalitas'] ?></td>
+                <td colspan="2" style="vertical-align: top;"><b>Catatan abnormalitas : </b> <?= @$catatan_abnoramalitas; ?></td>
             </tr>
             <tr>
                 <table width="100%" class="table table-responsive table-bordered" style="border: 1px solid black;">
@@ -104,7 +108,7 @@ use App\Models\SampelLingkunganModel;
                             <td><?= $row['kode_sampel']; ?></td>
                             <td><?= $row['jenis_sampel']; ?></td>
                             <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
-                            <td style="text-align: center;"><?= $tgl_jam_ambil_sampel;?></td>
+                            <td style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
                             <td><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
                             <td><?= $row['metode_pemeriksaan']; ?></td>
                             <td style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
@@ -121,10 +125,10 @@ use App\Models\SampelLingkunganModel;
                                             <tr>
                                                 <td style="border: 1px solid black;">
                                                     Keterangan : <br>
-                                                    Parameter yang tidak dapat di uji : <?= $paramater_tidak_dapat_di_uji; ?><br>
-                                                    Sub kontrak : <?= $sub_kontrak; ?><br>
-                                                    Kontrak diulang : <?= $kontrak_diulang; ?><br>
-                                                    Permintaan khusus : <?= $permintaan_khusus; ?><br>
+                                                    Parameter yang tidak dapat di uji : <?= @$paramater_tidak_dapat_di_uji; ?><br>
+                                                    Sub kontrak : <?= @$sub_kontrak; ?><br>
+                                                    Kontrak diulang : <?= @$kontrak_diulang; ?><br>
+                                                    Permintaan khusus : <?= @$permintaan_khusus; ?><br>
                                                     Kami tidak menjamin kualitas sampel yang tidak sesuai SOP/kriteria penerimaan sampel
                                                 </td>
                                                 <td>
@@ -145,51 +149,56 @@ use App\Models\SampelLingkunganModel;
             </tr>
                                             <tr>
                                                 <td>Alat utama</td>
-                                                <td>: <?= $alat_utama; ?></td>
+                                                <td>: <?= @$alat_utama; ?></td>
                                             </tr>
                                             <tr>
                                                     <td><b>Alat pendukung</b></td>
-                                                    <td>: <?= $alat_dukung; ?> </td>
+                                                    <td>: <?= @$alat_dukung; ?> </td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Personil laboratorium</b></td>
-                                                    <td>: <?= $personil_lab; ?></td>
+                                                    <td>: <?= @$personil_lab; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Metode pemeriksaan</b></td>
-                                                    <td>: <?= $metode_pemeriksaan; ?></td>
+                                                    <td>: <?= @$metode_pemeriksaan; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Uji mutu (Quality control)</b></td>
-                                                    <td>: <?= $uji_mutu; ?></td>
+                                                    <td>: <?= @$uji_mutu; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Reagensa dan media</b></td>
-                                                    <td>: <?= $reagensa_dan_media; ?></td>
+                                                    <td>: <?= @$reagensa_dan_media; ?></td>
                                                 </tr>
                                         </table>
                                         </td>
                                         <td>
                                             <table class="table table-bordered" style="border: 1px solid;">
                                                 <thead>
-            <tr>
-                <th>Penanggung jawab</th>
-                <th style="text-align: center;">Nama & Tanda tangan</th>
-                <th style="text-align: center;">No.Telepon</th>
-            </tr>
-        </thead>
-        <tbody style="font-family: arial;">
-            <tr>
-                <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
-                <td>: <?= $nama_pjb; ?></td>
-                <td>: <?= $no_telp_pjb; ?></td>
-            </tr>
-            <tr>
-                <td><b>Penerima sampel</b></td>
-                <td>: <?= $penerima_sampel; ?></td>
-                <td>: <?= $no_telp_ps; ?></td>
-            </tr>
-        </tbody>
+                                                     <tr>
+                                                        <th colspan="3" class="text-center">
+                                                            <?= @$tgl_terima_sampel != null ? 'Jakarta, '. date('d F Y', strtotime(@$tgl_terima_sampel)) : '';?>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Penanggung jawab</th>
+                                                        <th style="text-align: center;">Nama & Tanda tangan</th>
+                                                        <th style="text-align: center;">No.Telepon</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="font-family: arial;">
+                                                    <tr>
+                                                        <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
+                                                        <td>: <?= @$nama_pjb; ?></td>
+                                                        <td>: <?= @$no_telp_pjb; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Penerima sampel</b></td>
+                                                        <td>: <?= @$penerima_sampel; ?></td>
+                                                        <td>: <?= @$no_telp_ps; ?></td>
+                                                    </tr>
+                                                </tbody>
                                             </table>
                                         </td>
                                     </table>

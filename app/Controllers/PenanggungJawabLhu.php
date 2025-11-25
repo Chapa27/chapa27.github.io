@@ -95,7 +95,8 @@ class PenanggungJawabLhu extends ResourceController
                 'nama_pjb' => $this->request->getVar('nama_pjb'),
                 'no_telp_pjb' => $this->request->getVar('no_telp_pjb'),
                 'penerima_sampel' => $this->request->getVar('penerima_sampel'),
-                'no_telp_penerima' => $this->request->getVar('no_telp_penerima')
+                'no_telp_penerima' => $this->request->getVar('no_telp_penerima'),
+                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel')))
             ];
                 $this->model->save($simpandata);
                 $msg = [
@@ -146,7 +147,9 @@ class PenanggungJawabLhu extends ResourceController
                 'nama_pjb' => $this->request->getVar('nama_pjb'),
                 'no_telp_pjb' => $this->request->getVar('no_telp_pjb'),
                 'penerima_sampel' => $this->request->getVar('penerima_sampel'),
-                'no_telp_penerima' => $this->request->getVar('no_telp_penerima')
+                'no_telp_penerima' => $this->request->getVar('no_telp_penerima'),
+                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
+                'jam_terima_sampel' => date('H:i', strtotime($this->request->getVar('jam_terima_sampel')))
             ];
                 $this->model->save($simpandata);
                 $msg = [

@@ -13,7 +13,7 @@
 
     $labTujuan = new LaboratoriumTujuanModel();
     $pengantar_lhu = new PengantarLhuModel();
-    $result_a = new KondisiLingkunganSekitarSampelModel();
+    $kondisi_lingkungan = new KondisiLingkunganSekitarSampelModel();
     $keterangan = new KeteranganLhuModel();
     $kaji_ulang = new KajiUlangPermintaanKontrakModel();
     $penanggung_jawab = new PenanggungJawabLhuModel();
@@ -72,7 +72,7 @@
                 'id_lab' => $id_lab,
                 'kode_pengantar' => $kode_pengantar,
                 'data_pelanggan' => $pengantar_lhu->get_data_by_kode_pengantar($kode_pengantar),
-                'result_a' => $result_a->where('kode_pengantar', $kode_pengantar)->get()->getResultArray(),
+                'kondisi_lingkungan' => $kondisi_lingkungan->where('kode_pengantar', $kode_pengantar)->get()->getResultArray(),
                 'menu_lab' => $labTujuan->get_data($kode_pengantar),
                 'keterangan' => $keterangan->where('kode_pengantar', $kode_pengantar)->get()->getResultArray(),
                 'kaji_ulang' => $kaji_ulang->where('kode_pengantar', $kode_pengantar)->get()->getResultArray(),

@@ -15,6 +15,22 @@
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
+                    <label>File</label>
+                    <i class="ti ti-file"></i>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('file/reader/standar-pelayanan'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                        <span class="pc-mtext">Standar Pelayanan</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('file/reader/tarif-pelayanan'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                        <span class="pc-mtext">Tarif Pelayanan</span>
+                    </a>
+                </li>
+                <li class="pc-item pc-caption">
                     <label>Modul Pelayanan Pemeriksaan</label>
                     <i class="ti ti-dashboard"></i>
                 </li>

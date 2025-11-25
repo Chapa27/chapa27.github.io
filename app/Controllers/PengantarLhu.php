@@ -56,7 +56,7 @@ class PengantarLhu extends ResourceController
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-        $nomorAntrian = 'KP' . sprintf('%04d', $nomorUrut);
+        $nomorAntrian = 'PL' . sprintf('%04d', $nomorUrut);
         
         return $nomorAntrian;
     }

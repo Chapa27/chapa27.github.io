@@ -18,6 +18,8 @@ class PenanggungJawabLhuModel extends Model
         'no_telp_pjb',
         'penerima_sampel',
         'no_telp_penerima',
+        'tgl_terima_sampel',
+        'jam_terima_sampel',
         'kode_pengantar'
     ];
 

@@ -198,4 +198,10 @@ $routes->group('pelayanan-pemeriksaan/resume', function ($routes) {
 });
 
 
+$routes->group('file/reader', function ($routes) {
+    $routes->get('standar-pelayanan', 'FileReader::standar_pelayanan');
+    $routes->get('tarif-pelayanan', 'FileReader::tarif_pelayanan');
+});
+
+
 

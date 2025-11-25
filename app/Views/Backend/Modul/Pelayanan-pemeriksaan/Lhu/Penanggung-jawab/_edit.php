@@ -30,6 +30,16 @@
                         <input type="text" name="no_telp_penerima" value="<?= $items['no_telp_penerima'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="tgl-terima-sampel" class="form-label h5" style="font-family: calibri;">Tanggal terima sampel</label>
+                        <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($items['tgl_terima_sampel'])); ?>" class="form-control" id="tgl-terima-sampel">
+                        <div class="invalid-feedback errorTglTerimaSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jam-terima-sampel" class="form-label h5" style="font-family: calibri;">Tanggal terima sampel</label>
+                        <input type="time" name="jam_terima_sampel" value="<?= $items['jam_terima_sampel']; ?>" class="form-control" id="jam-terima-sampel">
+                        <div class="invalid-feedback errorJamTerimaSampel"></div>
+                    </div>
                 </div> 
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
@@ -42,6 +52,8 @@
 
 <script>
     $(document).ready(function() {
+        $( "#tgl-terima-sampel" ).datepicker({ dateFormat: 'dd-mm-yy' });
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
