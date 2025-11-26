@@ -98,10 +98,10 @@
                         <tr>
                             <td style="text-align:center; border: 1px solid black;"><?= $index++ ?></td>
                             <td style="text-align:center; border: 1px solid black;"><?= $row['kode_sampel']; ?></td>
-                            <td style="border: 1px solid black;"><?= $row['jenis_sampel']; ?></td>
+                            <td style="border: 1px solid black;"><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
                             <td style="border: 1px solid black;"><?= $row['lokasi_pengambilan_sampel']; ?></td>
                             <td style="text-align: center; border: 1px solid black;"><?= @$tgl_jam_ambil_sampel;?></td>
-                            <td style="text-align:center; border: 1px solid black;"><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
+                            <td style="border: 1px solid black;"><?= explode(', ', $row['jenis_sampel'])[1]; ?></td>
                             <td style="text-align:center; border: 1px solid black;"><?= $row['metode_pemeriksaan']; ?></td>
                             <td style="text-align: center; border: 1px solid black;"><?= $row['volume_atau_berat']; ?></td>
                             <td style="text-align:center; border: 1px solid black;"><?= $row['jenis_wadah']; ?></td>

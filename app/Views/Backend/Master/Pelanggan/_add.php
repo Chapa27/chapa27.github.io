@@ -25,7 +25,7 @@
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-pjb" class="form-label h5">Nama PJB</label>
+                        <label for="nama-pjb" class="form-label h5">Nama PJ</label>
                         <input type="text" name="nama_pjb" class="form-control" id="nama-pjb">
                         <div class="invalid-feedback errorNamaPjb"></div>
                     </div>
