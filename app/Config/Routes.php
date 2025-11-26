@@ -105,6 +105,17 @@ $routes->group('master-data/pelanggan', function ($routes) {
     $routes->delete('delete-data/(:num)', 'PelangganMaster::delete/$1');
 });
 
+/** Data instalasi **/
+$routes->group('master-data/instalasi', function ($routes) {
+    $routes->get('', 'InstalasiMaster::index');
+    $routes->get('list-data', 'InstalasiMaster::list');
+    $routes->get('add-data', 'InstalasiMaster::new');
+    $routes->post('create-data', 'InstalasiMaster::create');
+    $routes->get('edit-data/(:num)', 'InstalasiMaster::edit/$1');
+    $routes->post('update-data', 'InstalasiMaster::update');
+    $routes->delete('delete-data/(:num)', 'InstalasiMaster::delete/$1');
+});
+
 /** Modul Pelayanan Pemeriksaan **/
 /** Pengantar LHU **/
 $routes->group('pelayanan-pemeriksaan/pengantar-lhu', function ($routes) {

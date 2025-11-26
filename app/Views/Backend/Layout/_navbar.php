@@ -69,6 +69,12 @@
                     </a>
                 </li>
                 <li class="pc-item">
+                    <a href="<?= base_url('master-data/instalasi'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-mtext">Instalasi</span>
+                    </a>
+                </li>
+                <li class="pc-item">
                     <a href="<?= base_url('master-data/laboratorium'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
                         <span class="pc-mtext">Laboratorium</span>
