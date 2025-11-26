@@ -144,7 +144,19 @@ class InstalasiMaster extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Instalasi/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -156,7 +168,37 @@ class InstalasiMaster extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama_instalasi' => [
+                    'label' => 'Nama instalasi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_instalasi' => $this->validation->getError('nama_instalasi')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'nama_instalasi' => $this->request->getVar('nama_instalasi')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
