@@ -11,8 +11,8 @@
 <div class="text-center">
     <?php
 
-use App\Models\SampelLingkunganModel;
-                        $sampel_lingkungan = new SampelLingkunganModel();
+    use App\Models\SampelLingkunganModel;
+    $sampel_lingkungan = new SampelLingkunganModel();
 
     foreach ($data_pelanggan as $dp) {
         $nama = $dp['nama'];
@@ -20,7 +20,6 @@ use App\Models\SampelLingkunganModel;
     }
 
     // lingkungan kondisi sekitar sampel 
-    var_dump($kondisi_lingkungan);
     foreach ($kondisi_lingkungan as $ra) {
         $kondisi_ling_sampel = $ra['kondisi_lingkungan_sekitar_sampel'];
         $catatan_abnoramalitas = $ra['catatan_abnormalitas'];
@@ -215,7 +214,7 @@ use App\Models\SampelLingkunganModel;
 <script>
     function openWin() {
         var prtContent = document.getElementById("#kodePengantar");
-        var WinPrint = window.open('<?= base_url('pelayanan-pemeriksaan/resume/Pakta-integritas') ?>', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        var WinPrint = window.open('<?= base_url('pelayanan-pemeriksaan/resume/cetak-resume/'.strtoupper($kode_pengantar)) ?>', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
         WinPrint.document.close();
         WinPrint.focus();
