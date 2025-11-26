@@ -12,7 +12,12 @@ class LaboratoriumModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_lab', 'lantai'];
+    protected $allowedFields    = [
+        'kode_lab',
+        'nama_lab', 
+        'lantai',
+        'kode_instalasi'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
