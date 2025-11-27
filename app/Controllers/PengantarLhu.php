@@ -47,6 +47,15 @@ class PengantarLhu extends ResourceController
         return view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/index', $data);
     }
 
+    public function index1()
+    {
+        $data = [
+            'title' => 'Data ' . $this->title,
+            'items' => $this->modelLabTujuan->findAll()
+        ];
+        return view('Backend/Modul/Pelayanan-pemeriksaan/Pengantar-lhu/index', $data);
+    }
+
     public function generate_kode_pengantar() 
     {
         $tahun = null;

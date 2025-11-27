@@ -1,9 +1,6 @@
 <?= $this->extend('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index'); ?>
-<?= $this->section('topAssets'); ?>
-<link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
-<?= $this->endSection(); ?>
 <?= $this->section('content_menu'); ?>
-    <?php
+<?php 
     use App\Models\KeteranganLhuModel;
     use App\Models\KondisiLingkunganSekitarSampelModel;
     use App\Models\LaboratoriumTujuanModel;
@@ -25,6 +22,7 @@
         $nama_lab = $row['nama_lab'];
         $kode_pengantar = $row['kode_pengantar'];        
     }
+
     switch ($id_kat_lab ?? $id_lab) {
         case 1:
             $data = [
@@ -83,5 +81,5 @@
         default:
             break;
     }
-
-$this->endSection();?>
+?>
+<?= $this->endSection(); ?>

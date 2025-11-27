@@ -6,30 +6,22 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content_menu'); ?>
-    <!-- [ Main Content ] start -->
-        <div class="row p-0">
-            <!-- [ sample-page ] start -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header p-6" style="padding:0px;">
-                        <div class="d-flex justify-content-end align-items-center gap-1">    
-                            <button type="button" class="btn btn-dark btn-sm" id="refBtn">
-                                <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
-                            </button>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
-                                <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="view-data"></div>
-                    </div>
-                </div>
+    <div class="card">
+        <div class="card-header p-2">
+            <div class="d-flex justify-content-end align-items-center gap-1">    
+                <button type="button" class="btn btn-dark btn-sm" id="refBtn">
+                    <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
+                </button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-sm btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
+                    <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
+                </button>
             </div>
-            <!-- [ sample-page ] end -->
         </div>
-<div class="view-modal" style="display: none;"></div>
+        <div class="card-body p-4">
+            <div class="view-data"></div>
+        </div>
+    </div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
@@ -40,7 +32,6 @@
 <script src="<?= base_url('js/jquery-3.7.1.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/select2.min.js'); ?>"></script>
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-
 <script>
     function listData() {
         var id_lab = $('.btn-tambah').data("id");
