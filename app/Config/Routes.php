@@ -207,6 +207,11 @@ $routes->group('pelayanan-pemeriksaan/resume', function ($routes) {
 $routes->group('file/reader', function ($routes) {
     $routes->get('standar-pelayanan', 'FileReader::standar_pelayanan');
     $routes->get('tarif-pelayanan', 'FileReader::tarif_pelayanan');
+    $routes->get('permenkes-no2-2023', 'FileReader::permenkes_no2_2023');
+    $routes->get('menlhk-no68-2016', 'FileReader::menlhk_no68_2016');
+    $routes->get('permenlh-no11-2025', 'FileReader::permenlh_no11_2025');
+    $routes->get('permenlh-no12-2025', 'FileReader::permenlh_no12_2025');
+    $routes->get('pertek-baku-mutu-limbah-domestik', 'FileReader::pertek_bml_domestik');
 });
 
 

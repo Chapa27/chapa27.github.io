@@ -14,22 +14,7 @@
                         <span class="pc-mtext">Home</span>
                     </a>
                 </li>
-                <li class="pc-item pc-caption">
-                    <label>File</label>
-                    <i class="ti ti-file"></i>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('file/reader/standar-pelayanan'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
-                        <span class="pc-mtext">Standar Pelayanan</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('file/reader/tarif-pelayanan'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
-                        <span class="pc-mtext">Tarif Pelayanan</span>
-                    </a>
-                </li>
+            
                 <li class="pc-item pc-caption">
                     <label>Modul Pelayanan Pemeriksaan</label>
                     <i class="ti ti-dashboard"></i>
@@ -54,10 +39,66 @@
                 </li> -->
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan-pemeriksaan/pengantar-lhu'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-arrow-right"></span></span>
                         <span class="pc-mtext">Pengantar LHU</span>
                     </a>
                 </li>
+                <li class="pc-item pc-caption">
+                    <label>Files</label>
+                    <i class="ti ti-file"></i>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="fa-solid fa-arrow-right"></span>
+                        <span class="pc-micon">
+                        </span>
+                        <span class="pc-mtext" data-i18n="Peraturan">Peraturan</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/standar-pelayanan'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">Standar Pelayanan</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/tarif-pelayanan'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">Tarif Pelayanan</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/permenkes-no2-2023'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">Permenkes No.02 Tahun 2023</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/menlhk-no68-2016'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">MenLHK No. 68 Tahun 2016</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/permenlh-no11-2025'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">PermenLH No. 11 Tahun 2025</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/permenlh-no12-2025'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">PermenLH No. 12 Tahun 2025</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/pertek-baku-mutu-limbah-domestik'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">Pertek Baku Mutu Limbah Domestik</span>
+                            </a>
+                        </li>
+                    </ul>
                 <li class="pc-item pc-caption">
                     <label>Master Data</label>
                     <i class="ti ti-databases"></i>
@@ -96,6 +137,12 @@
                     <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
                         <span class="pc-mtext">Instansi</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/peraturan-baku-mutu'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-mtext">Peraturan/Baku Mutu</span>
                     </a>
                 </li>
                 <li class="pc-item">
