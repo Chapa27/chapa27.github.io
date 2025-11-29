@@ -10,7 +10,7 @@
             <ul class="pc-navbar">
                 <li class="pc-item">
                     <a href="<?= base_url('/'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-home"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-home"></span></span>
                         <span class="pc-mtext">Home</span>
                     </a>
                 </li>
@@ -105,55 +105,55 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/pelanggan'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Pelanggan</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/instalasi'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Instalasi</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/laboratorium'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Laboratorium</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/jenis-sampel'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Jenis Sampel</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/biaya-akomodasi'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Biaya Akomodasi</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Instansi</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/peraturan-baku-mutu'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"><span></span>
                         <span class="pc-mtext">Peraturan/Baku Mutu</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/penyakit'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Penyakit</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/coolbox'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Coolbox</span>
                     </a>
                 </li>
