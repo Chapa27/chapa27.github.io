@@ -98,6 +98,18 @@
                                 <span class="pc-mtext">Pertek Baku Mutu Limbah Domestik</span>
                             </a>
                         </li>
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/permenkes-no1096-2011'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">Permenkes No.1096 Tahun 2011</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="<?= base_url('file/reader/permenkes-no7-aami-2019'); ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-file-alt"></i></span>
+                                <span class="pc-mtext">Permenkes No.7 Tahun 2019 AAMI</span>
+                            </a>
+                        </li>
                     </ul>
                 <li class="pc-item pc-caption">
                     <label>Master Data</label>

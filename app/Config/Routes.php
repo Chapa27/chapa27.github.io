@@ -212,7 +212,10 @@ $routes->group('file/reader', function ($routes) {
     $routes->get('permenlh-no11-2025', 'FileReader::permenlh_no11_2025');
     $routes->get('permenlh-no12-2025', 'FileReader::permenlh_no12_2025');
     $routes->get('pertek-baku-mutu-limbah-domestik', 'FileReader::pertek_bml_domestik');
+    $routes->get('permenkes-no1096-2011', 'FileReader::permenkes_no1096_2011');
+    $routes->get('permenkes-no7-aami-2019', 'FileReader::permenkes_no7_aami_2019');
 });
+
 
 /** Data peraturan / baku mutu **/
 $routes->group('master-data/peraturan-baku-mutu', function ($routes) {

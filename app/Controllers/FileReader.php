@@ -63,6 +63,21 @@ class FileReader extends BaseController
         return view('Backend/File/_pertek_bml_domestik', $data);
     }
 
+    public function permenkes_no1096_2011()
+    {
+         $data = [
+            'title' => 'Permenkes No.1096 Tahun 2011'
+        ];
+        return view('Backend/File/_permenkes_no1096_2011', $data);
+    }
+
+    public function permenkes_no7_aami_2019()
+    {
+         $data = [
+            'title' => 'Permenkes No.7 Tahun 2019 AAMI'
+        ];
+        return view('Backend/File/_permenkes_no7_aami_2019', $data);
+    }
 
     
 }
