@@ -3,15 +3,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
-                <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/laboratorium/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Nama laboratorium</label>
-                        <input type="text" name="nama_lab" class="form-control" id="nama-lab">
+                        <input type="text" name="nama_lab" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">

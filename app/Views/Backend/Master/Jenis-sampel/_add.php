@@ -4,19 +4,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
-                <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/jenis-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h5" style="font-family: calibri;">Jenis sampel</label>
-                        <input type="text" name="jenis_sampel" class="form-control" id="jenis-sampel">
+                        <input type="text" name="jenis_sampel" class="form-control" id="jenis-sampel" autocomplete="off">
                         <div class="invalid-feedback errorJenisSampel"></div>
                     </div>
                     <div class="mb-3">
                         <label for="pnbp" class="form-label h5" style="font-family: calibri;">PNBP (Rp)</label>
-                        <input type="text" name="pnbp" class="form-control" id="pnbp">
+                        <input type="text" name="pnbp" class="form-control" id="pnbp" autocomplete="off">
                         <div class="invalid-feedback errorPnbp"></div>
                     </div>
                     <div class="mb-3">

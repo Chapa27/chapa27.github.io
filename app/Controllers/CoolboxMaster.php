@@ -75,7 +75,7 @@ class CoolboxMaster extends ResourceController
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-        $nomorAntrian = 'CB' . sprintf('%04d', $nomorUrut);
+        $nomorAntrian = 'CB' . sprintf('%04d', $nomorUrut).'/LKM.Jkt';
         
         return $nomorAntrian;
     }

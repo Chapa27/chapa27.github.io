@@ -19,12 +19,13 @@
                     <label>Modul Pelayanan Pemeriksaan</label>
                     <i class="ti ti-dashboard"></i>
                 </li>
-                <!-- <li class="pc-item">
+               <li class="pc-item">
                     <a href="<?= base_url('pelayanan-sampel/permintaan'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>
                         <span class="pc-mtext">Permintaan</span>
                     </a>
                 </li>
+                <!--
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan-sampel/penawaran'); ?>" class="pc-link" onclick="showLoading()">
                         <span class="pc-micon"><i class="fa-solid fa-arrow-right"></i></span>

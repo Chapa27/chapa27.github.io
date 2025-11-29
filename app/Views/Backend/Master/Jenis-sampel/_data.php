@@ -17,7 +17,7 @@
             <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['jenis_sampel']; ?></td>
-                <td><?= $row['pnbp']; ?></td>
+                <td style="text-align: right;"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0); ?></td>
                 <td><?= $row['nama_lab']; ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
                 <td>
