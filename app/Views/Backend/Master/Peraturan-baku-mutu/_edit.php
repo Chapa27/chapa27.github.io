@@ -3,28 +3,22 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
-                <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/laboratorium/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/peraturan-baku-mutu/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Nama laboratorium</label>
-                        <input type="text" name="nama_lab" value="<?= $items['nama_lab']; ?>" class="form-control" id="nama-lab">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="peraturan" class="form-label h5">Peraturan</label>
+                        <input type="text" name="peraturan" value="<?= $items['peraturan']; ?>" class="form-control" id="peraturan">
+                        <div class="invalid-feedback errorPeraturan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="lantai" class="form-label h5">Lantai</label>
-                        <select name="lantai" class="form-select" id="lantai" aria-label="Default select example">
-                            <option value="">-- Pilih --</option>
-                            <option value="1" <?= $items['lantai'] == 1 ? 'selected' : ''; ?>>1</option>
-                            <option value="2" <?= $items['lantai'] == 2 ? 'selected' : ''; ?>>2</option>
-                            <option value="3" <?= $items['lantai'] == 3 ? 'selected' : ''; ?>>3</option>
-                            <option value="4" <?= $items['lantai'] == 4 ? 'selected' : ''; ?>>4</option>
-                        </select>
-                        <div class="invalid-feedback errorLantai"></div>
+                        <label for="keterangan" class="form-label h5">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan"><?= $items['keterangan']; ?></textarea>
+                        <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -57,28 +51,20 @@
                 success: function(response) {
                     if (response.error) {
 
-                        if (response.error.jenis_sampel) {
-                            $('#jenis-sampel').addClass('is-invalid');
-                            $('.errorJenisSampel').html(response.error.jenis_sampel);
+                       if (response.peraturan) {
+                            $('#peraturan').addClass('is-invalid');
+                            $('.errorPeraturan').html(response.peraturan);
                         } else {
-                            $('#jenis-sampel').removeClass('is-invalid');
-                            $('.errorJenisSampel').html('');
+                            $('#peraturan').removeClass('is-invalid');
+                            $('.errorPeraturan').html('');
                         }
 
-                        if (response.error.pnbp) {
-                            $('#pnbp').addClass('is-invalid');
-                            $('.errorPnbp').html(response.error.pnbp);
+                        if (response.keterangan) {
+                            $('#keterangan').addClass('is-invalid');
+                            $('.errorKeterangan').html(response.keterangan);
                         } else {
-                            $('#pnbp').removeClass('is-invalid');
-                            $('.errorPnbp').html('');
-                        }
-
-                        if (response.error.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(response.error.id_lab);
-                        } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
+                            $('#keterangan').removeClass('is-invalid');
+                            $('.errorKeterangan').html('');
                         }
 
                     } else {
