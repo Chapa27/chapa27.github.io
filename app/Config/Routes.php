@@ -214,5 +214,14 @@ $routes->group('file/reader', function ($routes) {
     $routes->get('pertek-baku-mutu-limbah-domestik', 'FileReader::pertek_bml_domestik');
 });
 
-
+/** Data peraturan / baku mutu **/
+$routes->group('master-data/peraturan-baku-mutu', function ($routes) {
+    $routes->get('', 'PeraturanMaster::index');
+    $routes->get('list-data', 'PeraturanMaster::list');
+    $routes->get('add-data', 'PeraturanMaster::new');
+    $routes->post('create-data', 'PeraturanMaster::create');
+    $routes->get('edit-data/(:num)', 'PeraturanMaster::edit/$1');
+    $routes->post('update-data', 'PeraturanMaster::update');
+    $routes->delete('delete-data/(:num)', 'PeraturanMaster::delete/$1');
+});
 
