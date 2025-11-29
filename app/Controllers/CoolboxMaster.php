@@ -66,16 +66,18 @@ class CoolboxMaster extends ResourceController
         //
     }
 
-    public function generate_kode_coolbox() 
+    public function generate_kode_coolbox($param = null) 
     {
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        $count = $this->model->countAllResults();
+        // $count = $this->model->countAllResults();
+        $count = $this->model->where('id_instansi', $param)->countAllResults();
+
        
         // Buat nomor urut baru
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-        $nomorAntrian = 'CB' . sprintf('%04d', $nomorUrut).'/LKM.Jkt';
+        $nomorAntrian = 'CB.'.sprintf('%02d', $param).'/LKM.Jkt/'.sprintf('%02d', $nomorUrut);
         
         return $nomorAntrian;
     }
@@ -91,7 +93,8 @@ class CoolboxMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterInstansi' => $this->masterInstansi->findAll()
+                'masterInstansi' => $this->masterInstansi->findAll(),
+                'counter' => $this->generate_kode_coolbox()
             ];
             $msg = [
                 'data' => view('Backend/Master/Coolbox/_add', $data)
@@ -128,8 +131,9 @@ class CoolboxMaster extends ResourceController
                     ]
                 ];
             } else {
+                $id_instansi = $this->request->getVar('id_instansi');
                 $simpandata = [
-                    'kode_coolbox' => $this->generate_kode_coolbox(),
+                    'kode_coolbox' => $this->generate_kode_coolbox($id_instansi),
                     'id_instansi' => $this->request->getVar('id_instansi')
                 ];
                 $this->model->save($simpandata);

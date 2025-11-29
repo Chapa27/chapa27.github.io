@@ -3,26 +3,27 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
-                <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/coolbox/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/laboratorium/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                    <?= $counter; ?>
-                   <div class="mb-3">
-                        <label for="id-instansi" class="form-label h5" style="font-family: calibri;">Instansi</label>
-                        <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">
+                    <div class="mb-3">
+                        <label for="nama-lab" class="form-label h5">Nama laboratorium</label>
+                        <input type="text" name="nama_lab" class="form-control" id="nama-lab" autocomplete="off">
+                        <div class="invalid-feedback errorNamaLab"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lantai" class="form-label h5">Lantai</label>
+                        <select name="lantai" class="form-select" id="lantai" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
-                            <?php
-                            foreach ($masterInstansi as $row) :
-                            ?>
-                                <option value="<?= $row['id']; ?>"><?= $row['nama_instansi']; ?></option>
-                            <?php
-                            endforeach;
-                            ?>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                         </select>
-                        <div class="invalid-feedback errorAsalInstansi"></div>
+                        <div class="invalid-feedback errorLantai"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -56,12 +57,19 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.id_instansi) {
-                            $("#id-instansi").addClass('is-invalid');
-                            $('.errorAsalInstansi').html(err.id_instansi);
+                        if (err.nama_lab) {
+                            $('#nama-lab').addClass('is-invalid');
+                            $('.errorNamaLab').html(err.nama_lab);
                         } else {
-                            $('#id-instansi').removeClass('is-invalid');
-                            $('.errorAsalInstansi').html('');
+                            $('#nama-lab').removeClass('is-invalid');
+                            $('.errorNamaLab').html('');
+                        }
+                        if (err.lantai) {
+                            $('#lantai').addClass('is-invalid');
+                            $('.errorLantai').html(err.lantai);
+                        } else {
+                            $('#lantai').removeClass('is-invalid');
+                            $('.errorLantai').html('');
                         }
                     } else {
                         Swal.fire({
