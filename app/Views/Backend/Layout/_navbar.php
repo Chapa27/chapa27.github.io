@@ -141,7 +141,7 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/peraturan-baku-mutu'); ?>" class="pc-link">
-                        <span class="pc-micon"><span class="fa-solid fa-database"><span></span>
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
                         <span class="pc-mtext">Peraturan/Baku Mutu</span>
                     </a>
                 </li>
