@@ -11,6 +11,8 @@
     <link rel="icon" href="<?= base_url('assets/img/kemkes.png'); ?>" type="image/x-icon">
     <link rel="stylesheet" href="<?= base_url('assets/fonts/css2.css'); ?>" id="main-font-link">
     <!-- [Feather Icons] https://feathericons.com -->
+    <link rel="stylesheet" href="<?= base_url('assets/fonts/tabler.icons.min.css'); ?>">
+    <!-- [Feather Icons] https://feathericons.com -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/feather.css'); ?>">
     <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome.css'); ?>">
@@ -19,7 +21,7 @@
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link">
     <link rel="stylesheet" href="<?= base_url('assets/css/style-preset.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('css/style.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>">
 
     <?= $this->renderSection('topAssets'); ?>
 
