@@ -124,6 +124,6 @@ class ProsesLhu extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        
     }
 }

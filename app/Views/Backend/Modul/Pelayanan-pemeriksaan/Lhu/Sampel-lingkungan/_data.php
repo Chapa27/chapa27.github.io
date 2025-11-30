@@ -78,7 +78,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/jenis-sampel/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan-pemeriksaan/lhu/sampel-lingkungan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

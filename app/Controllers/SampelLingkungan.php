@@ -326,6 +326,15 @@ class SampelLingkungan extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil di hapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }

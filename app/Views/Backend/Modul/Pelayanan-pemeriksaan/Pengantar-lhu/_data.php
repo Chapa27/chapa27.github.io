@@ -28,6 +28,9 @@ use App\Models\MappSettingLabModel;
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
+                       <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
+                            <i class="fa-solid fa-trash-alt"></i>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" onclick="addLabTujuan(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
                             <i class="fa-solid fa-circle-plus"></i>
                         </button>
@@ -56,6 +59,53 @@ use App\Models\MappSettingLabModel;
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
             }
         })
+    }
+
+    function deleteData(id) {
+        var myElement = $('#myId-' + id);
+        if (myElement.data('urut')) {
+            myElement.addClass('bg bg-danger');
+        }
+        Swal.fire({
+            title: "Yakin untuk menghapus data ?",
+            text: `No.urut : ` + myElement.data('urut'),
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus!",
+            cancelButtonText: "Tidak",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'delete',
+                    url: '<?= site_url('pelayanan-pemeriksaan/pengantar-lhu/delete-data/'); ?>' + id,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.error) {
+                            Swal.fire({
+                                title: "Gagal!",
+                                text: response.error,
+                                icon: "error"
+                            });
+                            myElement.removeClass('bg bg-danger');
+                        } else {
+                            Swal.fire({
+                                title: "Hapus Data !",
+                                text: response.sukses,
+                                icon: "success"
+                            });
+                            listData();
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                    }
+                })
+            } else {
+                myElement.removeClass('bg bg-danger');
+            }
+        });
     }
 
     $(document).ready(function() {
