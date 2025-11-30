@@ -63,7 +63,9 @@ class LaboratoriumTujuan extends ResourceController
             $data = [
                 'title' => 'Tambah '.$this->title,
                 'items' => $this->modelPengantarLhu->get_data_by_id_lhu($id),
-                'masterLab' => $this->model->findAll()
+                'masterLab' => $this->model->findAll(),
+                'lab_tujuan' => $this->modelLabTujuan->where('id_pengantar_lhu', $id)->get()->getResultArray(),
+                'id_pengantar' => $id
             ];
             $msg = [
                 'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Lab-tujuan/_add', $data)
