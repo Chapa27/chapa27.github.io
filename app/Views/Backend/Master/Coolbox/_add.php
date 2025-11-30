@@ -9,7 +9,6 @@
             <form action="<?= base_url('master-data/coolbox/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                    <?= $counter; ?>
                    <div class="mb-3">
                         <label for="id-instansi" class="form-label h5" style="font-family: calibri;">Instansi</label>
                         <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">

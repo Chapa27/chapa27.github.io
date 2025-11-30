@@ -2,12 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Models\CoolboxModel;
 use App\Models\InstansiModel;
+use App\Models\PengaturanCoolboxModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
+use Config\Publisher;
 
-class CoolboxMaster extends ResourceController
+class PengaturanCoolbox extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -22,29 +23,27 @@ class CoolboxMaster extends ResourceController
     public function __construct()
     {
         $this->title = 'Coolbox';
-        $this->model = new CoolboxModel();
+        $this->model = new PengaturanCoolboxModel();
         $this->masterInstansi = new InstansiModel();
         $this->validation = \Config\Services::validation();
     }
 
     public function index()
     {
-
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => 'Data ' . $this->title,
         ];
-        return view('Backend/Master/Coolbox/index', $data);
+        return view('Backend/Modul/Pengaturan-coolbox/Coolbox/index', $data);
     }
 
-     public function list()
+    public function list()
     {
-
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->get_data()
+                'items' => $this->model->get_data_all()
             ];
             $msg = [
-                'data' => view('Backend/Master/coolbox/_data', $data)
+                'data' => view('Backend/Modul/Pengaturan-coolbox/Coolbox/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -60,27 +59,10 @@ class CoolboxMaster extends ResourceController
      *
      * @return ResponseInterface
      */
-    
     public function show($id = null)
     {
         //
     }
-
-    public function generate_kode_coolbox($param = null) 
-    {
-        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        // $count = $this->model->countAllResults();
-        $count = $this->model->where('id_instansi', $param)->countAllResults();
-       
-        // Buat nomor urut baru
-        $nomorUrut = $count + 1;
-
-        // Format nomor antrian
-        $nomorAntrian = 'CB.'.sprintf('%02d', $param).'/LKM.Jkt/'.sprintf('%02d', $nomorUrut);
-        
-        return $nomorAntrian;
-    }
-
 
     /**
      * Return a new resource object, with default properties.
@@ -92,11 +74,11 @@ class CoolboxMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterInstansi' => $this->masterInstansi->findAll(),
-                'counter' => $this->generate_kode_coolbox()
+                'coolbox' => $this->model->get_data()
             ];
+
             $msg = [
-                'data' => view('Backend/Master/Coolbox/_add', $data)
+                'data' => view('Backend/Modul/Pengaturan-coolbox/Coolbox/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -112,10 +94,23 @@ class CoolboxMaster extends ResourceController
      */
     public function create()
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
+            $idCoolbox = $this->request->getVar('id_coolbox');
+            $status = $this->request->getVar('status');
+            $tanggal = $this->request->getVar('tanggal');
+            
+            $cek_data = $this->model->cek_data($idCoolbox, $status, $tanggal);
+           
             $valid = $this->validate([
-                'id_instansi' => [
-                    'label' => 'Asal instansi',
+                'id_coolbox' => [
+                    'label' => 'Kode coolbox',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'status' => [
+                    'label' => 'Status',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -126,16 +121,24 @@ class CoolboxMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'id_instansi' => $this->validation->getError('id_instansi')
+                        'id_coolbox' => $this->validation->getError('id_coolbox'),
+                        'status' => $this->validation->getError('status'),
+                        'tanggal' => $this->validation->getError('tanggal')
                     ]
                 ];
-            } else {
-                $id_instansi = $this->request->getVar('id_instansi');
-                $simpandata = [
-                    'kode_coolbox' => $this->generate_kode_coolbox($id_instansi),
-                    'id_instansi' => $this->request->getVar('id_instansi')
+            } else if ($cek_data) {
+                $msg = [
+                    'error' => 'Data gagal disimpan'
                 ];
-                $this->model->save($simpandata);
+            } else {
+                $simpandata = [
+                    'id_coolbox' => $idCoolbox,
+                    'status' => $status,
+                    'tanggal' => $tanggal,
+                    'jam' => $this->request->getVar('jam'),
+                    'keterangan' => $this->request->getVar('keterangan')
+                ];
+                $this->model->insert($simpandata);
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];
@@ -158,12 +161,12 @@ class CoolboxMaster extends ResourceController
          if ($this->request->isAJAX()) {
 
             $data = [
-                'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
-                'masterInstansi' => $this->masterInstansi->findAll()
+                'coolbox' => $this->model->get_data(),
+                'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Coolbox/_edit', $data)
+                'sukses' => view('Backend/Modul/Pengaturan-coolbox/Coolbox/_edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -181,9 +184,22 @@ class CoolboxMaster extends ResourceController
     public function update($id = null)
     {
         if ($this->request->isAJAX()) {
+            $idCoolbox = $this->request->getVar('id_coolbox');
+            $status = $this->request->getVar('status');
+            $tanggal = $this->request->getVar('tanggal');
+            
+            $cek_data = $this->model->cek_data($idCoolbox, $status, $tanggal);
+           
             $valid = $this->validate([
-               'id_instansi' => [
-                    'label' => 'Asal instansi',
+                'id_coolbox' => [
+                    'label' => 'Kode coolbox',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'status' => [
+                    'label' => 'Status',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -194,17 +210,27 @@ class CoolboxMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'id_instansi' => $this->validation->getError('id_instansi')
+                        'id_coolbox' => $this->validation->getError('id_coolbox'),
+                        'status' => $this->validation->getError('status'),
+                        'tanggal' => $this->validation->getError('tanggal')
                     ]
+                ];
+            } else if ($cek_data) {
+                $msg = [
+                    'error' => 'Data gagal disimpan'
                 ];
             } else {
                 $simpandata = [
-                   'id' => $this->request->getVar('id'),
-                   'id_instansi' => $this->request->getVar('id_instansi')
+                    'id' => $this->request->getVar('id'),
+                    'id_coolbox' => $idCoolbox,
+                    'status' => $status,
+                    'tanggal' => $tanggal,
+                    'jam' => $this->request->getVar('jam'),
+                    'keterangan' => $this->request->getVar('keterangan')
                 ];
-                $this->model->save($simpandata);
+                $this->model->insert($simpandata);
                 $msg = [
-                    'sukses' => 'Data berhasil diubah'
+                    'sukses' => 'Data berhasil disimpan'
                 ];
             }
             echo json_encode($msg);
@@ -220,17 +246,19 @@ class CoolboxMaster extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function delete($id = null)
+
+    public function delete($id = null) 
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
 
             $this->model->delete($id);
             $msg = [
-                'sukses' => 'Data berhasil dihapus'
+                'sukses' => 'Data berhasil di hapus'
             ];
             echo json_encode($msg);
         } else {
             exit('Not Process');
         }
     }
+    
 }

@@ -117,34 +117,11 @@
                     <label>Pengaturan Coolbox</label>
                     <i class="ti ti-databases"></i>
                 </li>
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="fa-solid fa-arrow-right"></span>
-                        <span class="pc-micon">
-                        </span>
-                        <span class="pc-mtext" data-i18n="Coolbox">Coolbox</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                <li class="pc-item">
+                    <a href="<?= base_url('pengaturan-coolbox/cool-box'); ?>" class="pc-link">
+                        <span class="pc-micon"><span class="fa-solid fa-box"></span></span>
+                        <span class="pc-mtext">Coolbox</span>
                     </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item">
-                            <a href="<?= base_url('pengaturan-coolbox/cool-box/masuk'); ?>" class="pc-link">
-                                <span class="pc-micon"><i class="fa-solid fa-box"></i></span>
-                                <span class="pc-mtext">Coolbox Masuk</span>
-                            </a>
-                        </li>
-                        <li class="pc-item">
-                            <a href="<?= base_url('pengaturan-coolbox/cool-box/dititip'); ?>" class="pc-link">
-                                <span class="pc-micon"><i class="fa-solid fa-box"></i></span>
-                                <span class="pc-mtext">Coolbox Dititip</span>
-                            </a>
-                        </li>
-                        <li class="pc-item">
-                            <a href="<?= base_url('pengaturan-coolbox/cool-box/keluar'); ?>" class="pc-link">
-                                <span class="pc-micon"><i class="fa-solid fa-box"></i></span>
-                                <span class="pc-mtext">Coolbox Keluar</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="pc-item pc-caption">
                     <label>Master Data</label>

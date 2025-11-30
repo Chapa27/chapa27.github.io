@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\InstansiModel;
+use App\Models\PengaturanCoolboxModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -14,12 +16,14 @@ class CoolboxMasuk extends ResourceController
      */
     protected $title;
     protected $model;
+    protected $masterInstansi;
     protected $validation;
 
     public function __construct()
     {
-        $this->title = 'Laboratorium';
-        $this->model = new LaboratoriumModel();
+        $this->title = 'Coolbox Masuk';
+        $this->model = new PengaturanCoolboxModel();
+        $this->masterInstansi = new InstansiModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -28,17 +32,17 @@ class CoolboxMasuk extends ResourceController
         $data = [
             'title' => 'Data ' . $this->title,
         ];
-        return view('Backend/Master/Laboratorium/index', $data);
+        return view('Backend/Modul/Pengaturan-coolbox/Masuk/index', $data);
     }
 
     public function list()
     {
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->findAll()
+                'items' => $this->model->get_data_all()
             ];
             $msg = [
-                'data' => view('Backend/Master/Laboratorium/_data', $data)
+                'data' => view('Backend/Modul/Pengaturan-coolbox/Masuk/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -66,7 +70,20 @@ class CoolboxMasuk extends ResourceController
      */
     public function new()
     {
-        //
+         if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'coolbox' => $this->model->get_data()
+            ];
+
+            $msg = [
+                'data' => view('Backend/Modul/Pengaturan-coolbox/Masuk/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -76,7 +93,59 @@ class CoolboxMasuk extends ResourceController
      */
     public function create()
     {
-        //
+         if ($this->request->isAJAX()) {
+            $idCoolbox = $this->request->getVar('id_coolbox');
+            $status = $this->request->getVar('status');
+            $tanggal = $this->request->getVar('tanggal');
+            
+            $cek_data = $this->model->cek_data($idCoolbox, $status, $tanggal);
+           
+            $valid = $this->validate([
+                'id_coolbox' => [
+                    'label' => 'Kode coolbox',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'status' => [
+                    'label' => 'Status',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_coolbox' => $this->validation->getError('id_coolbox'),
+                        'status' => $this->validation->getError('status'),
+                        'tanggal' => $this->validation->getError('tanggal')
+                    ]
+                ];
+            } else if ($cek_data) {
+                $msg = [
+                    'error' => 'Data gagal disimpan'
+                ];
+            } else {
+                $simpandata = [
+                    'id_coolbox' => $idCoolbox,
+                    'status' => $status,
+                    'tanggal' => $tanggal,
+                    'jam' => $this->request->getVar('jam'),
+                    'keterangan' => $this->request->getVar('keterangan')
+                ];
+                $this->model->insert($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -112,6 +181,15 @@ class CoolboxMasuk extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil di hapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }

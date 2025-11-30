@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
-        $arrth = ['No', 'Laboratorium', 'Lantai', 'status', ''];
+        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl &Jam', 'Keterangan', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -13,18 +13,27 @@
         <?php
         $no = 1;
         foreach ($items as $row) :
+            if ($row['status'] == 1) {
+                $status = '<span class="badge bg-primary">Masuk</span>';
+            }else if ($row['status'] == 2) {
+                $status = '<span class="badge bg-success">Dititip</span>';
+            }else{
+                $status = '<span class="badge bg-danger">Keluar</span>';
+            }
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['idx']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['nama_lab']; ?></td>
-                <td><?= $row['lantai']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
+                <td><?= $row['kode_coolbox']; ?></td>
+                <td><?= $row['nama_instansi']; ?></td>
+                <td><?= $status; ?></td>
+                <td><?= date('d/m/Y', strtotime($row['tanggal'])).' '.$row['jam']; ?></td>
+                <td><?= $row['keterangan']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
                             <i class="fa-solid fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['idx']; ?>)" title="Hapus data">
                             <i class="fa-solid fa-trash-alt"></i>
                         </button>
                     </div>
@@ -37,7 +46,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/laboratorium/edit-data/'); ?>' + id,
+            url: '<?= site_url('pengaturan-coolbox/cool-box/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -70,7 +79,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/laboratorium/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pengaturan-coolbox/cool-box/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

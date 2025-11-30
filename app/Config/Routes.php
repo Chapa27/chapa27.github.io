@@ -230,12 +230,12 @@ $routes->group('master-data/peraturan-baku-mutu', function ($routes) {
 
 /** Pengaturan Coolbox masuk **/
 
-$routes->group('Pengaturan-coolbox/coolbox', function ($routes) {
-    $routes->get('', 'CoolboxMasuk::index');
-    $routes->get('list-data', 'CoolboxMasuk::list');
-    $routes->get('add-data', 'CoolboxMasuk::new');
-    $routes->post('create-data', 'CoolboxMasuk::create');
-    $routes->get('edit-data/(:num)', 'CoolboxMasuk::edit/$1');
-    $routes->post('update-data', 'CoolboxMasuk::update');
-    $routes->delete('delete-data/(:num)', 'CoolboxMasuk::delete/$1');
+$routes->group('pengaturan-coolbox/cool-box', function ($routes) {
+    $routes->get('', 'PengaturanCoolbox::index');
+    $routes->get('list-data', 'PengaturanCoolbox::list');
+    $routes->get('add-data', 'PengaturanCoolbox::new');
+    $routes->post('create-data', 'PengaturanCoolbox::create');
+    $routes->get('edit-data/(:num)', 'PengaturanCoolbox::edit/$1');
+    $routes->post('update-data', 'PengaturanCoolbox::update');
+    $routes->delete('delete-data/(:num)', 'PengaturanCoolbox::delete/$1');
 });
