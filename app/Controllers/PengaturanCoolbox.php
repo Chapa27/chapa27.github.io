@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CoolboxModel;
 use App\Models\InstansiModel;
 use App\Models\PengaturanCoolboxModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -22,10 +23,12 @@ class PengaturanCoolbox extends ResourceController
 
     public function __construct()
     {
-        $this->title = 'Coolbox';
+        $this->title = 'Posisi Coolbox';
         $this->model = new PengaturanCoolboxModel();
         $this->masterInstansi = new InstansiModel();
         $this->validation = \Config\Services::validation();
+        $this->helpers = ['form', 'url'];
+
     }
 
     public function index()
@@ -95,6 +98,7 @@ class PengaturanCoolbox extends ResourceController
     public function create()
     {
         if ($this->request->isAJAX()) {
+
             $idCoolbox = $this->request->getVar('id_coolbox');
             $status = $this->request->getVar('status');
             $tanggal = $this->request->getVar('tanggal');
@@ -228,7 +232,7 @@ class PengaturanCoolbox extends ResourceController
                     'jam' => $this->request->getVar('jam'),
                     'keterangan' => $this->request->getVar('keterangan')
                 ];
-                $this->model->insert($simpandata);
+                $this->model->save($simpandata);
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];
@@ -256,6 +260,74 @@ class PengaturanCoolbox extends ResourceController
                 'sukses' => 'Data berhasil di hapus'
             ];
             echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
+    public function add_foto($id = null)
+    {
+           if ($this->request->isAJAX()) {
+            $q = $this->model->find($id);
+            $idCoolbox = $q['id_coolbox'];
+            $masterCoolbox = new CoolboxModel();
+            $coolbox = $masterCoolbox->find($idCoolbox); 
+            $data = [
+                'items' => $this->model->find($id),
+                'coolbox' => $coolbox,
+                'title' => 'Tambah Foto'
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pengaturan-coolbox/Coolbox/_add_foto', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        } 
+
+    }
+
+    Public function upload_foto()
+    {
+        if ($this->request->isAJAX()) {
+
+            $kodeCoolbox = $this->request->getVar('kode_coolbox');
+            $status = $this->request->getVar('status');
+            $fileOld = $this->request->getVar('file_old');
+            $fileDocument = $this->request->getFile('upload_foto');
+            $id = $this->request->getVar('id');
+
+            $uploadPath = FCPATH . 'uploads/coolbox/'.$kodeCoolbox.'/';
+
+            if (! is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+
+                $fileName = $status.'_'.str_replace(" ", "_", $fileDocument->getName());
+
+                if ($fileOld == '') {
+                    $fileDocument->move($uploadPath, $fileName);
+                    $simpandata = [
+                        'foto' => $fileName,
+                    ];
+                    $this->model->update($id, $simpandata);
+                    $msg = [
+                        'sukses' => 'File berhasil di ubah'
+                    ];
+                } else {
+                    $expd = explode("_", $fileOld);
+                    unlink($uploadPath . $fileOld);
+                        $fileDocument->move($uploadPath, $fileName);
+                        $simpandata = [
+                            'foto' => $fileName,
+                        ];
+                        $this->model->update($id, $simpandata);
+                        $msg = [
+                            'sukses' => 'File berhasil di ubah'
+                        ];
+                }
+                        echo json_encode($msg);              
+
         } else {
             exit('Not Process');
         }

@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
-        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl &Jam', 'Keterangan', ''];
+        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl & Jam', 'Keterangan', 'foto', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -26,8 +26,13 @@
                 <td><?= $row['kode_coolbox']; ?></td>
                 <td><?= $row['nama_instansi']; ?></td>
                 <td><?= $status; ?></td>
-                <td><?= date('d/m/Y', strtotime($row['tanggal'])).' '.$row['jam']; ?></td>
+                <td><?= date('d/m/Y', strtotime($row['tanggal'])).' '. date('H:i', strtotime($row['jam'])); ?></td>
                 <td><?= $row['keterangan']; ?></td>
+                <td>
+                    <button type="button" class="btn btn-default btn-sm" onclick="addFoto(<?= $row['idx']; ?>)" title="Input Foto">
+                        <i class="fa-solid fa-image"></i>
+                    </button>
+                </td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
@@ -60,6 +65,22 @@
         })
     }
 
+     function addFoto(id) {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('pengaturan-coolbox/cool-box/add-foto/'); ?>' + id,
+            dataType: 'json',
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
 
     function deleteData(id) {
         var myElement = $('#myId-' + id);

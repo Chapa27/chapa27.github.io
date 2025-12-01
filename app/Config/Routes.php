@@ -239,4 +239,6 @@ $routes->group('pengaturan-coolbox/cool-box', function ($routes) {
     $routes->get('edit-data/(:num)', 'PengaturanCoolbox::edit/$1');
     $routes->post('update-data', 'PengaturanCoolbox::update');
     $routes->delete('delete-data/(:num)', 'PengaturanCoolbox::delete/$1');
+    $routes->get('add-foto/(:num)', 'PengaturanCoolbox::add_foto/$1');
+    $routes->post('upload-foto', 'PengaturanCoolbox::upload_foto');
 });

@@ -8,7 +8,7 @@
             </div>
             <form action="<?= base_url('pengaturan-coolbox/cool-box/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id" value="<?= $items['id']; ?>">
+                <input type="text" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="id-coolbox" class="form-label h5" style="font-family: calibri;">Kode coolbox</label>
