@@ -242,3 +242,9 @@ $routes->group('pengaturan-coolbox/cool-box', function ($routes) {
     $routes->get('add-foto/(:num)', 'PengaturanCoolbox::add_foto/$1');
     $routes->post('upload-foto', 'PengaturanCoolbox::upload_foto');
 });
+
+$routes->group('generate/qrcode', function ($routes) {
+    $routes->get('', 'GenerateQrcode::index');
+
+});
+

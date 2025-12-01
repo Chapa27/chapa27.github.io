@@ -181,6 +181,12 @@
                         <span class="pc-mtext">Coolbox</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('generate/qrcode'); ?>" class="pc-link">
+                        <span class="pc-micon"><span class="fa-solid fa-database"></span></span>
+                        <span class="pc-mtext">Qr-code</span>
+                    </a>
+                </li>
             </ul>
             <div class="card text-center">
                 <!-- Blank -->
