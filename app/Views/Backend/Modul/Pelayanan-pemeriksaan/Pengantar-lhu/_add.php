@@ -23,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label h5">Tanggal</label>
-                        <input type="date" name="tanggal" value="<?= date('Y-m-d'); ?>" class="form-control">
+                        <input type="text" name="tanggal" id="tanggal" class="form-control">
                         <div class="invalid-feedback errorTanggal"></div>
                     </div>
                 </div>
@@ -37,6 +37,11 @@
 </div>
 <script>
     $(document).ready(function() {
+        var dateToday = new Date();
+        $( "#tanggal" ).datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "+1w",  inDate: dateToday});
        
         $(".form-data").submit(function(e) {
             e.preventDefault();

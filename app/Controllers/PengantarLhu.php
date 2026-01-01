@@ -49,15 +49,22 @@ class PengantarLhu extends ResourceController
 
     public function generate_kode_pengantar() 
     {
-        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        $count = $this->model->countAllResults();
-       
-        // Buat nomor urut baru
-        $nomorUrut = $count + 1;
-
-        // Format nomor antrian
-        $nomorAntrian = 'PL' . sprintf('%04d', $nomorUrut);
+        $tahun = null;
+        // cari tahun data terakhir 
+        $query = $this->model->orderBy('id', 'DESC')->get();
         
+        foreach ($query->getResultArray() as $row) {
+            $tahun = $row['tahun'];
+        }
+        $nextYear = date('Y', strtotime($this->today));
+        if ($tahun < $nextYear) {
+            $count = $this->model->where('tahun', $tahun)->countAllResults();
+            $nomorUrut = 1;
+        }else{
+            $count = $this->model->where('tahun', $nextYear)->countAllResults();
+            $nomorUrut = $count + 1;
+        }
+        $nomorAntrian = 'PL'. sprintf('%04d', $nomorUrut).'.'.date('Y', strtotime($this->today));
         return $nomorAntrian;
     }
 
